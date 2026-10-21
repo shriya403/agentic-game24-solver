@@ -23,6 +23,7 @@ max_hops = st.slider("Maximum role/tool hops", 1, 30, 12)
 st.caption("The oracle demo uses exhaustive search, without model calls or semantic retrieval. It is not Qwen evidence.")
 if st.button("Solve with TA2", type="primary"):
     workflow = None
+    rag = None
     try:
         offline = mode == "Deterministic oracle demo"
         client = None if offline else LocalOllama()
@@ -36,6 +37,8 @@ if st.button("Solve with TA2", type="primary"):
     finally:
         if workflow:
             workflow.close()
+        if rag:
+            rag.close()
 result = st.session_state.get("ta2_result")
 if result:
     st.write("Status:", result["status"])

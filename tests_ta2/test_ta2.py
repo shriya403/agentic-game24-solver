@@ -8,6 +8,7 @@ import tempfile
 import unittest
 import urllib.error
 import sqlite3
+from contextlib import ExitStack
 from pathlib import Path
 from unittest.mock import patch
 
@@ -189,8 +190,18 @@ class GuardrailTests(unittest.TestCase):
 
 
 class StoreRAGTests(unittest.TestCase):
-    def test_sqlite_store_reopen_crud(self):
+    def test_chroma_context_closes_after_exception(self):
         with tempfile.TemporaryDirectory() as d:
+            rag = ChromaRAG(d, FakeModel())
+            with patch.object(rag.db, "close", wraps=rag.db.close) as close:
+                with self.assertRaisesRegex(RuntimeError, "injected"):
+                    with rag:
+                        raise RuntimeError("injected")
+                close.assert_called_once()
+            # No cleanup suppression: Windows must be able to delete the directory.
+
+    def test_sqlite_store_reopen_crud(self):
+        with tempfile.TemporaryDirectory() as d, ExitStack() as resources:
             path = Path(d)/"store.sqlite"
             s = SQLiteStore(path)
             s.put(("user", "a"), "key", {"value": 1})
@@ -206,14 +217,14 @@ class StoreRAGTests(unittest.TestCase):
             s.close()
 
     def test_real_chroma_persistence_and_idempotent_ingest(self):
-        with tempfile.TemporaryDirectory() as d:
+        with tempfile.TemporaryDirectory() as d, ExitStack() as resources:
             source = Path(d)/"rules.md"
             source.write_text("Use every card once. Fraction intermediates are legal.")
-            rag = ChromaRAG(Path(d)/"chroma", FakeModel())
+            rag = resources.enter_context(ChromaRAG(Path(d)/"chroma", FakeModel()))
             self.assertEqual(rag.ingest([source]), 1)
             rag.ingest([source])
             self.assertEqual(rag.collection.count(), 1)
-            reopened = ChromaRAG(Path(d)/"chroma", FakeModel())
+            reopened = resources.enter_context(ChromaRAG(Path(d)/"chroma", FakeModel()))
             result = reopened.retrieve("fraction card")
             self.assertEqual(result[0]["source"], str(source.resolve()))
             self.assertIn("Fraction", result[0]["text"])
@@ -223,17 +234,17 @@ class StoreRAGTests(unittest.TestCase):
             self.assertEqual(reopened.retrieve("card")[0]["text"], "New card rule")
 
     def test_empty_index_is_failure(self):
-        with tempfile.TemporaryDirectory() as d:
-            rag = ChromaRAG(d, FakeModel())
+        with tempfile.TemporaryDirectory() as d, ExitStack() as resources:
+            rag = resources.enter_context(ChromaRAG(d, FakeModel()))
             with self.assertRaises(ToolFailure):
                 rag.retrieve("card")
 
     def test_embedding_failure_preserves_existing_index(self):
-        with tempfile.TemporaryDirectory() as d:
+        with tempfile.TemporaryDirectory() as d, ExitStack() as resources:
             p = Path(d)/"rules.md"
             p.write_text("Card rule")
             model = FakeModel()
-            rag = ChromaRAG(Path(d)/"chroma", model)
+            rag = resources.enter_context(ChromaRAG(Path(d)/"chroma", model))
             rag.ingest([p])
             def fail(texts):
                 raise ToolFailure("embed", "Injected embedding failure")
@@ -277,10 +288,10 @@ class ModelToolTests(unittest.TestCase):
         try:
             client = LocalOllama(base_url=f"http://127.0.0.1:{server.server_port}")
             client.ready()
-            with tempfile.TemporaryDirectory() as d:
+            with tempfile.TemporaryDirectory() as d, ExitStack() as resources:
                 source = Path(d)/"rules.md"
                 source.write_text("Use every card once; fractional intermediates are legal.")
-                rag = ChromaRAG(Path(d)/"chroma", client)
+                rag = resources.enter_context(ChromaRAG(Path(d)/"chroma", client))
                 rag.ingest([source])
                 w = TA2Workflow(Path(d)/"state", client=client, rag=rag)
                 try:
@@ -326,7 +337,7 @@ class ModelToolTests(unittest.TestCase):
 
 class EvaluationTests(unittest.TestCase):
     def test_five_cases_three_systems_and_preserved_outputs(self):
-        with tempfile.TemporaryDirectory() as d:
+        with tempfile.TemporaryDirectory() as d, ExitStack() as resources:
             path = Path(d)/"eval.csv"
             rows = evaluate(path, offline=True)
             self.assertEqual(len(rows), 15)

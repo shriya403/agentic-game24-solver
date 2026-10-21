@@ -163,3 +163,13 @@ Group acceptance checklist:
 Cloud validation can establish implementation correctness without establishing
 that your separate Windows model server was tested. Local Qwen and nomic
 performance must be measured on your Windows machine.
+
+## Windows Chroma file-lock correction
+
+Chroma clients must be explicitly closed before deleting a temporary index.
+The RAG adapter is a context manager with an idempotent `close()` method.
+CLI, UI, evaluation and tests close every client, including reopened clients
+sharing the same persistent index. The dependency requires Chroma 1.5.9 or
+newer for its public client lifecycle API. Cleanup errors are not suppressed.
+If upgrading from the first TA2 revision, pull the branch, refresh dependencies
+and rerun both test suites before starting another model evaluation.

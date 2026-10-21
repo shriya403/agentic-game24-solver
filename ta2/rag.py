@@ -15,9 +15,22 @@ class ChromaRAG:
             self.collection = self.db.get_or_create_collection(collection, embedding_function=None,
                               metadata={"embedding_model": client.embedding_model})
         except Exception as exc:
+            if hasattr(self, "db"):
+                self.db.close()
             raise ToolFailure("retrieval_init", type(exc).__name__) from exc
         if self.collection.metadata.get("embedding_model") != client.embedding_model:
+            self.db.close()
             raise ToolFailure("retrieval", "Collection embedding model differs from configured model")
+
+    def close(self):
+        """Release this client's references, including Windows SQLite/index handles."""
+        self.db.close()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc, traceback):
+        self.close()
 
     def ingest(self, paths):
         try:

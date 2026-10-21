@@ -7,6 +7,7 @@ import json
 import tempfile
 import time
 import uuid
+from contextlib import ExitStack
 from pathlib import Path
 
 from game24.engine import exhaustive_solve
@@ -32,12 +33,12 @@ def evaluate(output, offline=False, runs=1, model="qwen2.5:3b", corpus=None, bas
     if output.exists() or trace_path.exists():
         raise ValueError("Output exists; choose a new evaluation filename")
     # Fresh persistence and retrieval per evaluation prevent previous answer leakage.
-    with tempfile.TemporaryDirectory(prefix="game24-ta2-eval-") as root:
+    with tempfile.TemporaryDirectory(prefix="game24-ta2-eval-") as root, ExitStack() as resources:
         rag = None
         if not offline:
             setup_client = LocalOllama(base_url=base_url, model=model)
             setup_client.ready()
-            rag = ChromaRAG(Path(root) / "chroma", setup_client)
+            rag = resources.enter_context(ChromaRAG(Path(root) / "chroma", setup_client))
             rag.ingest([corpus or Path(__file__).parent / "ta2/corpus/rules.md"])
         traces = []
         for case, puzzle in CASES:
@@ -80,11 +81,11 @@ def evaluate(output, offline=False, runs=1, model="qwen2.5:3b", corpus=None, bas
                     traces.append({"case": case, "seed": seed, "system": "TA2", "state": state})
                 finally:
                     workflow.close()
-    with output.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
-        writer.writeheader()
-        writer.writerows(rows)
-    trace_path.write_text(json.dumps(traces, indent=2), encoding="utf-8")
+        with output.open("w", newline="", encoding="utf-8") as handle:
+            writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
+            writer.writeheader()
+            writer.writerows(rows)
+        trace_path.write_text(json.dumps(traces, indent=2), encoding="utf-8")
     return rows
 
 

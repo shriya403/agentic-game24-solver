@@ -4,6 +4,7 @@ import argparse
 import json
 import os
 import sqlite3
+from contextlib import ExitStack
 from pathlib import Path
 
 from .tools import LocalOllama, ToolFailure
@@ -33,34 +34,35 @@ def main():
     args = parser.parse_args()
     client = None if args.offline else LocalOllama(args.base_url, args.model, args.embedding_model)
     try:
-        if args.command in ("check", "ingest") and args.offline:
-            parser.error("check and ingest require Ollama; offline mode supplies no embeddings")
-        if args.command == "check":
-            client.ready()
-            vectors = client.embed(["Use every Game of 24 card exactly once."])
-            result = client.generate('Return JSON: {"ready": true}')
-            if result.get("ready") is not True:
-                raise ToolFailure("check", "Model did not return the expected readiness response")
-            print(json.dumps({"generation": "ok", "embedding_dimensions": len(vectors[0])}))
-            return
-        data = Path(args.data_dir)
-        data.mkdir(parents=True, exist_ok=True)
-        if client:
-            client.ready()
-        rag = ChromaRAG(data / "chroma", client) if client else None
-        if args.command == "ingest":
-            print(json.dumps({"chunks_upserted": rag.ingest(args.paths)}))
-            return
-        workflow = TA2Workflow(data, client=client, rag=rag, offline=args.offline,
-                               max_hops=getattr(args, "max_hops", 12))
-        try:
-            state = (workflow.resume(args.thread) if args.command == "resume" else
-                     workflow.run(args.cards, args.thread, args.seed, args.namespace))
-            print(json.dumps(state, indent=2))
-            if state["status"] in ("tool_failure", "max_hops_exceeded"):
-                raise SystemExit(2)
-        finally:
-            workflow.close()
+        with ExitStack() as resources:
+            if args.command in ("check", "ingest") and args.offline:
+                parser.error("check and ingest require Ollama; offline mode supplies no embeddings")
+            if args.command == "check":
+                client.ready()
+                vectors = client.embed(["Use every Game of 24 card exactly once."])
+                result = client.generate('Return JSON: {"ready": true}')
+                if result.get("ready") is not True:
+                    raise ToolFailure("check", "Model did not return the expected readiness response")
+                print(json.dumps({"generation": "ok", "embedding_dimensions": len(vectors[0])}))
+                return
+            data = Path(args.data_dir)
+            data.mkdir(parents=True, exist_ok=True)
+            if client:
+                client.ready()
+            rag = resources.enter_context(ChromaRAG(data / "chroma", client)) if client else None
+            if args.command == "ingest":
+                print(json.dumps({"chunks_upserted": rag.ingest(args.paths)}))
+                return
+            workflow = TA2Workflow(data, client=client, rag=rag, offline=args.offline,
+                                   max_hops=getattr(args, "max_hops", 12))
+            try:
+                state = (workflow.resume(args.thread) if args.command == "resume" else
+                         workflow.run(args.cards, args.thread, args.seed, args.namespace))
+                print(json.dumps(state, indent=2))
+                if state["status"] in ("tool_failure", "max_hops_exceeded"):
+                    raise SystemExit(2)
+            finally:
+                workflow.close()
     except (ToolFailure, ValueError, OSError, sqlite3.Error) as exc:
         parser.exit(2, f"TA2: {exc}\n")
 
