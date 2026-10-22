@@ -1,0 +1,13 @@
+test_linear_is_one_trajectory (test_agents.AgentTests.test_linear_is_one_trajectory) ... ok
+test_tot_fallback_solves_selected_puzzles (test_agents.AgentTests.test_tot_fallback_solves_selected_puzzles) ... ok
+test_all_selected_puzzles_are_solvable (test_engine.EngineTests.test_all_selected_puzzles_are_solvable) ... ok
+test_known_hard_solution (test_engine.EngineTests.test_known_hard_solution) ... ok
+test_rejects_number_reuse (test_validator.ValidatorTests.test_rejects_number_reuse) ... ok
+test_rejects_python_code (test_validator.ValidatorTests.test_rejects_python_code) ... ok
+test_rejects_wrong_value (test_validator.ValidatorTests.test_rejects_wrong_value) ... ok
+test_valid_expression (test_validator.ValidatorTests.test_valid_expression) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.027s
+
+OK

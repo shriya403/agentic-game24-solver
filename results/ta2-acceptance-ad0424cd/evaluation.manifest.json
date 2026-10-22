@@ -1,0 +1,25 @@
+{
+  "completed": true,
+  "offline": false,
+  "model": "qwen2.5:3b",
+  "embedding_model": "nomic-embed-text",
+  "temperature": 0,
+  "seeds": [
+    42
+  ],
+  "search_policies": [
+    "model",
+    "hybrid"
+  ],
+  "max_hops": 12,
+  "search_budget": 10000,
+  "memory_policy": "fresh thread and Store per case/seed/policy; rules-only RAG",
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "versions": {
+    "langgraph": "1.2.16",
+    "langgraph-checkpoint-sqlite": "3.1.2",
+    "chromadb": "1.5.9"
+  },
+  "limitations": "TA1 ToT is oracle-assisted. Tool budgets differ. Setup excluded from latency."
+}

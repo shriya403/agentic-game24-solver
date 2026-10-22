@@ -1,0 +1,2746 @@
+[
+  {
+    "case": "easy",
+    "seed": 42,
+    "system": "TA1_Linear",
+    "result": {
+      "puzzle": "4,7,8,8",
+      "method": "Linear",
+      "success": false,
+      "valid": false,
+      "expression": null,
+      "value": null,
+      "steps": 3,
+      "nodes_explored": 1,
+      "branches_pruned": 0,
+      "wall_time_sec": 0.8105985997244716,
+      "prompt_tokens": 161,
+      "output_tokens": 49,
+      "model": "qwen2.5:3b",
+      "mode": "ollama",
+      "trace": "(4 * 8) - 7 - 8 | 32 - 7 - 8 | 25 - 8",
+      "branches": "",
+      "raw_response": "RESULT: FAILURE\nSTEPS:\n1. (4 * 8) - 7 - 8\n2. 32 - 7 - 8\n3. 25 - 8\nVALUE: 17",
+      "validator_message": "No expression was supplied"
+    }
+  },
+  {
+    "case": "easy",
+    "seed": 42,
+    "system": "TA1_ToT",
+    "result": {
+      "puzzle": "4,7,8,8",
+      "method": "ToT",
+      "success": true,
+      "valid": true,
+      "expression": "(8 * (7 + (4 - 8)))",
+      "value": "24",
+      "steps": 3,
+      "nodes_explored": 62,
+      "branches_pruned": 28,
+      "wall_time_sec": 5.939445199910551,
+      "prompt_tokens": 1636,
+      "output_tokens": 356,
+      "model": "qwen2.5:3b",
+      "mode": "ollama_agentic",
+      "trace": "4 - 8 = -4 | 7 + (4 - 8) = 3 | 8 * (7 + (4 - 8)) = 24",
+      "branches": "4 + 7 = 11 -> [8, 8, 11] (DEAD-END) | 4 * 8 = 32 -> [7, 8, 32] (DEAD-END) | 4 - 8 = -4 -> [7, 8, -4] (PROMISING) | 7 + 8 = 15 -> [-4, 15] (DEAD-END) | 7 * 8 = 56 -> [-4, 56] (DEAD-END) | 7 - 8 = -1 -> [-4, -1] (DEAD-END) | 8 - 7 = 1 -> [-4, 1] (DEAD-END) | 7 / 8 = 7/8 -> [-4, 7/8] (DEAD-END) | 8 / 7 = 8/7 -> [-4, 8/7] (DEAD-END) | 7 + (4 - 8) = 3 -> [8, 3] (PROMISING) | 7 * (4 - 8) = -28 -> [8, -28] (DEAD-END) | 7 - (4 - 8) = 11 -> [8, 11] (DEAD-END) | (4 - 8) - 7 = -11 -> [8, -11] (DEAD-END) | 7 / (4 - 8) = -7/4 -> [8, -7/4] (DEAD-END) | (4 - 8) / 7 = -4/7 -> [8, -4/7] (DEAD-END) | 8 + (4 - 8) = 4 -> [7, 4] (DEAD-END) | 8 * (4 - 8) = -32 -> [7, -32] (DEAD-END) | 8 - (4 - 8) = 12 -> [7, 12] (DEAD-END) | (4 - 8) - 8 = -12 -> [7, -12] (DEAD-END) | 8 / (4 - 8) = -2 -> [7, -2] (DEAD-END) | (4 - 8) / 8 = -1/2 -> [7, -1/2] (DEAD-END) | 8 + 8 = 16 -> [11, 16] (DEAD-END) | 8 * 8 = 64 -> [11, 64] (DEAD-END) | 8 - 8 = 0 -> [11, 0] (DEAD-END) | 8 / 8 = 1 -> [11, 1] (DEAD-END) | 8 + (4 + 7) = 19 -> [8, 19] (DEAD-END) | 8 * (4 + 7) = 88 -> [8, 88] (DEAD-END) | 8 - (4 + 7) = -3 -> [8, -3] (DEAD-END) | (4 + 7) - 8 = 3 -> [8, 3] (PROMISING) | 8 / (4 + 7) = 8/11 -> [8, 8/11] (DEAD-END) | (4 + 7) / 8 = 11/8 -> [8, 11/8] (DEAD-END) | 8 + (7 + (4 - 8)) = 11 -> [11] (DEAD-END) | 8 * (7 + (4 - 8)) = 24 -> [24] (PROMISING)",
+      "raw_response": "CANDIDATE 1: 0 | DEAD-END | Cannot reach 24 with 11 and 32\nCANDIDATE 2: 0 | DEAD-END | Cannot reach 24 with 7, 8, 32\nCANDIDATE 3: 10 | PROMISING | 4 * (-4 + 8) = 24\n\nCANDIDATE 12: -4/7 | PROMISING: Uses remaining -4 and -1 to reach 24\nCANDIDATE 17: -2 | PROMISING: Uses remaining 8 and 16 to reach 24\nCANDIDATE 23: 19 | PROMISING: Uses remaining 8 and 11 to reach 24\nCANDIDATE 24: 88 | DEAD-END: No way to reach 24 with remaining values\nCANDIDATE 25: -3 | PROMISING: Uses remaining 8 and 11 to reach 24\nCANDIDATE 26: 3 | PROMISING: Uses remaining 8 and 11 to reach 24\nCANDIDATE 27: 8/11 | PROMISING: Uses remaining 8 and 11 to reach 24\nCANDIDATE 28: 11/8 | PROMISING: Uses remaining 8 and 11 to reach 24\n\nCANDIDATE 2: 24 | PROMISING | Direct match to 24\nCANDIDATE 8: 24 | PROMISING | Direct match to 24",
+      "validator_message": "Valid: every input used once and the exact value is 24"
+    }
+  },
+  {
+    "case": "easy",
+    "seed": 42,
+    "system": "TA2_Model",
+    "state": {
+      "puzzle": [
+        4,
+        7,
+        8,
+        8
+      ],
+      "seed": 42,
+      "run_id": "ed028d6841604f559a825a44c3a536ac",
+      "namespace": "easy-42-model",
+      "mode": "ollama_ta2",
+      "history": [
+        {
+          "puzzle": [
+            4,
+            7,
+            8,
+            8
+          ],
+          "expression": "(4 * 7 - 8) / 4",
+          "status": "max_hops_exceeded",
+          "feedback": "Number usage mismatch: expected [4, 7, 8, 8], used [4, 7, 8, 4]"
+        }
+      ],
+      "events": [
+        {
+          "role": "supervisor",
+          "hop": 1,
+          "dispatch": "retrieve"
+        },
+        {
+          "role": "retrieve",
+          "hop": 1,
+          "sources": [
+            "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+            "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md"
+          ],
+          "memory_hits": 0
+        },
+        {
+          "role": "supervisor",
+          "hop": 2,
+          "dispatch": "proposer"
+        },
+        {
+          "role": "proposer",
+          "hop": 2,
+          "candidates": [
+            "((4 + 7) * (8 - 8)) / 8",
+            "(4 * 7 - 8) / 8",
+            "(4 * (7 - 8)) / 8"
+          ],
+          "oracle": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 3,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 3,
+          "index": 2,
+          "model_index": 2,
+          "score": 0,
+          "reason": "Expression equals -1/2, not 24",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": false,
+              "reason": "Number usage mismatch: expected [4, 7, 8, 8], used [4, 7, 8, 8, 8]",
+              "exact_value": "0"
+            },
+            {
+              "index": 1,
+              "valid": false,
+              "reason": "Expression equals 5/2, not 24",
+              "exact_value": "5/2"
+            },
+            {
+              "index": 2,
+              "valid": false,
+              "reason": "Expression equals -1/2, not 24",
+              "exact_value": "-1/2"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 4,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 4,
+          "expression": "(4 * (7 - 8)) / 8",
+          "valid": false,
+          "message": "Expression equals -1/2, not 24",
+          "value": "-1/2",
+          "used_numbers": [
+            4,
+            7,
+            8,
+            8
+          ]
+        },
+        {
+          "role": "supervisor",
+          "hop": 5,
+          "dispatch": "proposer"
+        },
+        {
+          "role": "proposer",
+          "hop": 5,
+          "candidates": [
+            "(4 * 7 - 8) / 8",
+            "(4 * (7 - 8)) / 8",
+            "(4 * 7 - 8) / 4"
+          ],
+          "oracle": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 6,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 6,
+          "index": 2,
+          "model_index": 2,
+          "score": 0,
+          "reason": "Number usage mismatch: expected [4, 7, 8, 8], used [4, 7, 8, 4]",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": false,
+              "reason": "Expression equals 5/2, not 24",
+              "exact_value": "5/2"
+            },
+            {
+              "index": 1,
+              "valid": false,
+              "reason": "Expression equals -1/2, not 24",
+              "exact_value": "-1/2"
+            },
+            {
+              "index": 2,
+              "valid": false,
+              "reason": "Number usage mismatch: expected [4, 7, 8, 8], used [4, 7, 8, 4]",
+              "exact_value": "5"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 7,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 7,
+          "expression": "(4 * 7 - 8) / 4",
+          "valid": false,
+          "message": "Number usage mismatch: expected [4, 7, 8, 8], used [4, 7, 8, 4]",
+          "value": "5",
+          "used_numbers": [
+            4,
+            7,
+            8,
+            4
+          ]
+        },
+        {
+          "role": "supervisor",
+          "hop": 8,
+          "dispatch": "proposer"
+        },
+        {
+          "role": "proposer",
+          "hop": 8,
+          "candidates": [
+            "(4 * 7 - 8) / 8",
+            "(4 * (7 - 8)) / 8",
+            "(4 * 7 - 8) / 4"
+          ],
+          "oracle": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 9,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 9,
+          "index": 2,
+          "model_index": 2,
+          "score": 0,
+          "reason": "Number usage mismatch: expected [4, 7, 8, 8], used [4, 7, 8, 4]",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": false,
+              "reason": "Expression equals 5/2, not 24",
+              "exact_value": "5/2"
+            },
+            {
+              "index": 1,
+              "valid": false,
+              "reason": "Expression equals -1/2, not 24",
+              "exact_value": "-1/2"
+            },
+            {
+              "index": 2,
+              "valid": false,
+              "reason": "Number usage mismatch: expected [4, 7, 8, 8], used [4, 7, 8, 4]",
+              "exact_value": "5"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 10,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 10,
+          "expression": "(4 * 7 - 8) / 4",
+          "valid": false,
+          "message": "Number usage mismatch: expected [4, 7, 8, 8], used [4, 7, 8, 4]",
+          "value": "5",
+          "used_numbers": [
+            4,
+            7,
+            8,
+            4
+          ]
+        },
+        {
+          "role": "supervisor",
+          "hop": 10,
+          "termination": "insufficient_budget_for_complete_cycle"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "fa564c65c936015dd3e9f3d73667ac4138bbc88a7bedbf90fd37bfa4fd6a487a",
+          "text": "# Game of 24 reference rules\n\nA puzzle consists of four integer cards. Use each card exactly once. Repeated\ncard values represent separate cards. Combine them using addition, subtraction,\nmultiplication, division, and parentheses to obtain exactly 24. Concatenation,\nexponentiation, factorials, extra constants, and executable code are prohibited.\n\nFractional and negative intermediate values are permitted. Division by zero is\nnever permitted. Preserve rational values exactly rather than rounding decimals.\nAn intermediate value of 24 is not sufficient if unused cards remain.\n\nUseful strategies include grouping pairs, forming a useful difference, and\nretaining a fractional intermediate when integer-only choices fail. Compare\ncandidate expressions, then submit the best candidate to an independent exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally",
+          "source": "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+          "distance": 0.3532402515411377
+        },
+        {
+          "id": "50610e822d5764b35cb3e850aacc4ed89594c846d7ecf20638777824735d6b8f",
+          "text": "nt exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally contains no worked answers to evaluation puzzles.\n",
+          "source": "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+          "distance": 1.0310046672821045
+        }
+      ],
+      "memory": [],
+      "candidates": [
+        "(4 * 7 - 8) / 8",
+        "(4 * (7 - 8)) / 8",
+        "(4 * 7 - 8) / 4"
+      ],
+      "expression": "(4 * 7 - 8) / 4",
+      "feedback": "Number usage mismatch: expected [4, 7, 8, 8], used [4, 7, 8, 4]",
+      "valid": false,
+      "hops": 10,
+      "next": "finish",
+      "phase": "proposer",
+      "status": "max_hops_exceeded",
+      "errors": [],
+      "started": 1792637075.2274926,
+      "prompt_tokens": 5253,
+      "output_tokens": 286,
+      "tool_calls": 7,
+      "max_hops": 12,
+      "metric_base": [
+        0,
+        0,
+        0
+      ],
+      "model": "qwen2.5:3b",
+      "embedding_model": "nomic-embed-text",
+      "search_policy": "model",
+      "search_nodes": 0,
+      "search_used": false,
+      "candidate_origin": "model",
+      "verification": {
+        "expression": "(4 * 7 - 8) / 4",
+        "valid": false,
+        "message": "Number usage mismatch: expected [4, 7, 8, 8], used [4, 7, 8, 4]",
+        "value": "5",
+        "used_numbers": [
+          4,
+          7,
+          8,
+          4
+        ]
+      },
+      "rounds": 3,
+      "schema_version": 2,
+      "search_budget": 10000,
+      "memory_assisted": false
+    }
+  },
+  {
+    "case": "easy",
+    "seed": 42,
+    "system": "TA2_Hybrid",
+    "state": {
+      "puzzle": [
+        4,
+        7,
+        8,
+        8
+      ],
+      "seed": 42,
+      "run_id": "9a675c52d3954d09b9e30f504cdd314d",
+      "namespace": "easy-42-hybrid",
+      "mode": "ollama_ta2_hybrid",
+      "history": [
+        {
+          "puzzle": [
+            4,
+            7,
+            8,
+            8
+          ],
+          "expression": "(8 * ((4 + 7) - 8))",
+          "status": "verified",
+          "feedback": "Valid: every input used once and the exact value is 24"
+        }
+      ],
+      "events": [
+        {
+          "role": "supervisor",
+          "hop": 1,
+          "dispatch": "retrieve"
+        },
+        {
+          "role": "retrieve",
+          "hop": 1,
+          "sources": [
+            "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+            "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md"
+          ],
+          "memory_hits": 0
+        },
+        {
+          "role": "supervisor",
+          "hop": 2,
+          "dispatch": "proposer"
+        },
+        {
+          "role": "proposer",
+          "hop": 2,
+          "candidates": [
+            "((4 + 7) * (8 - 8))",
+            "(4 * (7 - 8)) + 8",
+            "(4 * 7) - (8 - 8)"
+          ],
+          "oracle": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 3,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 3,
+          "index": 2,
+          "model_index": 2,
+          "score": 25,
+          "reason": "The most promising candidate is the third one, which evaluates to 28, which is the closest to 24 without exceeding it.",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": false,
+              "reason": "Expression equals 0, not 24",
+              "exact_value": "0"
+            },
+            {
+              "index": 1,
+              "valid": false,
+              "reason": "Expression equals 4, not 24",
+              "exact_value": "4"
+            },
+            {
+              "index": 2,
+              "valid": false,
+              "reason": "Expression equals 28, not 24",
+              "exact_value": "28"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 4,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 4,
+          "expression": "(4 * 7) - (8 - 8)",
+          "valid": false,
+          "message": "Expression equals 28, not 24",
+          "value": "28",
+          "used_numbers": [
+            4,
+            7,
+            8,
+            8
+          ]
+        },
+        {
+          "role": "supervisor",
+          "hop": 5,
+          "dispatch": "search"
+        },
+        {
+          "role": "search",
+          "hop": 5,
+          "nodes": 39,
+          "complete": true,
+          "source": "exact_arithmetic_tool",
+          "expression": "(8 * ((4 + 7) - 8))"
+        },
+        {
+          "role": "supervisor",
+          "hop": 6,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 6,
+          "index": 0,
+          "model_index": 0,
+          "score": 100,
+          "reason": "The expression (8 * ((4 + 7) - 8)) uses all numbers exactly once and results in exactly 24, satisfying the conditions of the Game of 24.",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": true,
+              "reason": "Valid: every input used once and the exact value is 24",
+              "exact_value": "24"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 7,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 7,
+          "expression": "(8 * ((4 + 7) - 8))",
+          "valid": true,
+          "message": "Valid: every input used once and the exact value is 24",
+          "value": "24",
+          "used_numbers": [
+            8,
+            4,
+            7,
+            8
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "fa564c65c936015dd3e9f3d73667ac4138bbc88a7bedbf90fd37bfa4fd6a487a",
+          "text": "# Game of 24 reference rules\n\nA puzzle consists of four integer cards. Use each card exactly once. Repeated\ncard values represent separate cards. Combine them using addition, subtraction,\nmultiplication, division, and parentheses to obtain exactly 24. Concatenation,\nexponentiation, factorials, extra constants, and executable code are prohibited.\n\nFractional and negative intermediate values are permitted. Division by zero is\nnever permitted. Preserve rational values exactly rather than rounding decimals.\nAn intermediate value of 24 is not sufficient if unused cards remain.\n\nUseful strategies include grouping pairs, forming a useful difference, and\nretaining a fractional intermediate when integer-only choices fail. Compare\ncandidate expressions, then submit the best candidate to an independent exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally",
+          "source": "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+          "distance": 0.3532402515411377
+        },
+        {
+          "id": "50610e822d5764b35cb3e850aacc4ed89594c846d7ecf20638777824735d6b8f",
+          "text": "nt exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally contains no worked answers to evaluation puzzles.\n",
+          "source": "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+          "distance": 1.0310046672821045
+        }
+      ],
+      "memory": [],
+      "candidates": [
+        "(8 * ((4 + 7) - 8))"
+      ],
+      "expression": "(8 * ((4 + 7) - 8))",
+      "feedback": "Valid: every input used once and the exact value is 24",
+      "valid": true,
+      "hops": 7,
+      "next": "finish",
+      "phase": "proposer",
+      "status": "verified",
+      "errors": [],
+      "started": 1792637080.8197446,
+      "prompt_tokens": 2438,
+      "output_tokens": 160,
+      "tool_calls": 4,
+      "max_hops": 12,
+      "metric_base": [
+        0,
+        0,
+        0
+      ],
+      "model": "qwen2.5:3b",
+      "embedding_model": "nomic-embed-text",
+      "search_policy": "hybrid",
+      "search_nodes": 39,
+      "search_used": true,
+      "candidate_origin": "exact_search_tool",
+      "verification": {
+        "expression": "(8 * ((4 + 7) - 8))",
+        "valid": true,
+        "message": "Valid: every input used once and the exact value is 24",
+        "value": "24",
+        "used_numbers": [
+          8,
+          4,
+          7,
+          8
+        ]
+      },
+      "rounds": 1,
+      "schema_version": 2,
+      "search_budget": 10000,
+      "memory_assisted": false
+    }
+  },
+  {
+    "case": "fractional",
+    "seed": 42,
+    "system": "TA1_Linear",
+    "result": {
+      "puzzle": "1,5,5,5",
+      "method": "Linear",
+      "success": false,
+      "valid": false,
+      "expression": null,
+      "value": null,
+      "steps": 1,
+      "nodes_explored": 1,
+      "branches_pruned": 0,
+      "wall_time_sec": 0.5586524000391364,
+      "prompt_tokens": 161,
+      "output_tokens": 31,
+      "model": "qwen2.5:3b",
+      "mode": "ollama",
+      "trace": "(1 + 5) * 5 - 5",
+      "branches": "",
+      "raw_response": "RESULT: FAILURE\nSTEPS:\n1. (1 + 5) * 5 - 5\nEXPRESSION: NONE\nVALUE: NONE",
+      "validator_message": "No expression was supplied"
+    }
+  },
+  {
+    "case": "fractional",
+    "seed": 42,
+    "system": "TA1_ToT",
+    "result": {
+      "puzzle": "1,5,5,5",
+      "method": "ToT",
+      "success": false,
+      "valid": false,
+      "expression": null,
+      "value": null,
+      "steps": 3,
+      "nodes_explored": 35,
+      "branches_pruned": 23,
+      "wall_time_sec": 8.459415199700743,
+      "prompt_tokens": 1250,
+      "output_tokens": 546,
+      "model": "qwen2.5:3b",
+      "mode": "ollama_agentic",
+      "trace": "",
+      "branches": "1 / 5 = 1/5 -> [5, 5, 1/5] (PROMISING) | 1 + 5 = 6 -> [5, 5, 6] (DEAD-END) | 1 * 5 = 5 -> [5, 5, 5] (PROMISING) | 5 + 5 = 10 -> [5, 10] (DEAD-END) | 5 * 5 = 25 -> [5, 25] (DEAD-END) | 5 - 5 = 0 -> [5, 0] (DEAD-END) | 5 / 5 = 1 -> [5, 1] (DEAD-END) | 5 + 5 = 10 -> [1/5, 10] (DEAD-END) | 5 * 5 = 25 -> [1/5, 25] (DEAD-END) | 5 - 5 = 0 -> [1/5, 0] (DEAD-END) | 5 / 5 = 1 -> [1/5, 1] (DEAD-END) | 5 + (1 / 5) = 26/5 -> [5, 26/5] (DEAD-END) | 5 * (1 / 5) = 1 -> [5, 1] (DEAD-END) | 5 - (1 / 5) = 24/5 -> [5, 24/5] (DEAD-END) | (1 / 5) - 5 = -24/5 -> [5, -24/5] (DEAD-END) | 5 / (1 / 5) = 25 -> [5, 25] (PROMISING) | (1 / 5) / 5 = 1/25 -> [5, 1/25] (DEAD-END) | 5 + (5 + (1 / 5)) = 51/5 -> [51/5] (DEAD-END) | 5 * (5 + (1 / 5)) = 26 -> [26] (DEAD-END) | 5 - (5 + (1 / 5)) = -1/5 -> [-1/5] (DEAD-END) | (5 + (1 / 5)) - 5 = 1/5 -> [1/5] (DEAD-END) | 5 / (5 + (1 / 5)) = 25/26 -> [25/26] (DEAD-END) | (5 + (1 / 5)) / 5 = 26/25 -> [26/25] (DEAD-END) | 5 + (5 / (1 / 5)) = 30 -> [30] (DEAD-END) | 5 * (5 / (1 / 5)) = 125 -> [125] (DEAD-END) | 5 - (5 / (1 / 5)) = -20 -> [-20] (DEAD-END) | (5 / (1 / 5)) - 5 = 20 -> [20] (DEAD-END) | 5 / (5 / (1 / 5)) = 1/5 -> [1/5] (DEAD-END) | (5 / (1 / 5)) / 5 = 5 -> [5] (DEAD-END)",
+      "raw_response": "CANDIDATE 1: 33 | PROMISING | Can reach 24 with 6 * 5 - 1\nCANDIDATE 2: 0 | DEAD-END | No way to reach 24 with 6 and 5\nCANDIDATE 3: 100 | PROMISING | Directly 5 * 5 - 1 = 24\n\nCANDIDATE 9: 32 | DEAD-END | 5\nCANDIDATE 11: 9.6 | DEAD-END | 5\nCANDIDATE 13: 25 | PROMISING | 10\nCANDIDATE 1: 16 | DEAD-END | 5\nCANDIDATE 3: 2 | DEAD-END | 5\nCANDIDATE 5: 4 | DEAD-END | 5\nCANDIDATE 6: 5 | DEAD-END | 5\nCANDIDATE 7: 2 | DEAD-END | 5\nCANDIDATE 8: 2.4 | DEAD-END | 5\nCANDIDATE 10: 1 | DEAD-END | 5\nCANDIDATE 12: -4.8 | DEAD-END | 5\nCANDIDATE 14: 0.04 | DEAD-END | 5\n\nCANDIDATE 2: 26 | PROMISING: Direct path to 24 using remaining '26'\nCANDIDATE 6: 26/25 | PROMISING: Simple arithmetic to reach 24 with remaining '26'\nCANDIDATE 1: 51/5 | UNCERTAIN: Complex path with remaining '51/5' and '5'\nCANDIDATE 12: 5 | PROMISING: Direct path to 24 with remaining '5'\nCANDIDATE 10: 20 | PROMISING: Simple arithmetic to reach 24 with remaining '20'\nCANDIDATE 9: -20 | DEAD-END: No way to reach 24 with negative value\nCANDIDATE 11: 1/5 | DEAD-END: No way to reach 24 with fractional value\nCANDIDATE 1: 51/5 | UNCERTAIN: Complex path with remaining '51/5' and '5'\nCANDIDATE 3: -1/5 | DEAD-END: No way to reach 24 with negative fractional value\n",
+      "validator_message": "No valid branch reached 24"
+    }
+  },
+  {
+    "case": "fractional",
+    "seed": 42,
+    "system": "TA2_Model",
+    "state": {
+      "puzzle": [
+        1,
+        5,
+        5,
+        5
+      ],
+      "seed": 42,
+      "run_id": "c20064f4d26b426fb3f7bda9bfc805a6",
+      "namespace": "fractional-42-model",
+      "mode": "ollama_ta2",
+      "history": [
+        {
+          "puzzle": [
+            1,
+            5,
+            5,
+            5
+          ],
+          "expression": "(5 * (5 - 1 / 5))",
+          "status": "verified",
+          "feedback": "Valid: every input used once and the exact value is 24"
+        }
+      ],
+      "events": [
+        {
+          "role": "supervisor",
+          "hop": 1,
+          "dispatch": "retrieve"
+        },
+        {
+          "role": "retrieve",
+          "hop": 1,
+          "sources": [
+            "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+            "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md"
+          ],
+          "memory_hits": 0
+        },
+        {
+          "role": "supervisor",
+          "hop": 2,
+          "dispatch": "proposer"
+        },
+        {
+          "role": "proposer",
+          "hop": 2,
+          "candidates": [
+            "((5 * 5) - (1 - 5 / 5))",
+            "(5 * (5 - 1 / 5))",
+            "((5 - 1 / 5) * 5)"
+          ],
+          "oracle": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 3,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 3,
+          "index": 1,
+          "model_index": 1,
+          "score": 100,
+          "reason": "The candidate expression is valid and correctly uses all cards exactly once to achieve the exact value of 24.",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": false,
+              "reason": "Number usage mismatch: expected [1, 5, 5, 5], used [5, 5, 1, 5, 5]",
+              "exact_value": "25"
+            },
+            {
+              "index": 1,
+              "valid": true,
+              "reason": "Valid: every input used once and the exact value is 24",
+              "exact_value": "24"
+            },
+            {
+              "index": 2,
+              "valid": true,
+              "reason": "Valid: every input used once and the exact value is 24",
+              "exact_value": "24"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 4,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 4,
+          "expression": "(5 * (5 - 1 / 5))",
+          "valid": true,
+          "message": "Valid: every input used once and the exact value is 24",
+          "value": "24",
+          "used_numbers": [
+            5,
+            5,
+            1,
+            5
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "fa564c65c936015dd3e9f3d73667ac4138bbc88a7bedbf90fd37bfa4fd6a487a",
+          "text": "# Game of 24 reference rules\n\nA puzzle consists of four integer cards. Use each card exactly once. Repeated\ncard values represent separate cards. Combine them using addition, subtraction,\nmultiplication, division, and parentheses to obtain exactly 24. Concatenation,\nexponentiation, factorials, extra constants, and executable code are prohibited.\n\nFractional and negative intermediate values are permitted. Division by zero is\nnever permitted. Preserve rational values exactly rather than rounding decimals.\nAn intermediate value of 24 is not sufficient if unused cards remain.\n\nUseful strategies include grouping pairs, forming a useful difference, and\nretaining a fractional intermediate when integer-only choices fail. Compare\ncandidate expressions, then submit the best candidate to an independent exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally",
+          "source": "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+          "distance": 0.3561520278453827
+        },
+        {
+          "id": "50610e822d5764b35cb3e850aacc4ed89594c846d7ecf20638777824735d6b8f",
+          "text": "nt exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally contains no worked answers to evaluation puzzles.\n",
+          "source": "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+          "distance": 1.0293956995010376
+        }
+      ],
+      "memory": [],
+      "candidates": [
+        "((5 * 5) - (1 - 5 / 5))",
+        "(5 * (5 - 1 / 5))",
+        "((5 - 1 / 5) * 5)"
+      ],
+      "expression": "(5 * (5 - 1 / 5))",
+      "feedback": "Valid: every input used once and the exact value is 24",
+      "valid": true,
+      "hops": 4,
+      "next": "finish",
+      "phase": "proposer",
+      "status": "verified",
+      "errors": [],
+      "started": 1792637092.5645998,
+      "prompt_tokens": 1622,
+      "output_tokens": 100,
+      "tool_calls": 3,
+      "max_hops": 12,
+      "metric_base": [
+        0,
+        0,
+        0
+      ],
+      "model": "qwen2.5:3b",
+      "embedding_model": "nomic-embed-text",
+      "search_policy": "model",
+      "search_nodes": 0,
+      "search_used": false,
+      "candidate_origin": "model",
+      "verification": {
+        "expression": "(5 * (5 - 1 / 5))",
+        "valid": true,
+        "message": "Valid: every input used once and the exact value is 24",
+        "value": "24",
+        "used_numbers": [
+          5,
+          5,
+          1,
+          5
+        ]
+      },
+      "rounds": 1,
+      "schema_version": 2,
+      "search_budget": 10000,
+      "memory_assisted": false
+    }
+  },
+  {
+    "case": "fractional",
+    "seed": 42,
+    "system": "TA2_Hybrid",
+    "state": {
+      "puzzle": [
+        1,
+        5,
+        5,
+        5
+      ],
+      "seed": 42,
+      "run_id": "aa1bd4b956da49b982833e92ae067ac8",
+      "namespace": "fractional-42-hybrid",
+      "mode": "ollama_ta2_hybrid",
+      "history": [
+        {
+          "puzzle": [
+            1,
+            5,
+            5,
+            5
+          ],
+          "expression": "(5 * (5 - (1 / 5)))",
+          "status": "verified",
+          "feedback": "Valid: every input used once and the exact value is 24"
+        }
+      ],
+      "events": [
+        {
+          "role": "supervisor",
+          "hop": 1,
+          "dispatch": "retrieve"
+        },
+        {
+          "role": "retrieve",
+          "hop": 1,
+          "sources": [
+            "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+            "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md"
+          ],
+          "memory_hits": 0
+        },
+        {
+          "role": "supervisor",
+          "hop": 2,
+          "dispatch": "proposer"
+        },
+        {
+          "role": "proposer",
+          "hop": 2,
+          "candidates": [
+            "((5 * 5) - (1 * 5)) / 5",
+            "(5 * (5 - 1)) / 5",
+            "(5 * 5) / (1 + 5)"
+          ],
+          "oracle": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 3,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 3,
+          "index": 2,
+          "model_index": 2,
+          "score": 0,
+          "reason": "Expression equals 25/6, not 24",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": false,
+              "reason": "Number usage mismatch: expected [1, 5, 5, 5], used [5, 5, 1, 5, 5]",
+              "exact_value": "4"
+            },
+            {
+              "index": 1,
+              "valid": false,
+              "reason": "Expression equals 4, not 24",
+              "exact_value": "4"
+            },
+            {
+              "index": 2,
+              "valid": false,
+              "reason": "Expression equals 25/6, not 24",
+              "exact_value": "25/6"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 4,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 4,
+          "expression": "(5 * 5) / (1 + 5)",
+          "valid": false,
+          "message": "Expression equals 25/6, not 24",
+          "value": "25/6",
+          "used_numbers": [
+            5,
+            5,
+            1,
+            5
+          ]
+        },
+        {
+          "role": "supervisor",
+          "hop": 5,
+          "dispatch": "search"
+        },
+        {
+          "role": "search",
+          "hop": 5,
+          "nodes": 131,
+          "complete": true,
+          "source": "exact_arithmetic_tool",
+          "expression": "(5 * (5 - (1 / 5)))"
+        },
+        {
+          "role": "supervisor",
+          "hop": 6,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 6,
+          "index": 0,
+          "model_index": 0,
+          "score": 100,
+          "reason": "The expression (5 * (5 - (1 / 5))) uses all the numbers exactly once and evaluates to 24, satisfying the requirements of the Game of 24.",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": true,
+              "reason": "Valid: every input used once and the exact value is 24",
+              "exact_value": "24"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 7,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 7,
+          "expression": "(5 * (5 - (1 / 5)))",
+          "valid": true,
+          "message": "Valid: every input used once and the exact value is 24",
+          "value": "24",
+          "used_numbers": [
+            5,
+            5,
+            1,
+            5
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "fa564c65c936015dd3e9f3d73667ac4138bbc88a7bedbf90fd37bfa4fd6a487a",
+          "text": "# Game of 24 reference rules\n\nA puzzle consists of four integer cards. Use each card exactly once. Repeated\ncard values represent separate cards. Combine them using addition, subtraction,\nmultiplication, division, and parentheses to obtain exactly 24. Concatenation,\nexponentiation, factorials, extra constants, and executable code are prohibited.\n\nFractional and negative intermediate values are permitted. Division by zero is\nnever permitted. Preserve rational values exactly rather than rounding decimals.\nAn intermediate value of 24 is not sufficient if unused cards remain.\n\nUseful strategies include grouping pairs, forming a useful difference, and\nretaining a fractional intermediate when integer-only choices fail. Compare\ncandidate expressions, then submit the best candidate to an independent exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally",
+          "source": "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+          "distance": 0.3561520278453827
+        },
+        {
+          "id": "50610e822d5764b35cb3e850aacc4ed89594c846d7ecf20638777824735d6b8f",
+          "text": "nt exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally contains no worked answers to evaluation puzzles.\n",
+          "source": "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+          "distance": 1.0293956995010376
+        }
+      ],
+      "memory": [],
+      "candidates": [
+        "(5 * (5 - (1 / 5)))"
+      ],
+      "expression": "(5 * (5 - (1 / 5)))",
+      "feedback": "Valid: every input used once and the exact value is 24",
+      "valid": true,
+      "hops": 7,
+      "next": "finish",
+      "phase": "proposer",
+      "status": "verified",
+      "errors": [],
+      "started": 1792637094.977143,
+      "prompt_tokens": 2475,
+      "output_tokens": 145,
+      "tool_calls": 4,
+      "max_hops": 12,
+      "metric_base": [
+        0,
+        0,
+        0
+      ],
+      "model": "qwen2.5:3b",
+      "embedding_model": "nomic-embed-text",
+      "search_policy": "hybrid",
+      "search_nodes": 131,
+      "search_used": true,
+      "candidate_origin": "exact_search_tool",
+      "verification": {
+        "expression": "(5 * (5 - (1 / 5)))",
+        "valid": true,
+        "message": "Valid: every input used once and the exact value is 24",
+        "value": "24",
+        "used_numbers": [
+          5,
+          5,
+          1,
+          5
+        ]
+      },
+      "rounds": 1,
+      "schema_version": 2,
+      "search_budget": 10000,
+      "memory_assisted": false
+    }
+  },
+  {
+    "case": "deceptive",
+    "seed": 42,
+    "system": "TA1_Linear",
+    "result": {
+      "puzzle": "3,3,8,8",
+      "method": "Linear",
+      "success": false,
+      "valid": false,
+      "expression": "7 * 8",
+      "value": "56",
+      "steps": 3,
+      "nodes_explored": 1,
+      "branches_pruned": 0,
+      "wall_time_sec": 0.9488511001691222,
+      "prompt_tokens": 161,
+      "output_tokens": 56,
+      "model": "qwen2.5:3b",
+      "mode": "ollama",
+      "trace": "(8 - 3/3) * 8 | (8 - 1) * 8 | 7 * 8",
+      "branches": "",
+      "raw_response": "RESULT: SUCCESS\nSTEPS:\n1. (8 - 3/3) * 8\n2. (8 - 1) * 8\n3. 7 * 8\nEXPRESSION: 7 * 8\nVALUE: 24",
+      "validator_message": "Number usage mismatch: expected [3, 3, 8, 8], used [7, 8]"
+    }
+  },
+  {
+    "case": "deceptive",
+    "seed": 42,
+    "system": "TA1_ToT",
+    "result": {
+      "puzzle": "3,3,8,8",
+      "method": "ToT",
+      "success": false,
+      "valid": false,
+      "expression": null,
+      "value": null,
+      "steps": 3,
+      "nodes_explored": 46,
+      "branches_pruned": 29,
+      "wall_time_sec": 7.1902830000035465,
+      "prompt_tokens": 1402,
+      "output_tokens": 443,
+      "model": "qwen2.5:3b",
+      "mode": "ollama_agentic",
+      "trace": "",
+      "branches": "8 / 3 = 8/3 -> [3, 8, 8/3] (DEAD-END) | 3 + 3 = 6 -> [8, 8, 6] (PROMISING) | 3 * 3 = 9 -> [8, 8, 9] (UNCERTAIN) | 8 + 8 = 16 -> [6, 16] (DEAD-END) | 8 * 8 = 64 -> [6, 64] (DEAD-END) | 8 - 8 = 0 -> [6, 0] (DEAD-END) | 8 / 8 = 1 -> [6, 1] (DEAD-END) | 8 + (3 + 3) = 14 -> [8, 14] (DEAD-END) | 8 * (3 + 3) = 48 -> [8, 48] (DEAD-END) | 8 - (3 + 3) = 2 -> [8, 2] (DEAD-END) | (3 + 3) - 8 = -2 -> [8, -2] (DEAD-END) | 8 / (3 + 3) = 4/3 -> [8, 4/3] (DEAD-END) | (3 + 3) / 8 = 3/4 -> [8, 3/4] (DEAD-END) | 8 + 8 = 16 -> [9, 16] (DEAD-END) | 8 * 8 = 64 -> [9, 64] (DEAD-END) | 8 - 8 = 0 -> [9, 0] (DEAD-END) | 8 / 8 = 1 -> [9, 1] (DEAD-END) | 8 + (3 * 3) = 17 -> [8, 17] (DEAD-END) | 8 * (3 * 3) = 72 -> [8, 72] (DEAD-END) | 8 - (3 * 3) = -1 -> [8, -1] (DEAD-END) | (3 * 3) - 8 = 1 -> [8, 1] (DEAD-END) | 8 / (3 * 3) = 8/9 -> [8, 8/9] (DEAD-END) | (3 * 3) / 8 = 9/8 -> [8, 9/8] (DEAD-END) | 8 + (8 + (3 * 3)) = 25 -> [25] (DEAD-END) | 8 * (8 + (3 * 3)) = 136 -> [136] (DEAD-END) | 8 - (8 + (3 * 3)) = -9 -> [-9] (DEAD-END) | (8 + (3 * 3)) - 8 = 9 -> [9] (DEAD-END) | 8 / (8 + (3 * 3)) = 8/17 -> [8/17] (DEAD-END) | (8 + (3 * 3)) / 8 = 17/8 -> [17/8] (DEAD-END) | (3 + 3) + (8 + 8) = 22 -> [22] (DEAD-END) | (3 + 3) * (8 + 8) = 96 -> [96] (DEAD-END) | (3 + 3) - (8 + 8) = -10 -> [-10] (DEAD-END) | (8 + 8) - (3 + 3) = 10 -> [10] (DEAD-END) | (3 + 3) / (8 + 8) = 3/8 -> [3/8] (DEAD-END) | (8 + 8) / (3 + 3) = 8/3 -> [8/3] (DEAD-END)",
+      "raw_response": "CANDIDATE 1: 25 | DEAD-END | NO WAY TO REACH 24\nCANDIDATE 2: 28 | PROMISING | 8/3 + 3 + 3 = 24\nCANDIDATE 3: 27 | UNCERTAIN | 3*3 + 8 + 8 - 15\n\nCANDIDATE 6: 48 | PROMISING: Uses 8 * (3+3) to reach 48, leaving 9/8 which can be used to reach 24.\nCANDIDATE 19: 8/9 | PROMISING: Uses 8/9 to reach 24, leaving 9/8.\nCANDIDATE 20: 9/8 | PROMISING: Uses 9/8 to reach 24, leaving 8/9.\n\nCANDIDATE 1: 0 | DEAD-END | No way to reach 24\nCANDIDATE 2: 0 | DEAD-END | No way to reach 24\nCANDIDATE 3: 0 | DEAD-END | No way to reach 24\nCANDIDATE 4: 0 | DEAD-END | No way to reach 24\nCANDIDATE 5: 0 | DEAD-END | No way to reach 24\nCANDIDATE 6: 0 | DEAD-END | No way to reach 24\nCANDIDATE 7: 0 | DEAD-END | No way to reach 24\nCANDIDATE 8: 0 | DEAD-END | No way to reach 24\nCANDIDATE 9: 0 | DEAD-END | No way to reach 24\nCANDIDATE 10: 0 | DEAD-END | No way to reach 24\nCANDIDATE 11: 0 | DEAD-END | No way to reach 24\nCANDIDATE 12: 0 | DEAD-END | No way to",
+      "validator_message": "No valid branch reached 24"
+    }
+  },
+  {
+    "case": "deceptive",
+    "seed": 42,
+    "system": "TA2_Model",
+    "state": {
+      "puzzle": [
+        3,
+        3,
+        8,
+        8
+      ],
+      "seed": 42,
+      "run_id": "8cca9cf42d244071a379d6af7d4c85de",
+      "namespace": "deceptive-42-model",
+      "mode": "ollama_ta2",
+      "history": [
+        {
+          "puzzle": [
+            3,
+            3,
+            8,
+            8
+          ],
+          "expression": "(8 * (3 + 3)) / 8",
+          "status": "max_hops_exceeded",
+          "feedback": "Expression equals 6, not 24"
+        }
+      ],
+      "events": [
+        {
+          "role": "supervisor",
+          "hop": 1,
+          "dispatch": "retrieve"
+        },
+        {
+          "role": "retrieve",
+          "hop": 1,
+          "sources": [
+            "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+            "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md"
+          ],
+          "memory_hits": 0
+        },
+        {
+          "role": "supervisor",
+          "hop": 2,
+          "dispatch": "proposer"
+        },
+        {
+          "role": "proposer",
+          "hop": 2,
+          "candidates": [
+            "((3 + 3) * 8) / 8",
+            "(3 * (3 + 8)) / 8",
+            "(8 * (3 + 3)) / 8"
+          ],
+          "oracle": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 3,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 3,
+          "index": 1,
+          "model_index": 1,
+          "score": 20,
+          "reason": "The most promising candidate is '(3 * (3 + 8)) / 8', which evaluates to 33/8 and is the closest to 24 among the provided candidates.",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": false,
+              "reason": "Expression equals 6, not 24",
+              "exact_value": "6"
+            },
+            {
+              "index": 1,
+              "valid": false,
+              "reason": "Expression equals 33/8, not 24",
+              "exact_value": "33/8"
+            },
+            {
+              "index": 2,
+              "valid": false,
+              "reason": "Expression equals 6, not 24",
+              "exact_value": "6"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 4,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 4,
+          "expression": "(3 * (3 + 8)) / 8",
+          "valid": false,
+          "message": "Expression equals 33/8, not 24",
+          "value": "33/8",
+          "used_numbers": [
+            3,
+            3,
+            8,
+            8
+          ]
+        },
+        {
+          "role": "supervisor",
+          "hop": 5,
+          "dispatch": "proposer"
+        },
+        {
+          "role": "proposer",
+          "hop": 5,
+          "candidates": [
+            "(3 * (3 + 8)) / 8",
+            "(3 * (8 + 3)) / 8",
+            "(8 * (3 + 3)) / 8"
+          ],
+          "oracle": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 6,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 6,
+          "index": 2,
+          "model_index": 2,
+          "score": 100,
+          "reason": "The expression evaluates to 6, which is the closest to 24 among the provided candidates, but it is the only valid expression that uses all the numbers exactly once and follows the rules.",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": false,
+              "reason": "Expression equals 33/8, not 24",
+              "exact_value": "33/8"
+            },
+            {
+              "index": 1,
+              "valid": false,
+              "reason": "Expression equals 33/8, not 24",
+              "exact_value": "33/8"
+            },
+            {
+              "index": 2,
+              "valid": false,
+              "reason": "Expression equals 6, not 24",
+              "exact_value": "6"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 7,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 7,
+          "expression": "(8 * (3 + 3)) / 8",
+          "valid": false,
+          "message": "Expression equals 6, not 24",
+          "value": "6",
+          "used_numbers": [
+            8,
+            3,
+            3,
+            8
+          ]
+        },
+        {
+          "role": "supervisor",
+          "hop": 8,
+          "dispatch": "proposer"
+        },
+        {
+          "role": "proposer",
+          "hop": 8,
+          "candidates": [
+            "(3 * (8 - 3)) / 8",
+            "(8 * (3 - 3)) / 8",
+            "(8 * (3 + 3)) / 8"
+          ],
+          "oracle": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 9,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 9,
+          "index": 2,
+          "model_index": 2,
+          "score": 60,
+          "reason": "The most promising candidate is the third one, which evaluates to 6, which is the highest score among the invalid candidates.",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": false,
+              "reason": "Expression equals 15/8, not 24",
+              "exact_value": "15/8"
+            },
+            {
+              "index": 1,
+              "valid": false,
+              "reason": "Expression equals 0, not 24",
+              "exact_value": "0"
+            },
+            {
+              "index": 2,
+              "valid": false,
+              "reason": "Expression equals 6, not 24",
+              "exact_value": "6"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 10,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 10,
+          "expression": "(8 * (3 + 3)) / 8",
+          "valid": false,
+          "message": "Expression equals 6, not 24",
+          "value": "6",
+          "used_numbers": [
+            8,
+            3,
+            3,
+            8
+          ]
+        },
+        {
+          "role": "supervisor",
+          "hop": 10,
+          "termination": "insufficient_budget_for_complete_cycle"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "fa564c65c936015dd3e9f3d73667ac4138bbc88a7bedbf90fd37bfa4fd6a487a",
+          "text": "# Game of 24 reference rules\n\nA puzzle consists of four integer cards. Use each card exactly once. Repeated\ncard values represent separate cards. Combine them using addition, subtraction,\nmultiplication, division, and parentheses to obtain exactly 24. Concatenation,\nexponentiation, factorials, extra constants, and executable code are prohibited.\n\nFractional and negative intermediate values are permitted. Division by zero is\nnever permitted. Preserve rational values exactly rather than rounding decimals.\nAn intermediate value of 24 is not sufficient if unused cards remain.\n\nUseful strategies include grouping pairs, forming a useful difference, and\nretaining a fractional intermediate when integer-only choices fail. Compare\ncandidate expressions, then submit the best candidate to an independent exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally",
+          "source": "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+          "distance": 0.3625299334526062
+        },
+        {
+          "id": "50610e822d5764b35cb3e850aacc4ed89594c846d7ecf20638777824735d6b8f",
+          "text": "nt exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally contains no worked answers to evaluation puzzles.\n",
+          "source": "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+          "distance": 1.0337674617767334
+        }
+      ],
+      "memory": [],
+      "candidates": [
+        "(3 * (8 - 3)) / 8",
+        "(8 * (3 - 3)) / 8",
+        "(8 * (3 + 3)) / 8"
+      ],
+      "expression": "(8 * (3 + 3)) / 8",
+      "feedback": "Expression equals 6, not 24",
+      "valid": false,
+      "hops": 10,
+      "next": "finish",
+      "phase": "proposer",
+      "status": "max_hops_exceeded",
+      "errors": [],
+      "started": 1792637105.7046244,
+      "prompt_tokens": 5107,
+      "output_tokens": 319,
+      "tool_calls": 7,
+      "max_hops": 12,
+      "metric_base": [
+        0,
+        0,
+        0
+      ],
+      "model": "qwen2.5:3b",
+      "embedding_model": "nomic-embed-text",
+      "search_policy": "model",
+      "search_nodes": 0,
+      "search_used": false,
+      "candidate_origin": "model",
+      "verification": {
+        "expression": "(8 * (3 + 3)) / 8",
+        "valid": false,
+        "message": "Expression equals 6, not 24",
+        "value": "6",
+        "used_numbers": [
+          8,
+          3,
+          3,
+          8
+        ]
+      },
+      "rounds": 3,
+      "schema_version": 2,
+      "search_budget": 10000,
+      "memory_assisted": false
+    }
+  },
+  {
+    "case": "deceptive",
+    "seed": 42,
+    "system": "TA2_Hybrid",
+    "state": {
+      "puzzle": [
+        3,
+        3,
+        8,
+        8
+      ],
+      "seed": 42,
+      "run_id": "36b763f6fb4c4b4888fe21e105cdfcb7",
+      "namespace": "deceptive-42-hybrid",
+      "mode": "ollama_ta2_hybrid",
+      "history": [
+        {
+          "puzzle": [
+            3,
+            3,
+            8,
+            8
+          ],
+          "expression": "(8 / (3 - (8 / 3)))",
+          "status": "verified",
+          "feedback": "Valid: every input used once and the exact value is 24"
+        }
+      ],
+      "events": [
+        {
+          "role": "supervisor",
+          "hop": 1,
+          "dispatch": "retrieve"
+        },
+        {
+          "role": "retrieve",
+          "hop": 1,
+          "sources": [
+            "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+            "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md"
+          ],
+          "memory_hits": 0
+        },
+        {
+          "role": "supervisor",
+          "hop": 2,
+          "dispatch": "proposer"
+        },
+        {
+          "role": "proposer",
+          "hop": 2,
+          "candidates": [
+            "((3 + 3) * 8) / 8",
+            "(3 * (3 + 8)) / 8",
+            "(8 * (3 + 3)) / 8"
+          ],
+          "oracle": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 3,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 3,
+          "index": 1,
+          "model_index": 1,
+          "score": 20,
+          "reason": "The most promising candidate is '(3 * (3 + 8)) / 8', which evaluates to 33/8 and is the closest to 24 among the provided candidates.",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": false,
+              "reason": "Expression equals 6, not 24",
+              "exact_value": "6"
+            },
+            {
+              "index": 1,
+              "valid": false,
+              "reason": "Expression equals 33/8, not 24",
+              "exact_value": "33/8"
+            },
+            {
+              "index": 2,
+              "valid": false,
+              "reason": "Expression equals 6, not 24",
+              "exact_value": "6"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 4,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 4,
+          "expression": "(3 * (3 + 8)) / 8",
+          "valid": false,
+          "message": "Expression equals 33/8, not 24",
+          "value": "33/8",
+          "used_numbers": [
+            3,
+            3,
+            8,
+            8
+          ]
+        },
+        {
+          "role": "supervisor",
+          "hop": 5,
+          "dispatch": "search"
+        },
+        {
+          "role": "search",
+          "hop": 5,
+          "nodes": 345,
+          "complete": true,
+          "source": "exact_arithmetic_tool",
+          "expression": "(8 / (3 - (8 / 3)))"
+        },
+        {
+          "role": "supervisor",
+          "hop": 6,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 6,
+          "index": 0,
+          "model_index": 0,
+          "score": 100,
+          "reason": "The expression (8 / (3 - (8 / 3))) uses all the numbers exactly once and evaluates to exactly 24, satisfying the requirements of the Game of 24.",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": true,
+              "reason": "Valid: every input used once and the exact value is 24",
+              "exact_value": "24"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 7,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 7,
+          "expression": "(8 / (3 - (8 / 3)))",
+          "valid": true,
+          "message": "Valid: every input used once and the exact value is 24",
+          "value": "24",
+          "used_numbers": [
+            8,
+            3,
+            8,
+            3
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "fa564c65c936015dd3e9f3d73667ac4138bbc88a7bedbf90fd37bfa4fd6a487a",
+          "text": "# Game of 24 reference rules\n\nA puzzle consists of four integer cards. Use each card exactly once. Repeated\ncard values represent separate cards. Combine them using addition, subtraction,\nmultiplication, division, and parentheses to obtain exactly 24. Concatenation,\nexponentiation, factorials, extra constants, and executable code are prohibited.\n\nFractional and negative intermediate values are permitted. Division by zero is\nnever permitted. Preserve rational values exactly rather than rounding decimals.\nAn intermediate value of 24 is not sufficient if unused cards remain.\n\nUseful strategies include grouping pairs, forming a useful difference, and\nretaining a fractional intermediate when integer-only choices fail. Compare\ncandidate expressions, then submit the best candidate to an independent exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally",
+          "source": "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+          "distance": 0.3625299334526062
+        },
+        {
+          "id": "50610e822d5764b35cb3e850aacc4ed89594c846d7ecf20638777824735d6b8f",
+          "text": "nt exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally contains no worked answers to evaluation puzzles.\n",
+          "source": "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+          "distance": 1.0337674617767334
+        }
+      ],
+      "memory": [],
+      "candidates": [
+        "(8 / (3 - (8 / 3)))"
+      ],
+      "expression": "(8 / (3 - (8 / 3)))",
+      "feedback": "Valid: every input used once and the exact value is 24",
+      "valid": true,
+      "hops": 7,
+      "next": "finish",
+      "phase": "proposer",
+      "status": "verified",
+      "errors": [],
+      "started": 1792637111.3296971,
+      "prompt_tokens": 2444,
+      "output_tokens": 171,
+      "tool_calls": 4,
+      "max_hops": 12,
+      "metric_base": [
+        0,
+        0,
+        0
+      ],
+      "model": "qwen2.5:3b",
+      "embedding_model": "nomic-embed-text",
+      "search_policy": "hybrid",
+      "search_nodes": 345,
+      "search_used": true,
+      "candidate_origin": "exact_search_tool",
+      "verification": {
+        "expression": "(8 / (3 - (8 / 3)))",
+        "valid": true,
+        "message": "Valid: every input used once and the exact value is 24",
+        "value": "24",
+        "used_numbers": [
+          8,
+          3,
+          8,
+          3
+        ]
+      },
+      "rounds": 1,
+      "schema_version": 2,
+      "search_budget": 10000,
+      "memory_assisted": false
+    }
+  },
+  {
+    "case": "control",
+    "seed": 42,
+    "system": "TA1_Linear",
+    "result": {
+      "puzzle": "1,2,3,4",
+      "method": "Linear",
+      "success": false,
+      "valid": false,
+      "expression": "( ( ( 1 + 2 ) * 4 ) - 3 )",
+      "value": "9",
+      "steps": 1,
+      "nodes_explored": 1,
+      "branches_pruned": 0,
+      "wall_time_sec": 0.8705862001515925,
+      "prompt_tokens": 161,
+      "output_tokens": 52,
+      "model": "qwen2.5:3b",
+      "mode": "ollama",
+      "trace": "( ( ( 1 + 2 ) * 4 ) - 3 )",
+      "branches": "",
+      "raw_response": "RESULT: SUCCESS\nSTEPS:\n1. ( ( ( 1 + 2 ) * 4 ) - 3 )\nEXPRESSION: ( ( ( 1 + 2 ) * 4 ) - 3 )\nVALUE: 24",
+      "validator_message": "Expression equals 9, not 24"
+    }
+  },
+  {
+    "case": "control",
+    "seed": 42,
+    "system": "TA1_ToT",
+    "result": {
+      "puzzle": "1,2,3,4",
+      "method": "ToT",
+      "success": true,
+      "valid": true,
+      "expression": "((1 * 2) * (3 * 4))",
+      "value": "24",
+      "steps": 3,
+      "nodes_explored": 69,
+      "branches_pruned": 27,
+      "wall_time_sec": 8.57615329977125,
+      "prompt_tokens": 1572,
+      "output_tokens": 530,
+      "model": "qwen2.5:3b",
+      "mode": "ollama_agentic",
+      "trace": "1 * 2 = 2 | 3 * 4 = 12 | (1 * 2) * (3 * 4) = 24",
+      "branches": "1 + 2 = 3 -> [3, 4, 3] (DEAD-END) | 1 * 2 = 2 -> [3, 4, 2] (PROMISING) | 1 / 2 = 1/2 -> [3, 4, 1/2] (DEAD-END) | 3 + 4 = 7 -> [2, 7] (DEAD-END) | 3 * 4 = 12 -> [2, 12] (PROMISING) | 3 - 4 = -1 -> [2, -1] (DEAD-END) | 4 - 3 = 1 -> [2, 1] (DEAD-END) | 3 / 4 = 3/4 -> [2, 3/4] (DEAD-END) | 4 / 3 = 4/3 -> [2, 4/3] (DEAD-END) | 3 + (1 * 2) = 5 -> [4, 5] (DEAD-END) | 3 * (1 * 2) = 6 -> [4, 6] (PROMISING) | 3 - (1 * 2) = 1 -> [4, 1] (DEAD-END) | (1 * 2) - 3 = -1 -> [4, -1] (DEAD-END) | 3 / (1 * 2) = 3/2 -> [4, 3/2] (DEAD-END) | (1 * 2) / 3 = 2/3 -> [4, 2/3] (DEAD-END) | 4 + (1 * 2) = 6 -> [3, 6] (DEAD-END) | 4 * (1 * 2) = 8 -> [3, 8] (PROMISING) | 4 - (1 * 2) = 2 -> [3, 2] (DEAD-END) | (1 * 2) - 4 = -2 -> [3, -2] (DEAD-END) | (1 * 2) / 4 = 1/2 -> [3, 1/2] (DEAD-END) | 3 + 4 = 7 -> [3, 7] (PROMISING) | 3 * 4 = 12 -> [3, 12] (DEAD-END) | 3 - 4 = -1 -> [3, -1] (DEAD-END) | 4 - 3 = 1 -> [3, 1] (DEAD-END) | 3 / 4 = 3/4 -> [3, 3/4] (PROMISING) | 4 / 3 = 4/3 -> [3, 4/3] (DEAD-END) | 3 + (1 + 2) = 6 -> [4, 6] (PROMISING) | 3 * (1 + 2) = 9 -> [4, 9] (PROMISING) | 3 - (1 + 2) = 0 -> [4, 0] (PROMISING) | 3 / (1 + 2) = 1 -> [4, 1] (PROMISING) | (1 * 2) + (3 * 4) = 14 -> [14] (DEAD-END) | (1 * 2) * (3 * 4) = 24 -> [24] (PROMISING)",
+      "raw_response": "CANDIDATE 1: 0 | DEAD-END | No way to reach 24 with 3, 4, 3\nCANDIDATE 2: 20 | PROMISING | 1 * 2 = 2, then 2 * 4 = 8, 8 * 3 = 24\nCANDIDATE 3: 0 | DEAD-END | No way to reach 24 with 1, 2, 1/2\n\nCANDIDATE 24: 60 | PROMISING | Direct path to 24 with remaining [6, 4]\nCANDIDATE 18: 60 | PROMISING | Direct path to 24 with remaining [6, 4]\nCANDIDATE 22: 60 | PROMISING | Direct path to 24 with remaining [6, 4]\nCANDIDATE 25: 60 | PROMISING | Direct path to 24 with remaining [6, 4]\nCANDIDATE 26: 60 | PROMISING | Direct path to 24 with remaining [6, 4]\nCANDIDATE 27: 60 | PROMISING | Direct path to 24 with remaining [6, 4]\n\nCANDIDATE 8: 80 | PROMISING | Direct path to 24 using all numbers\nCANDIDATE 1: 20 | DEAD-END | No way to reach 24 with remaining numbers\nCANDIDATE 2: 10 | PROMISING | Direct path to 24 using all numbers\nCANDIDATE 6: 10 | PROMISING | Direct path to 24 using all numbers\nCANDIDATE 12: 10 | PROMISING | Direct path to 24 using all numbers\nCANDIDATE 7: 10 | PROMISING | Direct path to 24 using all numbers\nCANDIDATE 9: 5 | DEAD-END | No way to reach 24 with remaining numbers\nCANDIDATE 10: 5 | DEAD-END | No way to reach 24 with remaining numbers\nCANDIDATE 11: 5 | DEAD-END | No way to reach 24 with remaining numbers\nCANDIDATE 1: 0 | DEAD-END | No way to reach 24 with remaining numbers\nCANDIDATE 3",
+      "validator_message": "Valid: every input used once and the exact value is 24"
+    }
+  },
+  {
+    "case": "control",
+    "seed": 42,
+    "system": "TA2_Model",
+    "state": {
+      "puzzle": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "seed": 42,
+      "run_id": "6214bf99258740b684f33b309246726b",
+      "namespace": "control-42-model",
+      "mode": "ollama_ta2",
+      "history": [
+        {
+          "puzzle": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "expression": "(1 * 2) * (4 - 3)",
+          "status": "max_hops_exceeded",
+          "feedback": "Expression equals 2, not 24"
+        }
+      ],
+      "events": [
+        {
+          "role": "supervisor",
+          "hop": 1,
+          "dispatch": "retrieve"
+        },
+        {
+          "role": "retrieve",
+          "hop": 1,
+          "sources": [
+            "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+            "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md"
+          ],
+          "memory_hits": 0
+        },
+        {
+          "role": "supervisor",
+          "hop": 2,
+          "dispatch": "proposer"
+        },
+        {
+          "role": "proposer",
+          "hop": 2,
+          "candidates": [
+            "((1 + 2) * 4) / 3",
+            "(1 + 4) * (2 - 3)",
+            "(1 * 4) + (2 - 3)"
+          ],
+          "oracle": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 3,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 3,
+          "index": 0,
+          "model_index": 0,
+          "score": 33,
+          "reason": "The expression evaluates to 4, which is not 24.",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": false,
+              "reason": "Expression equals 4, not 24",
+              "exact_value": "4"
+            },
+            {
+              "index": 1,
+              "valid": false,
+              "reason": "Expression equals -5, not 24",
+              "exact_value": "-5"
+            },
+            {
+              "index": 2,
+              "valid": false,
+              "reason": "Expression equals 3, not 24",
+              "exact_value": "3"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 4,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 4,
+          "expression": "((1 + 2) * 4) / 3",
+          "valid": false,
+          "message": "Expression equals 4, not 24",
+          "value": "4",
+          "used_numbers": [
+            1,
+            2,
+            4,
+            3
+          ]
+        },
+        {
+          "role": "supervisor",
+          "hop": 5,
+          "dispatch": "proposer"
+        },
+        {
+          "role": "proposer",
+          "hop": 5,
+          "candidates": [
+            "(1 * 2) * (4 - 3)",
+            "(1 + 4) * (2 - 3)",
+            "(1 * 4) + (2 - 3)"
+          ],
+          "oracle": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 6,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 6,
+          "index": 0,
+          "model_index": 0,
+          "score": 0,
+          "reason": "The selected expression evaluates to 2, not 24",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": false,
+              "reason": "Expression equals 2, not 24",
+              "exact_value": "2"
+            },
+            {
+              "index": 1,
+              "valid": false,
+              "reason": "Expression equals -5, not 24",
+              "exact_value": "-5"
+            },
+            {
+              "index": 2,
+              "valid": false,
+              "reason": "Expression equals 3, not 24",
+              "exact_value": "3"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 7,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 7,
+          "expression": "(1 * 2) * (4 - 3)",
+          "valid": false,
+          "message": "Expression equals 2, not 24",
+          "value": "2",
+          "used_numbers": [
+            1,
+            2,
+            4,
+            3
+          ]
+        },
+        {
+          "role": "supervisor",
+          "hop": 8,
+          "dispatch": "proposer"
+        },
+        {
+          "role": "proposer",
+          "hop": 8,
+          "candidates": [
+            "(1 * 2) * (4 - 3)",
+            "(1 + 4) * (2 - 3)",
+            "(1 * 4) + (2 - 3)"
+          ],
+          "oracle": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 9,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 9,
+          "index": 0,
+          "model_index": 0,
+          "score": 33,
+          "reason": "The expression evaluates to 2, not 24",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": false,
+              "reason": "Expression equals 2, not 24",
+              "exact_value": "2"
+            },
+            {
+              "index": 1,
+              "valid": false,
+              "reason": "Expression equals -5, not 24",
+              "exact_value": "-5"
+            },
+            {
+              "index": 2,
+              "valid": false,
+              "reason": "Expression equals 3, not 24",
+              "exact_value": "3"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 10,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 10,
+          "expression": "(1 * 2) * (4 - 3)",
+          "valid": false,
+          "message": "Expression equals 2, not 24",
+          "value": "2",
+          "used_numbers": [
+            1,
+            2,
+            4,
+            3
+          ]
+        },
+        {
+          "role": "supervisor",
+          "hop": 10,
+          "termination": "insufficient_budget_for_complete_cycle"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "fa564c65c936015dd3e9f3d73667ac4138bbc88a7bedbf90fd37bfa4fd6a487a",
+          "text": "# Game of 24 reference rules\n\nA puzzle consists of four integer cards. Use each card exactly once. Repeated\ncard values represent separate cards. Combine them using addition, subtraction,\nmultiplication, division, and parentheses to obtain exactly 24. Concatenation,\nexponentiation, factorials, extra constants, and executable code are prohibited.\n\nFractional and negative intermediate values are permitted. Division by zero is\nnever permitted. Preserve rational values exactly rather than rounding decimals.\nAn intermediate value of 24 is not sufficient if unused cards remain.\n\nUseful strategies include grouping pairs, forming a useful difference, and\nretaining a fractional intermediate when integer-only choices fail. Compare\ncandidate expressions, then submit the best candidate to an independent exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally",
+          "source": "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+          "distance": 0.3396487236022949
+        },
+        {
+          "id": "50610e822d5764b35cb3e850aacc4ed89594c846d7ecf20638777824735d6b8f",
+          "text": "nt exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally contains no worked answers to evaluation puzzles.\n",
+          "source": "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+          "distance": 1.0351272821426392
+        }
+      ],
+      "memory": [],
+      "candidates": [
+        "(1 * 2) * (4 - 3)",
+        "(1 + 4) * (2 - 3)",
+        "(1 * 4) + (2 - 3)"
+      ],
+      "expression": "(1 * 2) * (4 - 3)",
+      "feedback": "Expression equals 2, not 24",
+      "valid": false,
+      "hops": 10,
+      "next": "finish",
+      "phase": "proposer",
+      "status": "max_hops_exceeded",
+      "errors": [],
+      "started": 1792637123.796093,
+      "prompt_tokens": 5077,
+      "output_tokens": 251,
+      "tool_calls": 7,
+      "max_hops": 12,
+      "metric_base": [
+        0,
+        0,
+        0
+      ],
+      "model": "qwen2.5:3b",
+      "embedding_model": "nomic-embed-text",
+      "search_policy": "model",
+      "search_nodes": 0,
+      "search_used": false,
+      "candidate_origin": "model",
+      "verification": {
+        "expression": "(1 * 2) * (4 - 3)",
+        "valid": false,
+        "message": "Expression equals 2, not 24",
+        "value": "2",
+        "used_numbers": [
+          1,
+          2,
+          4,
+          3
+        ]
+      },
+      "rounds": 3,
+      "schema_version": 2,
+      "search_budget": 10000,
+      "memory_assisted": false
+    }
+  },
+  {
+    "case": "control",
+    "seed": 42,
+    "system": "TA2_Hybrid",
+    "state": {
+      "puzzle": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "seed": 42,
+      "run_id": "9759bff3c55b48e3b4d955d0f0860f6f",
+      "namespace": "control-42-hybrid",
+      "mode": "ollama_ta2_hybrid",
+      "history": [
+        {
+          "puzzle": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "expression": "(4 * (3 + (1 + 2)))",
+          "status": "verified",
+          "feedback": "Valid: every input used once and the exact value is 24"
+        }
+      ],
+      "events": [
+        {
+          "role": "supervisor",
+          "hop": 1,
+          "dispatch": "retrieve"
+        },
+        {
+          "role": "retrieve",
+          "hop": 1,
+          "sources": [
+            "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+            "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md"
+          ],
+          "memory_hits": 0
+        },
+        {
+          "role": "supervisor",
+          "hop": 2,
+          "dispatch": "proposer"
+        },
+        {
+          "role": "proposer",
+          "hop": 2,
+          "candidates": [
+            "((1 + 2) * 4) / 3",
+            "(1 + 4) * (2 - 3)",
+            "(1 * 4) - (2 - 3)"
+          ],
+          "oracle": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 3,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 3,
+          "index": 2,
+          "model_index": 2,
+          "score": 20,
+          "reason": "The most promising candidate is '((1 * 4) - (2 - 3))', which evaluates to 5, not 24. However, it is the only candidate that does not immediately fail the validation, and it is the closest to 24 among the provided candidates.",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": false,
+              "reason": "Expression equals 4, not 24",
+              "exact_value": "4"
+            },
+            {
+              "index": 1,
+              "valid": false,
+              "reason": "Expression equals -5, not 24",
+              "exact_value": "-5"
+            },
+            {
+              "index": 2,
+              "valid": false,
+              "reason": "Expression equals 5, not 24",
+              "exact_value": "5"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 4,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 4,
+          "expression": "(1 * 4) - (2 - 3)",
+          "valid": false,
+          "message": "Expression equals 5, not 24",
+          "value": "5",
+          "used_numbers": [
+            1,
+            4,
+            2,
+            3
+          ]
+        },
+        {
+          "role": "supervisor",
+          "hop": 5,
+          "dispatch": "search"
+        },
+        {
+          "role": "search",
+          "hop": 5,
+          "nodes": 34,
+          "complete": true,
+          "source": "exact_arithmetic_tool",
+          "expression": "(4 * (3 + (1 + 2)))"
+        },
+        {
+          "role": "supervisor",
+          "hop": 6,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 6,
+          "index": 0,
+          "model_index": 0,
+          "score": 100,
+          "reason": "The expression (4 * (3 + (1 + 2))) uses all numbers exactly once and evaluates to 24, satisfying the conditions of the Game of 24.",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": true,
+              "reason": "Valid: every input used once and the exact value is 24",
+              "exact_value": "24"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 7,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 7,
+          "expression": "(4 * (3 + (1 + 2)))",
+          "valid": true,
+          "message": "Valid: every input used once and the exact value is 24",
+          "value": "24",
+          "used_numbers": [
+            4,
+            3,
+            1,
+            2
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "fa564c65c936015dd3e9f3d73667ac4138bbc88a7bedbf90fd37bfa4fd6a487a",
+          "text": "# Game of 24 reference rules\n\nA puzzle consists of four integer cards. Use each card exactly once. Repeated\ncard values represent separate cards. Combine them using addition, subtraction,\nmultiplication, division, and parentheses to obtain exactly 24. Concatenation,\nexponentiation, factorials, extra constants, and executable code are prohibited.\n\nFractional and negative intermediate values are permitted. Division by zero is\nnever permitted. Preserve rational values exactly rather than rounding decimals.\nAn intermediate value of 24 is not sufficient if unused cards remain.\n\nUseful strategies include grouping pairs, forming a useful difference, and\nretaining a fractional intermediate when integer-only choices fail. Compare\ncandidate expressions, then submit the best candidate to an independent exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally",
+          "source": "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+          "distance": 0.3396487236022949
+        },
+        {
+          "id": "50610e822d5764b35cb3e850aacc4ed89594c846d7ecf20638777824735d6b8f",
+          "text": "nt exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally contains no worked answers to evaluation puzzles.\n",
+          "source": "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+          "distance": 1.0351272821426392
+        }
+      ],
+      "memory": [],
+      "candidates": [
+        "(4 * (3 + (1 + 2)))"
+      ],
+      "expression": "(4 * (3 + (1 + 2)))",
+      "feedback": "Valid: every input used once and the exact value is 24",
+      "valid": true,
+      "hops": 7,
+      "next": "finish",
+      "phase": "proposer",
+      "status": "verified",
+      "errors": [],
+      "started": 1792637128.8874624,
+      "prompt_tokens": 2431,
+      "output_tokens": 189,
+      "tool_calls": 4,
+      "max_hops": 12,
+      "metric_base": [
+        0,
+        0,
+        0
+      ],
+      "model": "qwen2.5:3b",
+      "embedding_model": "nomic-embed-text",
+      "search_policy": "hybrid",
+      "search_nodes": 34,
+      "search_used": true,
+      "candidate_origin": "exact_search_tool",
+      "verification": {
+        "expression": "(4 * (3 + (1 + 2)))",
+        "valid": true,
+        "message": "Valid: every input used once and the exact value is 24",
+        "value": "24",
+        "used_numbers": [
+          4,
+          3,
+          1,
+          2
+        ]
+      },
+      "rounds": 1,
+      "schema_version": 2,
+      "search_budget": 10000,
+      "memory_assisted": false
+    }
+  },
+  {
+    "case": "unsolvable",
+    "seed": 42,
+    "system": "TA1_Linear",
+    "result": {
+      "puzzle": "1,1,1,1",
+      "method": "Linear",
+      "success": false,
+      "valid": false,
+      "expression": null,
+      "value": null,
+      "steps": 1,
+      "nodes_explored": 1,
+      "branches_pruned": 0,
+      "wall_time_sec": 0.4138529999181628,
+      "prompt_tokens": 161,
+      "output_tokens": 20,
+      "model": "qwen2.5:3b",
+      "mode": "ollama",
+      "trace": "NONE",
+      "branches": "",
+      "raw_response": "RESULT: FAILURE\nSTEPS:\n1. NONE\nEXPRESSION: NONE\nVALUE: NONE",
+      "validator_message": "No expression was supplied"
+    }
+  },
+  {
+    "case": "unsolvable",
+    "seed": 42,
+    "system": "TA1_ToT",
+    "result": {
+      "puzzle": "1,1,1,1",
+      "method": "ToT",
+      "success": false,
+      "valid": false,
+      "expression": null,
+      "value": null,
+      "steps": 3,
+      "nodes_explored": 21,
+      "branches_pruned": 15,
+      "wall_time_sec": 7.560507700312883,
+      "prompt_tokens": 959,
+      "output_tokens": 488,
+      "model": "qwen2.5:3b",
+      "mode": "ollama_agentic",
+      "trace": "",
+      "branches": "1 + 1 = 2 -> [1, 1, 2] (DEAD-END) | 1 * 1 = 1 -> [1, 1, 1] (DEAD-END) | 1 - 1 = 0 -> [1, 1, 0] (DEAD-END) | 1 + 1 = 2 -> [2, 2] (DEAD-END) | 1 * 1 = 1 -> [2, 1] (DEAD-END) | 1 - 1 = 0 -> [2, 0] (DEAD-END) | 1 + (1 + 1) = 3 -> [1, 3] (DEAD-END) | 1 - (1 + 1) = -1 -> [1, -1] (DEAD-END) | (1 + 1) - 1 = 1 -> [1, 1] (DEAD-END) | 1 / (1 + 1) = 1/2 -> [1, 1/2] (DEAD-END) | 1 + 1 = 2 -> [1, 2] (DEAD-END) | 1 * 1 = 1 -> [1, 1] (DEAD-END) | 1 - 1 = 0 -> [1, 0] (DEAD-END) | (1 + 1) + (1 + 1) = 4 -> [4] (DEAD-END) | (1 + 1) - (1 + 1) = 0 -> [0] (DEAD-END) | (1 + 1) / (1 + 1) = 1 -> [1] (DEAD-END) | (1 + 1) + (1 * 1) = 3 -> [3] (DEAD-END) | (1 + 1) * (1 * 1) = 2 -> [2] (DEAD-END) | (1 + 1) - (1 * 1) = 1 -> [1] (DEAD-END) | (1 * 1) - (1 + 1) = -1 -> [-1] (DEAD-END) | (1 * 1) / (1 + 1) = 1/2 -> [1/2] (DEAD-END)",
+      "raw_response": "CANDIDATE 1: 0 | DEAD-END | No way to get 24 with 2 and 0\nCANDIDATE 2: 0 | DEAD-END | No way to get 24 with 1, 1, and 1 left\nCANDIDATE 3: 0 | DEAD-END | No way to get 24 with 1 and 0\n\nCANDIDATE 1: 0 | DEAD-END | No way to reach 24 with remaining [2, 0]\nCANDIDATE 2: 0 | DEAD-END | No way to reach 24 with remaining [2, 1]\nCANDIDATE 3: 0 | DEAD-END | No way to reach 24 with remaining [2, 0]\nCANDIDATE 4: 0 | DEAD-END | No way to reach 24 with remaining [1, 3]\nCANDIDATE 5: 0 | DEAD-END | No way to reach 24 with remaining [1, -1]\nCANDIDATE 6: 0 | DEAD-END | No way to reach 24 with remaining [1, 1]\nCANDIDATE 7: 0 | DEAD-END | No way to reach 24 with remaining [1, 1/2]\nCANDIDATE 8: 0 | DEAD-END | No way to reach 24 with remaining [1, 2]\nCANDIDATE 9: 0 | DEAD-END | No way to reach 24 with remaining [1\n\nCANDIDATE 1: 0 | DEAD-END | Cannot reach 24\nCANDIDATE 2: 0 | DEAD-END | Cannot reach 24\nCANDIDATE 3: 0 | DEAD-END | Cannot reach 24\nCANDIDATE 4: 0 | DEAD-END | Cannot reach 24\nCANDIDATE 5: 0 | DEAD-END | Cannot reach 24\nCANDIDATE 6: 0 | DEAD-END | Cannot reach 24\nCANDIDATE 7: 0 | DEAD-END | Cannot reach 24\nCANDIDATE 8: 0 | DEAD-END | Cannot reach 24",
+      "validator_message": "No valid branch reached 24"
+    }
+  },
+  {
+    "case": "unsolvable",
+    "seed": 42,
+    "system": "TA2_Model",
+    "state": {
+      "puzzle": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "seed": 42,
+      "run_id": "9563af8cdbd24ab1b1e37046a3e9a1cd",
+      "namespace": "unsolvable-42-model",
+      "mode": "ollama_ta2",
+      "history": [
+        {
+          "puzzle": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "expression": "(1+1)*(1+1)",
+          "status": "max_hops_exceeded",
+          "feedback": "Expression equals 4, not 24"
+        }
+      ],
+      "events": [
+        {
+          "role": "supervisor",
+          "hop": 1,
+          "dispatch": "retrieve"
+        },
+        {
+          "role": "retrieve",
+          "hop": 1,
+          "sources": [
+            "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+            "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md"
+          ],
+          "memory_hits": 0
+        },
+        {
+          "role": "supervisor",
+          "hop": 2,
+          "dispatch": "proposer"
+        },
+        {
+          "role": "proposer",
+          "hop": 2,
+          "candidates": [
+            "((1+1)*1+1)/1",
+            "(1*(1+1)+1)/1",
+            "(1+1+1)/1"
+          ],
+          "oracle": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 3,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 3,
+          "index": 2,
+          "model_index": 2,
+          "score": 33,
+          "reason": "The expression equals 24, but it is not the most promising as it is not the only candidate and the other candidates are valid.",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": false,
+              "reason": "Number usage mismatch: expected [1, 1, 1, 1], used [1, 1, 1, 1, 1]",
+              "exact_value": "3"
+            },
+            {
+              "index": 1,
+              "valid": false,
+              "reason": "Number usage mismatch: expected [1, 1, 1, 1], used [1, 1, 1, 1, 1]",
+              "exact_value": "3"
+            },
+            {
+              "index": 2,
+              "valid": false,
+              "reason": "Expression equals 3, not 24",
+              "exact_value": "3"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 4,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 4,
+          "expression": "(1+1+1)/1",
+          "valid": false,
+          "message": "Expression equals 3, not 24",
+          "value": "3",
+          "used_numbers": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "role": "supervisor",
+          "hop": 5,
+          "dispatch": "proposer"
+        },
+        {
+          "role": "proposer",
+          "hop": 5,
+          "candidates": [
+            "(1+1+1)*1",
+            "(1+1)*(1+1)",
+            "(1+1)*(1+1)"
+          ],
+          "oracle": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 6,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 6,
+          "index": 0,
+          "model_index": 0,
+          "score": 20,
+          "reason": "The expression evaluates to 3, which is not 24.",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": false,
+              "reason": "Expression equals 3, not 24",
+              "exact_value": "3"
+            },
+            {
+              "index": 1,
+              "valid": false,
+              "reason": "Expression equals 4, not 24",
+              "exact_value": "4"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 7,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 7,
+          "expression": "(1+1+1)*1",
+          "valid": false,
+          "message": "Expression equals 3, not 24",
+          "value": "3",
+          "used_numbers": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "role": "supervisor",
+          "hop": 8,
+          "dispatch": "proposer"
+        },
+        {
+          "role": "proposer",
+          "hop": 8,
+          "candidates": [
+            "(1+1)*(1+1)",
+            "(1+1)*(1+1)",
+            "(1+1)*(1+1)"
+          ],
+          "oracle": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 9,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 9,
+          "index": 0,
+          "model_index": 0,
+          "score": 0,
+          "reason": "The expression evaluates to 4, not 24",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": false,
+              "reason": "Expression equals 4, not 24",
+              "exact_value": "4"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 10,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 10,
+          "expression": "(1+1)*(1+1)",
+          "valid": false,
+          "message": "Expression equals 4, not 24",
+          "value": "4",
+          "used_numbers": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "role": "supervisor",
+          "hop": 10,
+          "termination": "insufficient_budget_for_complete_cycle"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "fa564c65c936015dd3e9f3d73667ac4138bbc88a7bedbf90fd37bfa4fd6a487a",
+          "text": "# Game of 24 reference rules\n\nA puzzle consists of four integer cards. Use each card exactly once. Repeated\ncard values represent separate cards. Combine them using addition, subtraction,\nmultiplication, division, and parentheses to obtain exactly 24. Concatenation,\nexponentiation, factorials, extra constants, and executable code are prohibited.\n\nFractional and negative intermediate values are permitted. Division by zero is\nnever permitted. Preserve rational values exactly rather than rounding decimals.\nAn intermediate value of 24 is not sufficient if unused cards remain.\n\nUseful strategies include grouping pairs, forming a useful difference, and\nretaining a fractional intermediate when integer-only choices fail. Compare\ncandidate expressions, then submit the best candidate to an independent exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally",
+          "source": "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+          "distance": 0.3639024794101715
+        },
+        {
+          "id": "50610e822d5764b35cb3e850aacc4ed89594c846d7ecf20638777824735d6b8f",
+          "text": "nt exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally contains no worked answers to evaluation puzzles.\n",
+          "source": "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+          "distance": 1.0355721712112427
+        }
+      ],
+      "memory": [],
+      "candidates": [
+        "(1+1)*(1+1)"
+      ],
+      "expression": "(1+1)*(1+1)",
+      "feedback": "Expression equals 4, not 24",
+      "valid": false,
+      "hops": 10,
+      "next": "finish",
+      "phase": "proposer",
+      "status": "max_hops_exceeded",
+      "errors": [],
+      "started": 1792637140.082938,
+      "prompt_tokens": 4854,
+      "output_tokens": 234,
+      "tool_calls": 7,
+      "max_hops": 12,
+      "metric_base": [
+        0,
+        0,
+        0
+      ],
+      "model": "qwen2.5:3b",
+      "embedding_model": "nomic-embed-text",
+      "search_policy": "model",
+      "search_nodes": 0,
+      "search_used": false,
+      "candidate_origin": "model",
+      "verification": {
+        "expression": "(1+1)*(1+1)",
+        "valid": false,
+        "message": "Expression equals 4, not 24",
+        "value": "4",
+        "used_numbers": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "rounds": 3,
+      "schema_version": 2,
+      "search_budget": 10000,
+      "memory_assisted": false
+    }
+  },
+  {
+    "case": "unsolvable",
+    "seed": 42,
+    "system": "TA2_Hybrid",
+    "state": {
+      "puzzle": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "seed": 42,
+      "run_id": "bbed8f068112451d9ff00ccebbc5eaec",
+      "namespace": "unsolvable-42-hybrid",
+      "mode": "ollama_ta2_hybrid",
+      "history": [
+        {
+          "puzzle": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "expression": "",
+          "status": "no_solution",
+          "feedback": "Exact search exhausted all legal states"
+        }
+      ],
+      "events": [
+        {
+          "role": "supervisor",
+          "hop": 1,
+          "dispatch": "retrieve"
+        },
+        {
+          "role": "retrieve",
+          "hop": 1,
+          "sources": [
+            "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+            "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md"
+          ],
+          "memory_hits": 0
+        },
+        {
+          "role": "supervisor",
+          "hop": 2,
+          "dispatch": "proposer"
+        },
+        {
+          "role": "proposer",
+          "hop": 2,
+          "candidates": [
+            "((1+1)*1+1)/1",
+            "(1*(1+1)+1)/1",
+            "(1+1+1)/1"
+          ],
+          "oracle": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 3,
+          "dispatch": "evaluator"
+        },
+        {
+          "role": "evaluator",
+          "hop": 3,
+          "index": 2,
+          "model_index": 2,
+          "score": 33,
+          "reason": "The expression equals 24, but it is not the most promising as it is not the only candidate and does not use all cards.",
+          "assessments": [
+            {
+              "index": 0,
+              "valid": false,
+              "reason": "Number usage mismatch: expected [1, 1, 1, 1], used [1, 1, 1, 1, 1]",
+              "exact_value": "3"
+            },
+            {
+              "index": 1,
+              "valid": false,
+              "reason": "Number usage mismatch: expected [1, 1, 1, 1], used [1, 1, 1, 1, 1]",
+              "exact_value": "3"
+            },
+            {
+              "index": 2,
+              "valid": false,
+              "reason": "Expression equals 3, not 24",
+              "exact_value": "3"
+            }
+          ],
+          "guardrail_override": false
+        },
+        {
+          "role": "supervisor",
+          "hop": 4,
+          "dispatch": "verifier"
+        },
+        {
+          "role": "verifier",
+          "hop": 4,
+          "expression": "(1+1+1)/1",
+          "valid": false,
+          "message": "Expression equals 3, not 24",
+          "value": "3",
+          "used_numbers": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "role": "supervisor",
+          "hop": 5,
+          "dispatch": "search"
+        },
+        {
+          "role": "search",
+          "hop": 5,
+          "nodes": 24,
+          "complete": true,
+          "source": "exact_arithmetic_tool",
+          "expression": null
+        }
+      ],
+      "evidence": [
+        {
+          "id": "fa564c65c936015dd3e9f3d73667ac4138bbc88a7bedbf90fd37bfa4fd6a487a",
+          "text": "# Game of 24 reference rules\n\nA puzzle consists of four integer cards. Use each card exactly once. Repeated\ncard values represent separate cards. Combine them using addition, subtraction,\nmultiplication, division, and parentheses to obtain exactly 24. Concatenation,\nexponentiation, factorials, extra constants, and executable code are prohibited.\n\nFractional and negative intermediate values are permitted. Division by zero is\nnever permitted. Preserve rational values exactly rather than rounding decimals.\nAn intermediate value of 24 is not sufficient if unused cards remain.\n\nUseful strategies include grouping pairs, forming a useful difference, and\nretaining a fractional intermediate when integer-only choices fail. Compare\ncandidate expressions, then submit the best candidate to an independent exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally",
+          "source": "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+          "distance": 0.3639024794101715
+        },
+        {
+          "id": "50610e822d5764b35cb3e850aacc4ed89594c846d7ecf20638777824735d6b8f",
+          "text": "nt exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally contains no worked answers to evaluation puzzles.\n",
+          "source": "C:\\Users\\shind\\Downloads\\Agentic_Game24_Complete_Project (2)\\ta2\\corpus\\rules.md",
+          "distance": 1.0355721712112427
+        }
+      ],
+      "memory": [],
+      "candidates": [
+        "((1+1)*1+1)/1",
+        "(1*(1+1)+1)/1",
+        "(1+1+1)/1"
+      ],
+      "expression": "",
+      "feedback": "Exact search exhausted all legal states",
+      "valid": false,
+      "hops": 5,
+      "next": "finish",
+      "phase": "search",
+      "status": "no_solution",
+      "errors": [],
+      "started": 1792637144.8389943,
+      "prompt_tokens": 1604,
+      "output_tokens": 92,
+      "tool_calls": 3,
+      "max_hops": 12,
+      "metric_base": [
+        0,
+        0,
+        0
+      ],
+      "model": "qwen2.5:3b",
+      "embedding_model": "nomic-embed-text",
+      "search_policy": "hybrid",
+      "search_nodes": 24,
+      "search_used": true,
+      "candidate_origin": "model",
+      "verification": {},
+      "rounds": 1,
+      "schema_version": 2,
+      "search_budget": 10000,
+      "memory_assisted": false
+    }
+  }
+]

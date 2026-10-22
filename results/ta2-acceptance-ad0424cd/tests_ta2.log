@@ -1,0 +1,41 @@
+test_all_budgets_reserve_complete_verification_cycles (test_completion.CompletionTests.test_all_budgets_reserve_complete_verification_cycles) ... ok
+test_evaluation_both_policies_and_summary_artifacts (test_completion.CompletionTests.test_evaluation_both_policies_and_summary_artifacts) ... ok
+test_evaluator_guardrail_prefers_valid_candidate (test_completion.CompletionTests.test_evaluator_guardrail_prefers_valid_candidate) ... ok
+test_exact_search_proof_and_budget_are_distinct (test_completion.CompletionTests.test_exact_search_proof_and_budget_are_distinct) ... ok
+test_hybrid_cannot_increase_saved_search_budget_on_resume (test_completion.CompletionTests.test_hybrid_cannot_increase_saved_search_budget_on_resume) ... ok
+test_hybrid_does_not_call_search_for_valid_model_answer (test_completion.CompletionTests.test_hybrid_does_not_call_search_for_valid_model_answer) ... ok
+test_hybrid_never_hides_generation_failure (test_completion.CompletionTests.test_hybrid_never_hides_generation_failure) ... ok
+test_hybrid_repairs_invalid_proposal_and_discloses_tool (test_completion.CompletionTests.test_hybrid_repairs_invalid_proposal_and_discloses_tool) ... ok
+test_search_solves_four_cases_without_reference_answers (test_completion.CompletionTests.test_search_solves_four_cases_without_reference_answers) ... ok
+test_unsolvability_proof_and_search_failure_reported (test_completion.CompletionTests.test_unsolvability_proof_and_search_failure_reported) ... ok
+test_five_cases_three_systems_and_preserved_outputs (test_ta2.EvaluationTests.test_five_cases_three_systems_and_preserved_outputs) ... ok
+test_input_domain (test_ta2.GuardrailTests.test_input_domain) ... ok
+test_rejects_unsafe_and_invalid (test_ta2.GuardrailTests.test_rejects_unsafe_and_invalid) ... ok
+test_valid_fraction (test_ta2.GuardrailTests.test_valid_fraction) ... ok
+test_http_model_rag_graph_integration (test_ta2.ModelToolTests.test_http_model_rag_graph_integration) ... ok
+test_invalid_embedding_schema (test_ta2.ModelToolTests.test_invalid_embedding_schema) ... ok
+test_no_retry_permanent_http_error (test_ta2.ModelToolTests.test_no_retry_permanent_http_error) ... ok
+test_readiness_checks_requested_models (test_ta2.ModelToolTests.test_readiness_checks_requested_models) ... ok
+test_transient_retry (test_ta2.ModelToolTests.test_transient_retry) ... ok
+test_chroma_context_closes_after_exception (test_ta2.StoreRAGTests.test_chroma_context_closes_after_exception) ... ok
+test_embedding_failure_preserves_existing_index (test_ta2.StoreRAGTests.test_embedding_failure_preserves_existing_index) ... ok
+test_empty_index_is_failure (test_ta2.StoreRAGTests.test_empty_index_is_failure) ... ok
+test_real_chroma_persistence_and_idempotent_ingest (test_ta2.StoreRAGTests.test_real_chroma_persistence_and_idempotent_ingest) ... ok
+test_sqlite_store_reopen_crud (test_ta2.StoreRAGTests.test_sqlite_store_reopen_crud) ... ok
+test_evaluator_cannot_certify_invalid_expression (test_ta2.WorkflowTests.test_evaluator_cannot_certify_invalid_expression) ... ok
+test_max_hops_and_resume_budget (test_ta2.WorkflowTests.test_max_hops_and_resume_budget) ... ok
+test_metrics_are_per_run (test_ta2.WorkflowTests.test_metrics_are_per_run) ... ok
+test_missing_rag_fails_explicitly (test_ta2.WorkflowTests.test_missing_rag_fails_explicitly) ... ok
+test_no_solution_offline_is_proven (test_ta2.WorkflowTests.test_no_solution_offline_is_proven) ... ok
+test_offline_verification_and_store (test_ta2.WorkflowTests.test_offline_verification_and_store) ... ok
+test_process_restart_and_resume (test_ta2.WorkflowTests.test_process_restart_and_resume) ... ok
+test_resume_preserves_model_metrics (test_ta2.WorkflowTests.test_resume_preserves_model_metrics) ... ok
+test_schema_failure (test_ta2.WorkflowTests.test_schema_failure) ... ok
+test_store_read_failure_is_explicit (test_ta2.WorkflowTests.test_store_read_failure_is_explicit) ... ok
+test_thread_history_and_namespace_isolation (test_ta2.WorkflowTests.test_thread_history_and_namespace_isolation) ... ok
+test_tool_failure_has_no_fallback_success (test_ta2.WorkflowTests.test_tool_failure_has_no_fallback_success) ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 8.160s
+
+OK

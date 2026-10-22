@@ -1,0 +1,21 @@
+case,puzzle,system,seed,mode,status,expected_solvable,verified,wall_time_sec,prompt_tokens,output_tokens,hops,tool_calls,expression,oracle_assisted,search_nodes,error
+easy,"[4, 7, 8, 8]",TA1_Linear,42,ollama,no_valid_answer,True,False,0.8202217998914421,161,49,,,,False,0,
+easy,"[4, 7, 8, 8]",TA1_ToT,42,ollama_agentic,verified,True,True,5.9426139001734555,1636,356,,,(8 * (7 + (4 - 8))),True,0,
+easy,"[4, 7, 8, 8]",TA2_Model,42,ollama_ta2,max_hops_exceeded,True,False,5.602187799755484,5253,286,10,7,(4 * 7 - 8) / 4,False,0,[]
+easy,"[4, 7, 8, 8]",TA2_Hybrid,42,ollama_ta2_hybrid,verified,True,True,2.6873176000081003,2438,160,7,4,(8 * ((4 + 7) - 8)),True,39,[]
+fractional,"[1, 5, 5, 5]",TA1_Linear,42,ollama,no_valid_answer,True,False,0.5659742997959256,161,31,,,,False,0,
+fractional,"[1, 5, 5, 5]",TA1_ToT,42,ollama_agentic,no_valid_answer,True,False,8.461321999784559,1250,546,,,,True,0,
+fractional,"[1, 5, 5, 5]",TA2_Model,42,ollama_ta2,verified,True,True,2.391106199938804,1622,100,4,3,(5 * (5 - 1 / 5)),False,0,[]
+fractional,"[1, 5, 5, 5]",TA2_Hybrid,42,ollama_ta2_hybrid,verified,True,True,2.5463123000226915,2475,145,7,4,(5 * (5 - (1 / 5))),True,131,[]
+deceptive,"[3, 3, 8, 8]",TA1_Linear,42,ollama,no_valid_answer,True,False,0.9605058999732137,161,56,,,7 * 8,False,0,
+deceptive,"[3, 3, 8, 8]",TA1_ToT,42,ollama_agentic,no_valid_answer,True,False,7.192145899869502,1402,443,,,,True,0,
+deceptive,"[3, 3, 8, 8]",TA2_Model,42,ollama_ta2,max_hops_exceeded,True,False,5.623488000128418,5107,319,10,7,(8 * (3 + 3)) / 8,False,0,[]
+deceptive,"[3, 3, 8, 8]",TA2_Hybrid,42,ollama_ta2_hybrid,verified,True,True,2.989213100168854,2444,171,7,4,(8 / (3 - (8 / 3))),True,345,[]
+control,"[1, 2, 3, 4]",TA1_Linear,42,ollama,no_valid_answer,True,False,0.8796760998666286,161,52,,,( ( ( 1 + 2 ) * 4 ) - 3 ),False,0,
+control,"[1, 2, 3, 4]",TA1_ToT,42,ollama_agentic,verified,True,True,8.57954049995169,1572,530,,,((1 * 2) * (3 * 4)),True,0,
+control,"[1, 2, 3, 4]",TA2_Model,42,ollama_ta2,max_hops_exceeded,True,False,5.084795500151813,5077,251,10,7,(1 * 2) * (4 - 3),False,0,[]
+control,"[1, 2, 3, 4]",TA2_Hybrid,42,ollama_ta2_hybrid,verified,True,True,3.187099199742079,2431,189,7,4,(4 * (3 + (1 + 2))),True,34,[]
+unsolvable,"[1, 1, 1, 1]",TA1_Linear,42,ollama,no_valid_answer,False,False,0.4260746999643743,161,20,,,,False,0,
+unsolvable,"[1, 1, 1, 1]",TA1_ToT,42,ollama_agentic,no_valid_answer,False,False,7.562342599965632,959,488,,,,True,0,
+unsolvable,"[1, 1, 1, 1]",TA2_Model,42,ollama_ta2,max_hops_exceeded,False,False,4.7423061998561025,4854,234,10,7,(1+1)*(1+1),False,0,[]
+unsolvable,"[1, 1, 1, 1]",TA2_Hybrid,42,ollama_ta2_hybrid,no_solution,False,False,1.6696465001441538,1604,92,5,3,,True,24,[]
