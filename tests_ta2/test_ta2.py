@@ -104,13 +104,13 @@ print('restart verified')
         self.assertIn("restart verified", p.stdout)
 
     def test_max_hops_and_resume_budget(self):
-        w = TA2Workflow(self.tmp.name, offline=True, max_hops=2)
-        w.run([3,3,8,8], "budget", interrupt_after=["proposer"])
+        w = TA2Workflow(self.tmp.name, client=FakeModel(["3+3+8+8"]), rag=FakeRAG(), max_hops=4)
+        w.run([3,3,8,8], "budget", interrupt_after=["evaluator"])
         w.close()
-        w = self.workflow(offline=True, max_hops=99)
+        w = self.workflow(client=FakeModel(["3+3+8+8"]), rag=FakeRAG(), max_hops=99)
         result = w.resume("budget")
         self.assertEqual(result["status"], "max_hops_exceeded")
-        self.assertEqual(result["hops"], 2)
+        self.assertEqual(result["hops"], 4)
         self.assertFalse(result["valid"])
 
     def test_evaluator_cannot_certify_invalid_expression(self):

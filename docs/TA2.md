@@ -1,175 +1,196 @@
-# TA2 extension: group setup and acceptance guide
+# TA2: complete group workflow and evidence guide
 
-TA2 is additive. `game24/`, `tests/`, `app.py`, `run_experiment.py`, the TA1
-dependency manifests, and the recorded TA1 baseline remain unchanged. The exact
-TA2 SOP was not supplied; this implements the eight requested capabilities and
-uses a documented provisional five-puzzle evaluation. Match the final submission
-against your instructor's precise SOP before claiming formal compliance.
+The extension implements the eight requirements requested in this chat. The exact
+instructor SOP was not supplied, so formal SOP-specific compliance remains subject
+to that document. Frozen TA1 files, tests, dependency declarations and previously
+recorded results are unchanged. TA2 lives in `ta2/`, `tests_ta2/`, and separate
+entry points.
 
-## Windows quick start
+## Windows: run everything in one command
 
-Use your existing local Ollama installation and downloaded Qwen model. Codex
-Cloud HTTP 403 responses do not diagnose your Windows installation.
+Use **Command Prompt**, not the Ollama `>>>` chat. Keep your existing Ollama
+application running. Both `qwen2.5:3b` and `nomic-embed-text` were already downloaded
+successfully on your Windows computer; no repeated model download is needed.
 
-From the repository root in PowerShell:
+From your existing project folder with `.venv-ta2` activated:
 
-```powershell
-python -m venv .venv-ta2
-.\.venv-ta2\Scripts\python -m pip install -r requirements-ta2.txt
-ollama pull nomic-embed-text
-# If Ollama is not already running, run `ollama serve` in another terminal.
-.\.venv-ta2\Scripts\python -m ta2.cli check
-.\.venv-ta2\Scripts\python -m ta2.cli ingest ta2/corpus/rules.md
-.\.venv-ta2\Scripts\python -m ta2.cli solve 3 3 8 8 --thread group-demo --namespace group
-.\.venv-ta2\Scripts\python -m streamlit run app_ta2.py
+```bat
+git pull --ff-only origin codex/ta2-extension
+python -m pip install -r requirements-ta2.txt
+python run_ta2_acceptance.py --output-dir results/ta2-final
 ```
 
-The `check` command verifies both installed model names, an actual embedding,
-and an actual JSON generation. No API key is required. Defaults are Qwen2.5:3b,
-nomic-embed-text, and localhost:11434. `--model`, `--embedding-model`, and
-`--base-url` are global CLI options placed before the subcommand. Only local
-HTTP endpoints are accepted. `ollama pull` is not run automatically.
+Choose a new output directory if that directory already exists. The script refuses
+to mix runs or overwrite previous evidence. Without `--output-dir`, it chooses a
+unique directory automatically.
 
-On Linux, use `python -m venv .venv-ta2`, install with
-`.venv-ta2/bin/python -m pip install -r requirements-ta2.txt`, and substitute
-`.venv-ta2/bin/python` in the commands above. The original TA1 environment can
-remain separate. Direct TA2 dependencies were tested with
-langgraph-checkpoint-sqlite 3.1.2, Chroma 1.5.9, and LangGraph 1.2.16.
+The acceptance command:
 
-## Components and execution contract
+1. Runs the unchanged TA1 suite and the TA2 suite, retaining full logs.
+2. Checks real generation, real nomic embeddings, persistent Chroma retrieval,
+   thread continuity, SQLite Store isolation and checkpoint resume in a new process.
+3. Runs all five puzzles against TA1 Linear, TA1 ToT, TA2 model-only, and TA2 hybrid.
+4. Saves an acceptance report, settings manifest, progress, CSV, traces and summary.
 
-| Component | Files | Behavior |
+The real run produces **20 rows per seed** (five puzzles × four systems).
+`--runs 5` produces 100 rows. During evaluation it prints progress after each
+completed solver. Individual local calls may still take time, depending on hardware.
+
+Artifacts in the output directory:
+
+| Artifact | Evidence |
+|---|---|
+| `ACCEPTANCE.md`, `acceptance.json` | Capability checks, completion status, unresolved blockers |
+| `tests.log`, `tests_ta2.log` | Actual tests executed, counts and outcomes |
+| `memory-and-rag.json`, `restart.log` | Source-bearing retrieval, two turns, isolated namespaces and new-process resume |
+| `memory-demo/` | Inspectable SQLite checkpoints, SQLite Store and persistent Chroma index |
+| `evaluation.csv` | Case-level correctness, timings, tokens, hops, tool calls and assistance |
+| `evaluation.traces.json` | Raw model/agent results and mathematical verification |
+| `evaluation.manifest.json` | Models, settings, versions, platform, budgets, seeds and completion |
+| `evaluation.summary.md` | Mechanical TA1-versus-TA2 outcome table |
+
+`complete: true` requires all real capability checks, no evaluation tool failures,
+and hybrid verification of all four solvable puzzles plus a complete-search proof
+for the unsolvable puzzle. Model-only failures remain in the report. Passing the
+acceptance checks does not mean Qwen reasoning improved or that it solved every
+puzzle independently.
+
+For an offline development check:
+
+```bat
+python run_ta2_acceptance.py --offline
+```
+
+Offline validation intentionally reports real model/RAG validation as unrun. It
+uses explicit deterministic oracle demonstrations, never fabricated Qwen results.
+
+## Requirement coverage
+
+| Requirement | Implementation | Acceptance evidence |
 |---|---|---|
-| Thread memory | `ta2/workflow.py` | SQLite checkpointer, explicit thread IDs, bounded history, restart/resume |
-| Durable Store | `ta2/storage.py` | LangGraph BaseStore backed by a separate SQLite database; CRUD, namespace listing, equality-filter search |
-| Semantic retrieval | `ta2/rag.py`, `ta2/corpus/rules.md` | Persistent Chroma, explicit nomic embeddings, overlapping chunks, stable IDs, source citations |
-| Agent roles | `ta2/prompts.py`, `ta2/workflow.py` | Proposer candidates, Evaluator ranking, deterministic Verifier, feedback loop |
-| Coordination | `ta2/workflow.py` | Supervisor dispatches retrieve → proposer → evaluator → verifier, then repairs or terminates |
-| Tool boundaries | `ta2/tools.py` | Timeouts, bounded transient retries, JSON contracts, bounded expressions, exact TA1 validator reuse |
-| Evaluation | `run_ta2_evaluation.py` | Five cases, both frozen TA1 strategies plus TA2, CSV and raw traces |
-| UI | `app_ta2.py` | Separate persistent TA2 UI, agent events, retrieval evidence and explicit failure states |
+| 1. LangGraph thread memory/checkpointer | `ta2/workflow.py`: `SqliteSaver`, explicit thread IDs, bounded history, typed durable state, restart | Repeated turns, thread/namespace isolation, interrupted graph resumed in another Python process |
+| 2. Persistent SQLite Store | `ta2/storage.py`: LangGraph `BaseStore`, independent durable SQLite records, namespace separation | CRUD/reopen tests, verified memory retrieved after restart, isolation across groups and modes |
+| 3. Chroma RAG + nomic | `ta2/rag.py`, `ta2/corpus/rules.md`: persistent vectors, stable chunk IDs, explicit `/api/embed`, sources and distances | Actual local nomic call, rules ingestion/retrieval; re-ingestion and cleanup regressions |
+| 4. Proposer/Evaluator/Verifier | `ta2/prompts.py`, `ta2/workflow.py`: distinct nodes and explicit candidate contracts | Trace includes proposals, model scores, exact candidate assessments and final independent verification |
+| 5. Supervisor + MAX_HOPS | `ta2/workflow.py`: dispatch decisions, persisted budget, complete-cycle reservation, bounded search | Budgets 1–14 tested; original hop/search budgets survive resume |
+| 6. Mathematical guardrails | `ta2/tools.py`: exact frozen validator reuse, card/domain/syntax/size bounds; `ta2/search.py` | Fractional solutions pass; injection, extra constants, repeats, invalid operators and zero division are rejected |
+| 7. Tool failures | `ta2/tools.py`, workflow error routes and resource lifecycles | Injected timeout/HTTP/schema/embedding/Store failures; bounded retry and explicit terminal outcomes |
+| 8. Five-case TA1 vs TA2 evaluation | `run_ta2_evaluation.py`, `ta2/reporting.py` | Matched puzzles/seeds, independent validation, fresh memory, explicit assistance, retained CSV/traces/summary |
 
-`MAX_HOPS=12` counts each supervisor dispatch to retrieval or an agent. Supervisor
-and finish nodes are not counted. The counter and original budget are saved in
-checkpoints; resume cannot increase the budget. Graph recursion limits provide
-a second bound. A normal successful attempt uses four dispatches. Invalid
-expressions return verifier feedback to the Proposer until the budget expires.
+## Model-only versus hybrid: honest attribution
 
-Only the independent exact verifier grants `verified`. The Evaluator cannot
-approve mathematical truth. Inputs are four integer cards in 1..13; intermediate
-fractions and negative results are allowed. Expressions are limited to 256
-characters, three-digit literals, and 32 AST nodes. Calls, attributes, powers,
-extra constants, missing/reused cards, division by zero and wrong targets are
-rejected. Retrieved context is bounded reference data, not executable commands.
+The first local model-only run solved no puzzles. Those measurements are retained;
+this extension does not relabel or overwrite them.
 
-## Persistence and isolation
+- **Model policy** asks Qwen for expressions, evaluates all candidates using exact
+  mathematical checks, obtains Qwen's ranking, and independently verifies the
+  selected expression. If a correct candidate exists but Qwen ranks an incorrect
+  one first, a documented guardrail selects the correct candidate. It does not
+  synthesize an answer using exhaustive search.
+- **Hybrid policy** performs that same model attempt. After a rejected expression,
+  the supervisor explicitly calls a bounded exact arithmetic search tool. Its
+  candidate still goes through the Evaluator and Verifier. The trace records the
+  search node count, source and whether enumeration completed. No answers are
+  hardcoded and no worked benchmark answers are put in the retrieval corpus.
+- **Offline mode** is an explicit deterministic oracle demo without Qwen or nomic.
 
-Default data lives outside the checkout in `~/.game24-ta2/`. Override using
-`TA2_DATA_DIR` or the CLI's global `--data-dir`. Files include:
+CSV `mode`, `oracle_assisted`, `search_nodes` and trace `candidate_origin` disclose
+assistance. TA1 ToT already uses exact look-ahead, including in its Qwen mode;
+that frozen behavior is also labelled. Hybrid success is an engineering result
+for a model-plus-tools system, not proof of Qwen-only mathematical ability.
 
-- `checkpoints.sqlite`: execution state, history, role outputs, routing and hop budget;
-- `store.sqlite`: independently queryable verified solutions;
-- `chroma/`: retrieved rule documents and their vectors.
+## Coordination and mathematical truth
 
-Repeat a completed thread to retain its last 20 turns. Each new puzzle resets
-run-local candidates, errors and hops. An interrupted thread must be resumed:
+The default budget is `MAX_HOPS=12`. One hop means a supervisor dispatch to a tool
+or role; supervisor and finish nodes themselves do not count. Before proposal or
+search, the supervisor reserves enough remaining hops for the complete
+proposal/evaluation/verification cycle. It stops before beginning a cycle that
+cannot finish. This fixes the previous unmatched-expression/stale-feedback issue.
 
-```powershell
-.\.venv-ta2\Scripts\python -m ta2.cli resume --thread group-demo
+Standard successful model path:
+
+```text
+retrieve → Proposer → Evaluator → Verifier → finish
 ```
 
-Programmatic interruption is available through
-`workflow.run(cards, thread_id, interrupt_after=["evaluator"])`. Close the
-workflow, recreate it with the same data directory/models/mode, and call
-`workflow.resume(thread_id)`. Resume uses the persisted budget. Namespaces are
-checked on thread reuse; use distinct thread IDs for different groups. Verified
-Store memory is further separated by execution mode, so offline oracle records
-do not become model-run evidence. A thread cannot change modes.
+Hybrid repair path after rejection:
 
-This is a trusted local classroom application. Namespace identifiers are not
-authentication or a security boundary against someone who controls the data
-directory. SQLite Store supports equality filters, not TTL or semantic queries;
-use Chroma for semantic retrieval. Ingestion upserts before deleting stale
-chunks; Chroma ingestion is not a multi-operation transaction. Do not change
-the embedding model in an existing collection; use a new data directory/index.
-
-## Failure behavior
-
-Transient transport errors, HTTP 429 and HTTP 5xx responses retry twice by
-default with bounded backoff. Permanent HTTP failures and malformed output fail
-explicitly. Model mode requires both models and an ingested RAG index. It does
-not silently switch to a deterministic solver. Retrieval, generation and Store
-failures produce structured tool errors; exhausted hop budgets have their own
-termination status. Checkpoint/database initialization failures are infrastructure
-errors and must be resolved before execution can continue.
-
-Normal terminal statuses are `verified`, `max_hops_exceeded`, `tool_failure`,
-and offline-only `no_solution` (proved by exhaustive search). Failure to find a
-model-generated answer does not prove mathematical unsolvability. CLI solve
-returns exit code 2 for tool failures and hop exhaustion.
-
-## Tests and offline demo
-
-```powershell
-.\.venv-ta2\Scripts\python -m unittest discover -s tests -v
-.\.venv-ta2\Scripts\python -m unittest discover -s tests_ta2 -v
-.\.venv-ta2\Scripts\python -m ta2.cli --offline solve 3 3 8 8 --thread offline-demo
-.\.venv-ta2\Scripts\python run_ta2_evaluation.py --offline --output results/ta2-offline.csv
+```text
+retrieve → Proposer → Evaluator → Verifier → exact-search tool → Evaluator → Verifier
 ```
 
-Offline TA2 uses an explicitly labelled exhaustive oracle. It exercises the
-graph, SQLite memory, verifier and output pipeline, but performs no semantic
-retrieval or real model calls. Tests exercise real persistent Chroma with
-fixture embeddings, plus mocked Ollama response/retry contracts. Those tests
-are not evidence of nomic or Qwen quality. The test suite also exercises
-cross-process checkpoint restoration, namespace isolation, input attacks,
-MAX_HOPS, embedding failures, invalid model output and five-case evaluation.
+Only the final mathematical Verifier grants `verified`. Confidence scores cannot
+override exact arithmetic. State records the exact expression covered by each
+verification, exact value, card usage and rejection reason. Four integer cards in
+1..13 are supported; negative/fractional intermediate values are legal. Expressions
+are limited to 256 characters, three-digit numeric literals and 32 AST nodes.
+Arbitrary code, attribute access, extra constants, exponentiation and division by
+zero are rejected. Retrieved text is untrusted reference data, not instructions
+or executable commands.
 
-## Five-case comparison and reporting
+Search has a separate persisted node budget (default 10000). `no_solution` is used
+only after complete enumeration. `search_budget_exceeded` is inconclusive, as is
+`max_hops_exceeded`. A model failing to find a valid expression is not a proof of
+unsolvability. Model/schema/transport failures remain `tool_failure`; hybrid does
+not secretly replace a broken model call with offline output.
 
-```powershell
-.\.venv-ta2\Scripts\python run_ta2_evaluation.py --runs 1 --output results/ta2-qwen.csv
+## UI and individual commands
+
+Launch the separate UI:
+
+```bat
+python -m streamlit run app_ta2.py
 ```
 
-The fixed provisional cases are `[4,7,8,8]`, `[1,5,5,5]`, `[3,3,8,8]`,
-`[1,2,3,4]`, and unsolvable `[1,1,1,1]`. Each seed runs frozen TA1 Linear,
-frozen TA1 ToT, and TA2: 15 rows per seed, 75 for five seeds. The harness
-independently verifies final expressions and writes a sibling `.traces.json`.
-Existing outputs are refused rather than overwritten. Restart/continuity and
-injected-failure scenarios are tested separately from these puzzle cases.
+Choose the model or hybrid policy explicitly. UI actions include solving, resuming
+an interrupted thread, and reading saved history. It displays execution mode,
+candidate source, verifier feedback, hops, evidence, history, memory and errors.
+The frozen `app.py` remains TA1.
 
-Model evaluation checks both local models, creates a fresh rules-only Chroma
-index, and isolates checkpoints/Store for each case and seed. The reference
-corpus has no worked benchmark answers. Offline results are labelled oracle
-demos. Frozen TA1 ToT remains oracle-assisted even when Qwen is available;
-the CSV records that asymmetry. Its arithmetic beam search and TA2's multi-agent
-loop also have different budgets; report tokens, latency and hops rather than
-claiming matched compute. TA1 unexpected fallback/tool failures cause a nonzero
-evaluation exit and remain visible in the CSV. Do not equate failure to find a
-solution with a correct unsolvability proof. Model/index setup time is excluded
-from per-solver latency, while TA2 retrieval calls are included.
+Individual CLI commands (global options precede the command):
 
-Group acceptance checklist:
+```bat
+python -m ta2.cli check
+python -m ta2.cli ingest ta2/corpus/rules.md
+python -m ta2.cli solve 3 3 8 8 --thread group-v2 --namespace group --search-policy hybrid
+python -m ta2.cli history --thread group-v2
+python -m ta2.cli resume --thread interrupted-v2 --search-policy hybrid
+python run_ta2_evaluation.py --search-policy both --output results/ta2-v2.csv
+```
 
-- [ ] Run both unchanged TA1 tests and new TA2 tests.
-- [ ] Run `check` on Windows to verify Qwen and nomic actual calls.
-- [ ] Ingest the rules and inspect source-bearing retrieval evidence.
-- [ ] Demonstrate a second turn, fresh-thread isolation, and process restart.
-- [ ] Demonstrate an invalid candidate being rejected and bounded repair.
-- [ ] Demonstrate an unavailable model/retrieval failure without fake success.
-- [ ] Run real five-case evaluation; retain CSV, traces and settings.
-- [ ] Check exact cases and API requirements against the instructor's TA2 SOP.
+Use a new thread when switching execution policies. Completed legacy threads keep
+their readable history; old interrupted v1 threads require a new thread because the
+workflow topology changed. The resume command requires the original models/policy;
+it uses persisted budgets even if a new process requests a larger budget.
 
-Cloud validation can establish implementation correctness without establishing
-that your separate Windows model server was tested. Local Qwen and nomic
-performance must be measured on your Windows machine.
+Default interactive data is `~/.game24-ta2/`; change it using `TA2_DATA_DIR` or
+`--data-dir`. `checkpoints.sqlite` holds graph state; `store.sqlite` independently
+holds verified solutions; `chroma/` holds semantic evidence. The shipped rules
+corpus has no worked evaluation answers. Evaluations use fresh threads and Store
+namespaces for every case, seed and policy to prevent answer leakage.
 
-## Windows Chroma file-lock correction
+## Failure handling, lifecycle and platform limits
 
-Chroma clients must be explicitly closed before deleting a temporary index.
-The RAG adapter is a context manager with an idempotent `close()` method.
-CLI, UI, evaluation and tests close every client, including reopened clients
-sharing the same persistent index. The dependency requires Chroma 1.5.9 or
-newer for its public client lifecycle API. Cleanup errors are not suppressed.
-If upgrading from the first TA2 revision, pull the branch, refresh dependencies
-and rerun both test suites before starting another model evaluation.
+Transport errors, HTTP 429 and HTTP 5xx retry at most twice by default with bounded
+backoff. Permanent HTTP errors and malformed output fail explicitly. Missing models,
+empty indexes, embedding failures and Store errors are distinguishable. Generated
+output and embedding vectors are validated before use. Only local Ollama HTTP
+endpoints are accepted; no API key is required.
+
+Every Chroma client is explicitly closed, including shared/reopened clients and
+exception paths, before temporary index deletion. Cleanup failures are not hidden.
+The public lifecycle API requires Chroma >=1.5.9. SQLite initialization/checkpointer
+failures are infrastructure blockers and cannot be turned into application success.
+
+This is a trusted local classroom application: group namespaces organize state but
+are not authentication against someone with filesystem access. The SQLite Store
+supports equality filters and namespaces, not TTL or semantic search. Chroma handles
+semantic search. Ingestion upserts before deleting stale chunks, but Chroma does not
+provide a multi-operation transaction. Changing embedding models requires a new index.
+
+The five provisional puzzle cases are `[4,7,8,8]`, `[1,5,5,5]`, `[3,3,8,8]`,
+`[1,2,3,4]`, and unsolvable `[1,1,1,1]`. Restart, memory and injected-failure
+scenarios are additional tests. If the instructor prescribes different five cases,
+those exact definitions must be supplied before claiming formal SOP compliance.
+One seed is descriptive evidence; tool budgets differ. Report measured outcomes
+and costs rather than claiming universal improvement.

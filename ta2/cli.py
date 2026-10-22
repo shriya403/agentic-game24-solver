@@ -29,8 +29,13 @@ def main():
     solve.add_argument("--namespace", default="default")
     solve.add_argument("--seed", type=int, default=42)
     solve.add_argument("--max-hops", type=int, default=12)
+    solve.add_argument("--search-policy", choices=["model", "hybrid"], default="model")
+    solve.add_argument("--search-budget", type=int, default=10000)
     resume = sub.add_parser("resume")
     resume.add_argument("--thread", required=True)
+    resume.add_argument("--search-policy", choices=["model", "hybrid"], default="model")
+    inspect = sub.add_parser("history", help="Read checkpointed state without model calls")
+    inspect.add_argument("--thread", required=True)
     args = parser.parse_args()
     client = None if args.offline else LocalOllama(args.base_url, args.model, args.embedding_model)
     try:
@@ -47,19 +52,24 @@ def main():
                 return
             data = Path(args.data_dir)
             data.mkdir(parents=True, exist_ok=True)
-            if client:
+            if client and args.command != "history":
                 client.ready()
-            rag = resources.enter_context(ChromaRAG(data / "chroma", client)) if client else None
+            rag = resources.enter_context(ChromaRAG(data / "chroma", client)) if client and args.command != "history" else None
             if args.command == "ingest":
                 print(json.dumps({"chunks_upserted": rag.ingest(args.paths)}))
                 return
             workflow = TA2Workflow(data, client=client, rag=rag, offline=args.offline,
-                                   max_hops=getattr(args, "max_hops", 12))
+                                   max_hops=getattr(args, "max_hops", 12),
+                                   search_policy=getattr(args, "search_policy", "model"),
+                                   search_budget=getattr(args, "search_budget", 10000))
             try:
+                if args.command == "history":
+                    print(json.dumps(workflow.snapshot(args.thread).values, indent=2))
+                    return
                 state = (workflow.resume(args.thread) if args.command == "resume" else
                          workflow.run(args.cards, args.thread, args.seed, args.namespace))
                 print(json.dumps(state, indent=2))
-                if state["status"] in ("tool_failure", "max_hops_exceeded"):
+                if state["status"] in ("tool_failure", "max_hops_exceeded", "search_budget_exceeded"):
                     raise SystemExit(2)
             finally:
                 workflow.close()
