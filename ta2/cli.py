@@ -30,6 +30,7 @@ def main():
     followup.add_argument("--thread", required=True)
     followup.add_argument("--question", required=True)
     followup.add_argument("--without-memory", action="store_true")
+    sub.add_parser("guard-audit", help="Show exact-verifier approved and rejected paths")
     solve = sub.add_parser("solve")
     solve.add_argument("cards", nargs=4, type=int)
     solve.add_argument("--thread", required=True)
@@ -49,6 +50,17 @@ def main():
         with ExitStack() as resources:
             if args.command in ("check", "ingest", "rag-audit") and args.offline:
                 parser.error("check, ingest and rag-audit require Ollama; offline mode supplies no embeddings")
+            if args.command == "guard-audit":
+                from .tools import verify
+                puzzle = [2, 2, 6, 6]
+                approved = verify("2*6+2*6", puzzle)
+                rejected = verify("2+2+6+6", puzzle)
+                print(json.dumps({"input": puzzle,
+                                  "approved": {"expression": "2*6+2*6", "valid": approved.valid,
+                                               "feedback": approved.message},
+                                  "rejected": {"expression": "2+2+6+6", "valid": rejected.valid,
+                                               "feedback": rejected.message}}, indent=2))
+                return
             if args.command == "check":
                 client.ready()
                 vectors = client.embed(["Use every Game of 24 card exactly once."])
