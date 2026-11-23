@@ -323,8 +323,12 @@ def evaluation() -> None:
     data = pd.read_csv(path)
     manifest = base / ("evaluation.manifest.json" if archive else "manifest.json")
     conditions = json.loads(manifest.read_text("utf-8")) if manifest.exists() else {}
-    if conditions.get("completed") is False:
-        st.warning("Partial execution evidence. Further trials are pending.")
+    partial = conditions.get("completed") is False
+    if partial:
+        settings = 2 + len(conditions["policies"]) * len(conditions["rag_ks"])
+        target = len(conditions["cases"]) * len(conditions["seeds"]) * settings
+        st.warning(f"Partial benchmark · {len(data)} of {target} planned trials recorded. "
+                   "The table shows individual observations. Comparative charts require a complete run.")
     st.caption(f"Saved execution evidence · {path.relative_to(ROOT)}")
     if archive:
         st.write("The original Windows study used Qwen2.5:3b on four solvable puzzles and one unsolvable control. "
@@ -335,19 +339,20 @@ def evaluation() -> None:
                  "Inspect the status and error columns before interpreting model accuracy.")
     else:
         st.write("These local runs measure deterministic execution. Each system received the same five puzzles.")
-    solvable = data[data["expected_solvable"] == True]
-    grouping = ["system", "rag_k"] if base == local_model else "system"
-    summary = solvable.groupby(grouping, sort=False).agg(
-        verified=("verified", "sum"), attempts=("verified", "size"),
-        median_seconds=("wall_time_sec", "median"),
-    )
-    if base == local_model:
-        summary.index = [f"{system} · k={k}" for system, k in summary.index]
-    st.subheader("Verified answers on solvable cases")
-    st.bar_chart(summary[["verified"]], color="#82d9d4", height=220)
-    st.dataframe(summary.rename(columns={"verified":"Verified","attempts":"Solvable attempts",
-                                         "median_seconds":"Median seconds (solvable)"}), width="stretch")
-    st.caption("The unsolvable control is listed below. A timeout or a missing answer does not establish unsolvability.")
+    if not partial:
+        solvable = data[data["expected_solvable"] == True]
+        grouping = ["system", "rag_k"] if base == local_model else "system"
+        summary = solvable.groupby(grouping, sort=False).agg(
+            verified=("verified", "sum"), attempts=("verified", "size"),
+            median_seconds=("wall_time_sec", "median"),
+        )
+        if base == local_model:
+            summary.index = [f"{system} · k={k}" for system, k in summary.index]
+        st.subheader("Verified answers on solvable cases")
+        st.bar_chart(summary[["verified"]], color="#82d9d4", height=220)
+        st.dataframe(summary.rename(columns={"verified":"Verified","attempts":"Solvable attempts",
+                                             "median_seconds":"Median seconds (solvable)"}), width="stretch")
+        st.caption("The unsolvable control is listed below. A timeout or a missing answer does not establish unsolvability.")
     case = st.selectbox("Inspect case", ["All cases", *data["case"].drop_duplicates().tolist()])
     subset = data if case == "All cases" else data[data["case"] == case]
     st.dataframe(subset, width="stretch", hide_index=True)

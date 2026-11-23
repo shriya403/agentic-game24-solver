@@ -1,0 +1,594 @@
+{
+  "schema_version": 1,
+  "run_id": "337a40475e454a50a99df16d930c5de4",
+  "thread_id": "ac336d3adc574bf4b477a26db3bfd7d3",
+  "puzzle": [
+    3,
+    3,
+    8,
+    8
+  ],
+  "method": "tree",
+  "mode": "model",
+  "seed": 42,
+  "rag": false,
+  "k": 0,
+  "max_hops": 12,
+  "status": "verified",
+  "expression": "(8 / (3 - (8 / 3)))",
+  "oracle_assisted": true,
+  "events": [
+    {
+      "role": "tree",
+      "hop": 0,
+      "source": "model",
+      "backend": "qwen2.5:3b",
+      "message": "Valid: every input used once and the exact value is 24"
+    },
+    {
+      "role": "proof_auditor",
+      "hop": 0,
+      "valid": true,
+      "reason": "Every card appears once and the exact value is 24."
+    },
+    {
+      "role": "explanation",
+      "hop": 0,
+      "source": "verified AST postorder replay",
+      "steps": [
+        "8 / 3 = 8/3",
+        "3 - 8/3 = 1/3",
+        "8 / 1/3 = 24"
+      ]
+    }
+  ],
+  "evidence": [],
+  "memory": [],
+  "branches": [
+    {
+      "id": "b1",
+      "parent": "root",
+      "depth": 1,
+      "move": "8 / 3 = 8/3",
+      "state": [
+        "3",
+        "8",
+        "8/3"
+      ],
+      "decision": "selected",
+      "reason": "8/3 + 8 - 3 = 24",
+      "score": 24.0,
+      "evaluator": "ollama"
+    },
+    {
+      "id": "b2",
+      "parent": "root",
+      "depth": 1,
+      "move": "3 + 3 = 6",
+      "state": [
+        "8",
+        "8",
+        "6"
+      ],
+      "decision": "retained",
+      "reason": "No way to reach 24 with '6'",
+      "score": 0.0,
+      "evaluator": "ollama"
+    },
+    {
+      "id": "b3",
+      "parent": "root",
+      "depth": 1,
+      "move": "3 * 3 = 9",
+      "state": [
+        "8",
+        "8",
+        "9"
+      ],
+      "decision": "pruned",
+      "reason": "No way to reach 24 with '9'",
+      "score": 0.0,
+      "evaluator": "ollama"
+    },
+    {
+      "id": "b4",
+      "parent": "b1",
+      "depth": 2,
+      "move": "3 + 8 = 11",
+      "state": [
+        "8/3",
+        "11"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 7.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b5",
+      "parent": "b1",
+      "depth": 2,
+      "move": "3 * 8 = 24",
+      "state": [
+        "8/3",
+        "24"
+      ],
+      "decision": "retained",
+      "reason": "Exact look-ahead found no route",
+      "score": 20.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b6",
+      "parent": "b1",
+      "depth": 2,
+      "move": "3 - 8 = -5",
+      "state": [
+        "8/3",
+        "-5"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 0.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b7",
+      "parent": "b1",
+      "depth": 2,
+      "move": "8 - 3 = 5",
+      "state": [
+        "8/3",
+        "5"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 1.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b8",
+      "parent": "b1",
+      "depth": 2,
+      "move": "3 / 8 = 3/8",
+      "state": [
+        "8/3",
+        "3/8"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 0.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b9",
+      "parent": "b1",
+      "depth": 2,
+      "move": "8 / 3 = 8/3",
+      "state": [
+        "8/3",
+        "8/3"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 0.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b10",
+      "parent": "b1",
+      "depth": 2,
+      "move": "3 + (8 / 3) = 17/3",
+      "state": [
+        "8",
+        "17/3"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 4.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b11",
+      "parent": "b1",
+      "depth": 2,
+      "move": "3 * (8 / 3) = 8",
+      "state": [
+        "8",
+        "8"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 4.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b12",
+      "parent": "b1",
+      "depth": 2,
+      "move": "3 - (8 / 3) = 1/3",
+      "state": [
+        "8",
+        "1/3"
+      ],
+      "decision": "selected",
+      "reason": "Exact look-ahead found a route to 24",
+      "score": 100.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b13",
+      "parent": "b1",
+      "depth": 2,
+      "move": "(8 / 3) - 3 = -1/3",
+      "state": [
+        "8",
+        "-1/3"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 4.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b14",
+      "parent": "b1",
+      "depth": 2,
+      "move": "3 / (8 / 3) = 9/8",
+      "state": [
+        "8",
+        "9/8"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 4.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b15",
+      "parent": "b1",
+      "depth": 2,
+      "move": "(8 / 3) / 3 = 8/9",
+      "state": [
+        "8",
+        "8/9"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 4.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b16",
+      "parent": "b1",
+      "depth": 2,
+      "move": "8 + (8 / 3) = 32/3",
+      "state": [
+        "3",
+        "32/3"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 6.666666666666666,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b17",
+      "parent": "b1",
+      "depth": 2,
+      "move": "8 * (8 / 3) = 64/3",
+      "state": [
+        "3",
+        "64/3"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 17.333333333333332,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b18",
+      "parent": "b1",
+      "depth": 2,
+      "move": "8 - (8 / 3) = 16/3",
+      "state": [
+        "3",
+        "16/3"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 1.3333333333333321,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b19",
+      "parent": "b1",
+      "depth": 2,
+      "move": "(8 / 3) - 8 = -16/3",
+      "state": [
+        "3",
+        "-16/3"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 0.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b20",
+      "parent": "b1",
+      "depth": 2,
+      "move": "8 / (8 / 3) = 3",
+      "state": [
+        "3",
+        "3"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 0.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b21",
+      "parent": "b1",
+      "depth": 2,
+      "move": "(8 / 3) / 8 = 1/3",
+      "state": [
+        "3",
+        "1/3"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 0.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b22",
+      "parent": "b2",
+      "depth": 2,
+      "move": "8 + 8 = 16",
+      "state": [
+        "6",
+        "16"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 12.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b23",
+      "parent": "b2",
+      "depth": 2,
+      "move": "8 * 8 = 64",
+      "state": [
+        "6",
+        "64"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 2.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b24",
+      "parent": "b2",
+      "depth": 2,
+      "move": "8 - 8 = 0",
+      "state": [
+        "6",
+        "0"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 2.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b25",
+      "parent": "b2",
+      "depth": 2,
+      "move": "8 / 8 = 1",
+      "state": [
+        "6",
+        "1"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 2.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b26",
+      "parent": "b2",
+      "depth": 2,
+      "move": "8 + (3 + 3) = 14",
+      "state": [
+        "8",
+        "14"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 10.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b27",
+      "parent": "b2",
+      "depth": 2,
+      "move": "8 * (3 + 3) = 48",
+      "state": [
+        "8",
+        "48"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 4.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b28",
+      "parent": "b2",
+      "depth": 2,
+      "move": "8 - (3 + 3) = 2",
+      "state": [
+        "8",
+        "2"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 4.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b29",
+      "parent": "b2",
+      "depth": 2,
+      "move": "(3 + 3) - 8 = -2",
+      "state": [
+        "8",
+        "-2"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 4.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b30",
+      "parent": "b2",
+      "depth": 2,
+      "move": "8 / (3 + 3) = 4/3",
+      "state": [
+        "8",
+        "4/3"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 4.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b31",
+      "parent": "b2",
+      "depth": 2,
+      "move": "(3 + 3) / 8 = 3/4",
+      "state": [
+        "8",
+        "3/4"
+      ],
+      "decision": "pruned",
+      "reason": "Exact look-ahead found no route",
+      "score": 4.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b32",
+      "parent": "b12",
+      "depth": 3,
+      "move": "8 + (3 - (8 / 3)) = 25/3",
+      "state": [
+        "25/3"
+      ],
+      "decision": "evaluated",
+      "reason": "Exact look-ahead found no route",
+      "score": 4.333333333333334,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b33",
+      "parent": "b12",
+      "depth": 3,
+      "move": "8 * (3 - (8 / 3)) = 8/3",
+      "state": [
+        "8/3"
+      ],
+      "decision": "evaluated",
+      "reason": "Exact look-ahead found no route",
+      "score": 0.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b34",
+      "parent": "b12",
+      "depth": 3,
+      "move": "8 - (3 - (8 / 3)) = 23/3",
+      "state": [
+        "23/3"
+      ],
+      "decision": "evaluated",
+      "reason": "Exact look-ahead found no route",
+      "score": 3.666666666666668,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b35",
+      "parent": "b12",
+      "depth": 3,
+      "move": "(3 - (8 / 3)) - 8 = -23/3",
+      "state": [
+        "-23/3"
+      ],
+      "decision": "evaluated",
+      "reason": "Exact look-ahead found no route",
+      "score": 0.0,
+      "evaluator": "exact look-ahead"
+    },
+    {
+      "id": "b36",
+      "parent": "b12",
+      "depth": 3,
+      "move": "8 / (3 - (8 / 3)) = 24",
+      "state": [
+        "24"
+      ],
+      "decision": "selected",
+      "reason": "Exact look-ahead found a route to 24",
+      "score": 100.0,
+      "evaluator": "exact look-ahead"
+    }
+  ],
+  "errors": [],
+  "metrics": {
+    "steps": 3,
+    "nodes_explored": 54,
+    "branches_pruned": 31,
+    "hops": 0,
+    "prompt_tokens": 1696,
+    "output_tokens": 578,
+    "model_calls": 3,
+    "tool_calls": 4,
+    "http_attempts": 5,
+    "embedding_calls": 0,
+    "latency_s": 326.188262163
+  },
+  "certificate": {
+    "puzzle": [
+      3,
+      3,
+      8,
+      8
+    ],
+    "expression": "(8 / (3 - (8 / 3)))",
+    "value": "24",
+    "used_numbers": [
+      8,
+      3,
+      8,
+      3
+    ],
+    "usage_ok": true,
+    "valid": true,
+    "message": "Every card appears once and the exact value is 24.",
+    "steps": [
+      "8 / 3 = 8/3",
+      "3 - 8/3 = 1/3",
+      "8 / 1/3 = 24"
+    ]
+  },
+  "explanation": [
+    "8 / 3 = 8/3",
+    "3 - 8/3 = 1/3",
+    "8 / 1/3 = 24"
+  ]
+}

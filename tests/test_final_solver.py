@@ -1,6 +1,7 @@
 """Jury evidence contract, checked through the same API as the application."""
 from __future__ import annotations
 
+from itertools import combinations_with_replacement
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
@@ -44,6 +45,23 @@ class JuryTests(unittest.TestCase):
             self.assertTrue(reopened["memory"])
             self.assertEqual(reopened["status"], "verified")
             self.assertLess(reopened["metrics"]["nodes_explored"], r["metrics"]["nodes_explored"])
+
+    def test_tree_edges_and_exhaustion_match_reference(self):
+        from core.tree import exact_tree
+        from ta2.search import exact_search
+        for cards in combinations_with_replacement(range(1, 7), 4):
+            with self.subTest(cards=cards):
+                expression, branches = exact_tree(list(cards))
+                expected = exact_search(cards)
+                self.assertTrue(expected.complete)
+                self.assertEqual(bool(expression), bool(expected.expression))
+                parents = {"root"}
+                for row in branches:
+                    self.assertIn(row["parent"], parents)
+                    parents.add(row["id"])
+                if expression:
+                    self.assertTrue(audit(expression, cards)["valid"])
+                    self.assertEqual(sum(row["decision"] == "selected" for row in branches), 3)
 
     def test_budget_and_unsolvable_are_distinct(self):
         with TemporaryDirectory() as directory:

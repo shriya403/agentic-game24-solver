@@ -13,10 +13,10 @@ CSS = """
 .block-container {max-width:1310px;padding-top:2.85rem;padding-bottom:2.25rem}
 header[data-testid=stHeader]{background:#0b1020}
 [data-testid=stMainBlockContainer] h1 {padding-top:0;margin:0;line-height:1.12}
-[data-testid=stMainBlockContainer] h3 {padding:.3rem 0 .2rem}
+[data-testid=stMainBlockContainer] h3 {padding:.65rem 0 .4rem}
 h1,h2,h3 {font-family:"Inter",system-ui,sans-serif;letter-spacing:-.04em}
 [data-testid=stSidebar] {background:#0f1528;border-right:1px solid #29344a}
-[data-testid=stSidebar] [role=radiogroup] {gap:.18rem;align-items:stretch}
+[data-testid=stSidebar] [role=radiogroup] {gap:.18rem;align-items:stretch;width:100%}
 [data-testid=stSidebar] label[data-testid=stRadioOption] {width:100%;box-sizing:border-box;border-left:3px solid transparent}
 [data-testid=stSidebar] label[data-testid=stRadioOption] p {font-size:.94rem;color:#ccd6e8}
 [data-testid=stSidebar] [role=radiogroup] label {padding:.38rem .65rem;border-radius:.5rem}
@@ -30,7 +30,7 @@ h1,h2,h3 {font-family:"Inter",system-ui,sans-serif;letter-spacing:-.04em}
 height:38px;width:38px;border:1px solid #9280fc;transform:rotate(-6deg);border-radius:9px;
 color:#fff;background:linear-gradient(145deg,#8775ed,#5647b0);box-shadow:inset 0 0 0 3px #7566d3}
 .hero {display:flex;align-items:center;justify-content:space-between;gap:2rem;overflow:hidden;padding:clamp(1.1rem,2.6vw,2.1rem);
-border:1px solid #414b70;border-radius:18px;margin:0 0 .3rem;
+border:1px solid #414b70;border-radius:18px;margin:0 0 .85rem;
 background:radial-gradient(ellipse at 87% 28%,#343660 0,transparent 53%),linear-gradient(115deg,#18253b,#1b203e 68%,#212443)}
 .hero h2 {padding:.35rem 0 .15rem;font-weight:725;font-size:clamp(1.8rem,3.5vw,3.4rem);line-height:1.06;margin:0 0 .38rem;color:#f4f5ff}
 .hero p,.tile p {color:#c5d1e4;line-height:1.5;margin:0;max-width:42rem}
