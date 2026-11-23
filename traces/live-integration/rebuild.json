@@ -1,0 +1,43 @@
+{
+  "sqlite_tables": {
+    "checkpoints.sqlite": {
+      "checkpoints": {
+        "ddl": "CREATE TABLE checkpoints (\n                thread_id TEXT NOT NULL,\n                checkpoint_ns TEXT NOT NULL DEFAULT '',\n                checkpoint_id TEXT NOT NULL,\n                parent_checkpoint_id TEXT,\n                type TEXT,\n                checkpoint BLOB,\n                metadata BLOB,\n                PRIMARY KEY (thread_id, checkpoint_ns, checkpoint_id)\n            )",
+        "rows": 0
+      },
+      "writes": {
+        "ddl": "CREATE TABLE writes (\n                thread_id TEXT NOT NULL,\n                checkpoint_ns TEXT NOT NULL DEFAULT '',\n                checkpoint_id TEXT NOT NULL,\n                task_id TEXT NOT NULL,\n                task_path TEXT NOT NULL DEFAULT '',\n                idx INTEGER NOT NULL,\n                channel TEXT NOT NULL,\n                type TEXT,\n                value BLOB,\n                PRIMARY KEY (thread_id, checkpoint_ns, checkpoint_id, task_id, idx)\n            )",
+        "rows": 0
+      }
+    },
+    "store.sqlite": {
+      "ta2_items": {
+        "ddl": "CREATE TABLE ta2_items (namespace TEXT, key TEXT, value TEXT NOT NULL, created TEXT NOT NULL, updated TEXT NOT NULL, PRIMARY KEY(namespace,key))",
+        "rows": 0
+      }
+    }
+  },
+  "embedding_model": "nomic-embed-text",
+  "corpus_files": [
+    "jury_reference.md",
+    "rules.md"
+  ],
+  "chunks_upserted": 14,
+  "ta2_rules": {
+    "count_after_reopen": 14,
+    "retrieved_ids": [
+      "4718d0063cf5572bd270a3c1c5e901c81a7cb66aa28b2d9447c5e5585046fd17",
+      "20143d50f32d07ce9f95de0a8aac37edf6fd11503a309dc9df5c9afadfb4c4d1",
+      "971010c1dced2f49faece4f4cfb32c93632619d08f7de40bf853f0a739970f90"
+    ]
+  },
+  "jury_solved_v1": {
+    "seed_examples": 3,
+    "count_after_reopen": 3,
+    "verified_retrieved_ids": [
+      "64487bedc85ac0c8099832ecd248a3f99fa5591d5bc04584bbc664a33af901f2",
+      "2c0eb67bfe024de103909db33ea392787ac22e590fbbefbfcd8c3b3e2a5febd6",
+      "5c134f2d9b563e51bbb1ab7ec9f4ebf35c6e99d1bf43befaabc8e7fb635a9c39"
+    ]
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "started_utc": "2026-11-23T08:19:18.205936+00:00",
+  "python": "3.12.14",
+  "platform": "Linux",
+  "packages": {
+    "chromadb": "1.5.9",
+    "langgraph": "1.2.24",
+    "langgraph-checkpoint-sqlite": "3.1.3",
+    "langchain-chroma": "1.1.0"
+  },
+  "checks": {
+    "sqlite_langgraph_cross_process": {
+      "status": "passed",
+      "evidence": {
+        "execution": "deterministic TA2 search",
+        "checkpoints_and_store": {
+          "restart": "passed",
+          "history": "2 turns",
+          "contextual_followup": "with-memory answer and amnesia refusal",
+          "store": "persisted and isolated",
+          "corpus_chunks": 0,
+          "rag": "unrun (offline)"
+        },
+        "resumed_state": {
+          "puzzle": [
+            3,
+            3,
+            8,
+            8
+          ],
+          "expression": "(8 / (3 - (8 / 3)))",
+          "status": "verified",
+          "valid": true,
+          "hops": 4,
+          "mode": "deterministic_ta2"
+        },
+        "followup_with_memory": {
+          "answer": "Previous expression: (8 / (3 - (8 / 3)))",
+          "memory_used": true,
+          "previous_turns": 2
+        },
+        "followup_without_memory": {
+          "answer": "I don't know: there is no relevant prior turn in this thread.",
+          "memory_used": false,
+          "previous_turns": 0
+        }
+      }
+    },
+    "ollama_generation": {
+      "status": "passed",
+      "evidence": {
+        "model": "qwen2.5:3b",
+        "response": {
+          "ready": true
+        },
+        "input_tokens": 44,
+        "output_tokens": 6
+      }
+    },
+    "ollama_embeddings": {
+      "status": "passed",
+      "evidence": {
+        "model": "nomic-embed-text",
+        "dimensions": 768,
+        "finite": true
+      }
+    },
+    "chroma_corpus_reopen": {
+      "status": "passed",
+      "evidence": {
+        "query": "Why does the solver keep fractional intermediate values?",
+        "written_chunks": 14,
+        "reopened_and_retrieved": {
+          "1": [
+            {
+              "id": "4718d0063cf5572bd270a3c1c5e901c81a7cb66aa28b2d9447c5e5585046fd17",
+              "text": ", a-b, b-a, and, when denominators are nonzero, a/b and b/a. Equivalent value states can be deduplicated to conserve computation, but expression provenance should remain available for the successful path. Never silently remove reverse division or reverse subtraction merely to simplify the search.\n\n## E. Linear reasoning baseline\nA one-path baseline chooses one arithmetic move at each step and commits to the resulting state. This is computationally economical and easy to explain, but it can make an irreversible choice. Choosing the intermediate value numerically closest to twenty-four is only a heuristic: a locally attractive move may leave no legal continuation with the other cards. A linear baseline should record its actions, final expression, independent validity and elapsed time. A failed attempt means that method did not find a solution; it does not prove that the instance has no solution.\n\n## F. Tree-of-Thought search\nTree-of-Thought represents several candidate arithmetic states ",
+              "source": "jury_reference.md",
+              "distance": 0.8236631751060486
+            }
+          ],
+          "3": [
+            {
+              "id": "4718d0063cf5572bd270a3c1c5e901c81a7cb66aa28b2d9447c5e5585046fd17",
+              "text": ", a-b, b-a, and, when denominators are nonzero, a/b and b/a. Equivalent value states can be deduplicated to conserve computation, but expression provenance should remain available for the successful path. Never silently remove reverse division or reverse subtraction merely to simplify the search.\n\n## E. Linear reasoning baseline\nA one-path baseline chooses one arithmetic move at each step and commits to the resulting state. This is computationally economical and easy to explain, but it can make an irreversible choice. Choosing the intermediate value numerically closest to twenty-four is only a heuristic: a locally attractive move may leave no legal continuation with the other cards. A linear baseline should record its actions, final expression, independent validity and elapsed time. A failed attempt means that method did not find a solution; it does not prove that the instance has no solution.\n\n## F. Tree-of-Thought search\nTree-of-Thought represents several candidate arithmetic states ",
+              "source": "jury_reference.md",
+              "distance": 0.8236631751060486
+            },
+            {
+              "id": "971010c1dced2f49faece4f4cfb32c93632619d08f7de40bf853f0a739970f90",
+              "text": "re complete expressions. An Evaluator ranks only supplied candidates, using available feedback and exact tool assessments, rather than changing the problem. A Verifier parses the selected expression with a restricted grammar, checks every card exactly once and computes the exact result. The supervisor selects which role or tool runs next, records events and enforces a maximum hop count. A language model's confidence score is not mathematical proof. Only the independent verifier may mark a candidate as a verified Game-of-24 solution.\n\n## H. Exact fractions and independent checks\nBinary floating point can approximate rational values; exact rational arithmetic avoids ambiguity when multiple divisions are nested. A Fraction-style representation stores a numerator and denominator and automatically normalizes arithmetic operations. An expression should be accepted only if its terminal rational value equals the exact integer twenty-four and all leaf integers match the input multiset. A safe a",
+              "source": "jury_reference.md",
+              "distance": 0.863641619682312
+            },
+            {
+              "id": "20143d50f32d07ce9f95de0a8aac37edf6fd11503a309dc9df5c9afadfb4c4d1",
+              "text": "# Game of 24 reference rules\n\nA puzzle consists of four integer cards. Use each card exactly once. Repeated\ncard values represent separate cards. Combine them using addition, subtraction,\nmultiplication, division, and parentheses to obtain exactly 24. Concatenation,\nexponentiation, factorials, extra constants, and executable code are prohibited.\n\nFractional and negative intermediate values are permitted. Division by zero is\nnever permitted. Preserve rational values exactly rather than rounding decimals.\nAn intermediate value of 24 is not sufficient if unused cards remain.\n\nUseful strategies include grouping pairs, forming a useful difference, and\nretaining a fractional intermediate when integer-only choices fail. Compare\ncandidate expressions, then submit the best candidate to an independent exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally",
+              "source": "rules.md",
+              "distance": 0.8775525093078613
+            }
+          ]
+        }
+      }
+    },
+    "chroma_solved_examples_reopen": {
+      "status": "passed",
+      "evidence": {
+        "query": "Game of 24 cards [3,3,8,8], verified arithmetic example",
+        "verified_examples": {
+          "1": [
+            {
+              "source": "Verified example",
+              "puzzle": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "expression": "(8+4)*2*1",
+              "text": "[1, 2, 4, 8] \u2192 (8+4)*2*1 = 24",
+              "distance": 0.45272523164749146,
+              "id": "64487bedc85ac0c8099832ecd248a3f99fa5591d5bc04584bbc664a33af901f2"
+            }
+          ],
+          "3": [
+            {
+              "source": "Verified example",
+              "puzzle": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "expression": "(8+4)*2*1",
+              "text": "[1, 2, 4, 8] \u2192 (8+4)*2*1 = 24",
+              "distance": 0.45272523164749146,
+              "id": "64487bedc85ac0c8099832ecd248a3f99fa5591d5bc04584bbc664a33af901f2"
+            },
+            {
+              "source": "Verified example",
+              "puzzle": [
+                1,
+                2,
+                5,
+                7
+              ],
+              "expression": "(7+5)*2*1",
+              "text": "[1, 2, 5, 7] \u2192 (7+5)*2*1 = 24",
+              "distance": 0.5113908648490906,
+              "id": "5c134f2d9b563e51bbb1ab7ec9f4ebf35c6e99d1bf43befaabc8e7fb635a9c39"
+            },
+            {
+              "source": "Verified example",
+              "puzzle": [
+                2,
+                2,
+                2,
+                3
+              ],
+              "expression": "2*2*2*3",
+              "text": "[2, 2, 2, 3] \u2192 2*2*2*3 = 24",
+              "distance": 0.5319567918777466,
+              "id": "2c0eb67bfe024de103909db33ea392787ac22e590fbbefbfcd8c3b3e2a5febd6"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
