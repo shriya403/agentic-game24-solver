@@ -1,10 +1,12 @@
 # TA2: complete group workflow and evidence guide
 
-The extension implements the eight requirements requested in this chat. The exact
-instructor SOP was not supplied, so formal SOP-specific compliance remains subject
-to that document. Frozen TA1 files, tests, dependency declarations and previously
-recorded results are unchanged. TA2 lives in `ta2/`, `tests_ta2/`, and separate
-entry points.
+The original eight acceptance checks were recorded before the exact instructor
+SOP was reviewed. This jury branch also adds a larger reference corpus, LangChain-Chroma
+retrieval, grounded k=1/k=3 auditing, contextual memory/amnesia and submission packaging.
+Read [JURY_FINAL_RUNBOOK.md](JURY_FINAL_RUNBOOK.md) and
+[TA2_ROLE_CONTRACTS.md](TA2_ROLE_CONTRACTS.md) for the current faculty evidence map.
+Saved Windows evidence from the earlier branch is historical, not fresh validation of
+these additions. Frozen TA1 solver code and recorded baseline results are unchanged.
 
 ## Windows: run everything in one command
 
@@ -15,7 +17,9 @@ successfully on your Windows computer; no repeated model download is needed.
 From your existing project folder with `.venv-ta2` activated:
 
 ```bat
-git pull --ff-only origin codex/ta2-extension
+git fetch origin jury-final-2026-11-23
+
+git switch -c jury-final-2026-11-23 FETCH_HEAD
 python -m pip install -r requirements-ta2.txt
 python run_ta2_acceptance.py --output-dir results/ta2-final
 ```
@@ -151,10 +155,13 @@ Individual CLI commands (global options precede the command):
 
 ```bat
 python -m ta2.cli check
-python -m ta2.cli ingest ta2/corpus/rules.md
+python -m ta2.cli ingest
 python -m ta2.cli solve 3 3 8 8 --thread group-v2 --namespace group --search-policy hybrid
 python -m ta2.cli history --thread group-v2
 python -m ta2.cli resume --thread interrupted-v2 --search-policy hybrid
+python -m ta2.cli rag-audit "Can division produce fractional intermediate values?"
+python -m ta2.cli rag-audit "Who founded Neptune Motors?"
+python -m ta2.cli guard-audit
 python run_ta2_evaluation.py --search-policy both --output results/ta2-v2.csv
 ```
 
