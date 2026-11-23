@@ -125,9 +125,11 @@ with st.expander("U4 — Mathematical guardrail: approved and rejected paths"):
     demonstration_cards = [2, 2, 6, 6]
     safe = verify("2*6+2*6", demonstration_cards)
     unsafe = verify("2+2+6+6", demonstration_cards)
+    injection = verify("__import__('os').system('echo unsafe')", demonstration_cards)
     st.json({
         "cards": demonstration_cards,
         "approved": {"expression": "2*6+2*6", "verified": safe.valid, "feedback": safe.message},
         "rejected": {"expression": "2+2+6+6", "verified": unsafe.valid, "feedback": unsafe.message},
+        "injection_rejected": {"verified": injection.valid, "feedback": injection.message},
     })
     st.caption("Verifier approval is mathematical, not an unverified evaluator confidence score.")
