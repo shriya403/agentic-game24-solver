@@ -1,5 +1,2 @@
+# Retained entry point for the recovered TA2 application.
 -r requirements.txt
-langgraph-checkpoint-sqlite>=3,<4
-chromadb>=1.5.9,<2
-langchain>=1,<2
-langchain-chroma>=1,<2

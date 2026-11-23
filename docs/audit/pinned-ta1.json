@@ -1,0 +1,97 @@
+{
+  "commit": "02a6e7d69e5d1cdc614ca04e46e686b907617bb7",
+  "files": {
+    ".gitignore": {
+      "blob": "6a81a6481571303807b4192f19d39b7f8077e53b",
+      "text": true
+    },
+    "Agentic_Game24_Jury_Deck.pptx": {
+      "blob": "3aec31a495a44305019831369bdd8213466a9449",
+      "text": false
+    },
+    "README.md": {
+      "blob": "7ad9f54d1eda24c37d4159f21eede7003215d4f5",
+      "text": true
+    },
+    "app.py": {
+      "blob": "1822672423a2917b8104ba16c8b399fb23d62def",
+      "text": true
+    },
+    "docs/REPORT.md": {
+      "blob": "2e166a26b7c7d00ead1348006d1bc7c72df210dd",
+      "text": true
+    },
+    "docs/SUBMISSION_CHECKLIST.md": {
+      "blob": "9a65a815a909e11b33aac3339fb1c25d58aa877f",
+      "text": true
+    },
+    "docs/VIVA.md": {
+      "blob": "30bba68b2570c62afdbe6eec3890e236e4b976e7",
+      "text": true
+    },
+    "game24/__init__.py": {
+      "blob": "bc4083694f7d16fcc08e9d177f80499f3c7da959",
+      "text": true
+    },
+    "game24/agents.py": {
+      "blob": "ef84ec341f4e7a47eb432ec50fdcd1d23c6e7e8e",
+      "text": true
+    },
+    "game24/engine.py": {
+      "blob": "b5c2af273a4b272b4a025bf2c204110b6ff2bfc0",
+      "text": true
+    },
+    "game24/experiment.py": {
+      "blob": "0d60b73b28698bb5b77934202f910b5082c39b1e",
+      "text": true
+    },
+    "game24/models.py": {
+      "blob": "9d9d802fb3a993f700df1460795e5d0699810534",
+      "text": true
+    },
+    "game24/ollama_client.py": {
+      "blob": "9b161474755457e8666f9ede8df6ff16d6db1a59",
+      "text": true
+    },
+    "game24/prompts.py": {
+      "blob": "23defcbf3a9a00f4292c31982d557170726d3eae",
+      "text": true
+    },
+    "game24/validator.py": {
+      "blob": "e7a488afd193f3c8b92f2546b68d85d0a327f2c2",
+      "text": true
+    },
+    "game24/workflow.py": {
+      "blob": "08adde6f013da7dca4dab183f8c5dcaa39ac09ca",
+      "text": true
+    },
+    "pyproject.toml": {
+      "blob": "bdb02425e65151122e6db63662d131a251d4987c",
+      "text": true
+    },
+    "requirements.txt": {
+      "blob": "5ec0c9551f33b2feed4341cad417abe7c0dd790f",
+      "text": true
+    },
+    "results/deterministic_baseline.csv": {
+      "blob": "d2adf55be536dd5e9843bd3395e84cad599d39a2",
+      "text": true
+    },
+    "run_experiment.py": {
+      "blob": "614fbdc6e13bbd984c5a17bc1aea172904d46048",
+      "text": true
+    },
+    "tests/test_agents.py": {
+      "blob": "cb82a2dfa77caa4d623f0a5ddcf8c21dfe61282e",
+      "text": true
+    },
+    "tests/test_engine.py": {
+      "blob": "006ec9328b6b556ec6b1ca9fc15dac0e52720681",
+      "text": true
+    },
+    "tests/test_validator.py": {
+      "blob": "fe3262fed5a47e35ea1b896dcc517ef377b11d03",
+      "text": true
+    }
+  }
+}

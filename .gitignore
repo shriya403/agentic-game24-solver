@@ -8,3 +8,7 @@ venv/
 results/*.csv
 !results/deterministic_baseline.csv
 
+data/runtime/
+data/model/
+data/benchmark-runs/
+submissions/

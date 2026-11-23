@@ -1,0 +1,3 @@
+# The snapshot is stored byte-for-byte, independent of a developer's autocrlf.
+ta1/** -text
+*.bat text eol=crlf

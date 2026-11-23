@@ -1,0 +1,172 @@
+{
+  "commit": "02a6e7d69e5d1cdc614ca04e46e686b907617bb7",
+  "files": [
+    {
+      "path": ".gitignore",
+      "status": "exact",
+      "expected": "6a81a6481571303807b4192f19d39b7f8077e53b",
+      "raw": "6a81a6481571303807b4192f19d39b7f8077e53b",
+      "lf_normalized": "6a81a6481571303807b4192f19d39b7f8077e53b"
+    },
+    {
+      "path": "Agentic_Game24_Jury_Deck.pptx",
+      "status": "exact",
+      "expected": "3aec31a495a44305019831369bdd8213466a9449",
+      "raw": "3aec31a495a44305019831369bdd8213466a9449",
+      "lf_normalized": null
+    },
+    {
+      "path": "README.md",
+      "status": "exact",
+      "expected": "7ad9f54d1eda24c37d4159f21eede7003215d4f5",
+      "raw": "7ad9f54d1eda24c37d4159f21eede7003215d4f5",
+      "lf_normalized": "7ad9f54d1eda24c37d4159f21eede7003215d4f5"
+    },
+    {
+      "path": "app.py",
+      "status": "exact",
+      "expected": "1822672423a2917b8104ba16c8b399fb23d62def",
+      "raw": "1822672423a2917b8104ba16c8b399fb23d62def",
+      "lf_normalized": "1822672423a2917b8104ba16c8b399fb23d62def"
+    },
+    {
+      "path": "docs/REPORT.md",
+      "status": "exact",
+      "expected": "2e166a26b7c7d00ead1348006d1bc7c72df210dd",
+      "raw": "2e166a26b7c7d00ead1348006d1bc7c72df210dd",
+      "lf_normalized": "2e166a26b7c7d00ead1348006d1bc7c72df210dd"
+    },
+    {
+      "path": "docs/SUBMISSION_CHECKLIST.md",
+      "status": "exact",
+      "expected": "9a65a815a909e11b33aac3339fb1c25d58aa877f",
+      "raw": "9a65a815a909e11b33aac3339fb1c25d58aa877f",
+      "lf_normalized": "9a65a815a909e11b33aac3339fb1c25d58aa877f"
+    },
+    {
+      "path": "docs/VIVA.md",
+      "status": "exact",
+      "expected": "30bba68b2570c62afdbe6eec3890e236e4b976e7",
+      "raw": "30bba68b2570c62afdbe6eec3890e236e4b976e7",
+      "lf_normalized": "30bba68b2570c62afdbe6eec3890e236e4b976e7"
+    },
+    {
+      "path": "game24/__init__.py",
+      "status": "exact",
+      "expected": "bc4083694f7d16fcc08e9d177f80499f3c7da959",
+      "raw": "bc4083694f7d16fcc08e9d177f80499f3c7da959",
+      "lf_normalized": "bc4083694f7d16fcc08e9d177f80499f3c7da959"
+    },
+    {
+      "path": "game24/agents.py",
+      "status": "exact",
+      "expected": "ef84ec341f4e7a47eb432ec50fdcd1d23c6e7e8e",
+      "raw": "ef84ec341f4e7a47eb432ec50fdcd1d23c6e7e8e",
+      "lf_normalized": "ef84ec341f4e7a47eb432ec50fdcd1d23c6e7e8e"
+    },
+    {
+      "path": "game24/engine.py",
+      "status": "exact",
+      "expected": "b5c2af273a4b272b4a025bf2c204110b6ff2bfc0",
+      "raw": "b5c2af273a4b272b4a025bf2c204110b6ff2bfc0",
+      "lf_normalized": "b5c2af273a4b272b4a025bf2c204110b6ff2bfc0"
+    },
+    {
+      "path": "game24/experiment.py",
+      "status": "exact",
+      "expected": "0d60b73b28698bb5b77934202f910b5082c39b1e",
+      "raw": "0d60b73b28698bb5b77934202f910b5082c39b1e",
+      "lf_normalized": "0d60b73b28698bb5b77934202f910b5082c39b1e"
+    },
+    {
+      "path": "game24/models.py",
+      "status": "exact",
+      "expected": "9d9d802fb3a993f700df1460795e5d0699810534",
+      "raw": "9d9d802fb3a993f700df1460795e5d0699810534",
+      "lf_normalized": "9d9d802fb3a993f700df1460795e5d0699810534"
+    },
+    {
+      "path": "game24/ollama_client.py",
+      "status": "exact",
+      "expected": "9b161474755457e8666f9ede8df6ff16d6db1a59",
+      "raw": "9b161474755457e8666f9ede8df6ff16d6db1a59",
+      "lf_normalized": "9b161474755457e8666f9ede8df6ff16d6db1a59"
+    },
+    {
+      "path": "game24/prompts.py",
+      "status": "exact",
+      "expected": "23defcbf3a9a00f4292c31982d557170726d3eae",
+      "raw": "23defcbf3a9a00f4292c31982d557170726d3eae",
+      "lf_normalized": "23defcbf3a9a00f4292c31982d557170726d3eae"
+    },
+    {
+      "path": "game24/validator.py",
+      "status": "exact",
+      "expected": "e7a488afd193f3c8b92f2546b68d85d0a327f2c2",
+      "raw": "e7a488afd193f3c8b92f2546b68d85d0a327f2c2",
+      "lf_normalized": "e7a488afd193f3c8b92f2546b68d85d0a327f2c2"
+    },
+    {
+      "path": "game24/workflow.py",
+      "status": "exact",
+      "expected": "08adde6f013da7dca4dab183f8c5dcaa39ac09ca",
+      "raw": "08adde6f013da7dca4dab183f8c5dcaa39ac09ca",
+      "lf_normalized": "08adde6f013da7dca4dab183f8c5dcaa39ac09ca"
+    },
+    {
+      "path": "pyproject.toml",
+      "status": "exact",
+      "expected": "bdb02425e65151122e6db63662d131a251d4987c",
+      "raw": "bdb02425e65151122e6db63662d131a251d4987c",
+      "lf_normalized": "bdb02425e65151122e6db63662d131a251d4987c"
+    },
+    {
+      "path": "requirements.txt",
+      "status": "exact",
+      "expected": "5ec0c9551f33b2feed4341cad417abe7c0dd790f",
+      "raw": "5ec0c9551f33b2feed4341cad417abe7c0dd790f",
+      "lf_normalized": "5ec0c9551f33b2feed4341cad417abe7c0dd790f"
+    },
+    {
+      "path": "results/deterministic_baseline.csv",
+      "status": "exact",
+      "expected": "d2adf55be536dd5e9843bd3395e84cad599d39a2",
+      "raw": "d2adf55be536dd5e9843bd3395e84cad599d39a2",
+      "lf_normalized": "d2adf55be536dd5e9843bd3395e84cad599d39a2"
+    },
+    {
+      "path": "run_experiment.py",
+      "status": "exact",
+      "expected": "614fbdc6e13bbd984c5a17bc1aea172904d46048",
+      "raw": "614fbdc6e13bbd984c5a17bc1aea172904d46048",
+      "lf_normalized": "614fbdc6e13bbd984c5a17bc1aea172904d46048"
+    },
+    {
+      "path": "tests/test_agents.py",
+      "status": "exact",
+      "expected": "cb82a2dfa77caa4d623f0a5ddcf8c21dfe61282e",
+      "raw": "cb82a2dfa77caa4d623f0a5ddcf8c21dfe61282e",
+      "lf_normalized": "cb82a2dfa77caa4d623f0a5ddcf8c21dfe61282e"
+    },
+    {
+      "path": "tests/test_engine.py",
+      "status": "exact",
+      "expected": "006ec9328b6b556ec6b1ca9fc15dac0e52720681",
+      "raw": "006ec9328b6b556ec6b1ca9fc15dac0e52720681",
+      "lf_normalized": "006ec9328b6b556ec6b1ca9fc15dac0e52720681"
+    },
+    {
+      "path": "tests/test_validator.py",
+      "status": "exact",
+      "expected": "fe3262fed5a47e35ea1b896dcc517ef377b11d03",
+      "raw": "fe3262fed5a47e35ea1b896dcc517ef377b11d03",
+      "lf_normalized": "fe3262fed5a47e35ea1b896dcc517ef377b11d03"
+    }
+  ],
+  "summary": {
+    "exact": 23,
+    "line_endings_only": 0,
+    "content_changed": 0,
+    "missing": 0
+  }
+}

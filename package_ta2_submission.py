@@ -29,9 +29,9 @@ EXTENDED = (
 )
 
 
-def copy_selected(paths, destination):
+def copy_selected(paths, destination, source_root=ROOT):
     for relative in paths:
-        source = ROOT / relative
+        source = source_root / relative
         if not source.exists():
             raise FileNotFoundError(source)
         target = destination / relative
@@ -56,7 +56,7 @@ def main():
     (target / "ta1").mkdir(parents=True)
     (target / "ta2").mkdir(parents=True)
     (target / "traces").mkdir(parents=True)
-    copy_selected(BASE, target / "ta1")
+    copy_selected(BASE, target / "ta1", ROOT / "ta1")
     copy_selected(EXTENDED, target / "ta2")
     source_results = ROOT / "results"
     copied_traces = []
@@ -79,7 +79,7 @@ def main():
                          capture_output=True, text=True, check=False).stdout.strip()
     (target / "MANIFEST.json").write_text(json.dumps({
         "git_revision": sha, "baseline_commit": "02a6e7d69e5d1cdc614ca04e46e686b907617bb7",
-        "ta1_root_files_untouched": True, "traces": copied_traces,
+        "ta1_source": "frozen snapshot under ta1/", "traces": copied_traces,
         "report_pdf_present": report_found,
         "note": "Saved traces are prior runs; rerun on the submitted version before claiming final validation."
     }, indent=2), encoding="utf-8")

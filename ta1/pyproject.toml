@@ -1,0 +1,16 @@
+[project]
+name = "agentic-game24"
+version = "1.0.0"
+description = "A reproducible CoT-style vs Tree-of-Thought Game of 24 benchmark"
+requires-python = ">=3.10"
+dependencies = [
+  "streamlit>=1.38,<2",
+  "pandas>=2.2,<3",
+  "matplotlib>=3.8,<4",
+  "langgraph>=0.2,<2",
+  "requests>=2.31,<3",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
