@@ -1,0 +1,1993 @@
+[
+  {
+    "row": 0,
+    "case": "easy",
+    "system": "TA1_Linear",
+    "seed": 42,
+    "rag_k": 0,
+    "branches": [],
+    "validation": {
+      "puzzle": [
+        4,
+        7,
+        8,
+        8
+      ],
+      "expression": null,
+      "value": null,
+      "used_numbers": [],
+      "usage_ok": false,
+      "valid": false,
+      "message": "Supply an expression of 1–256 characters.",
+      "steps": []
+    },
+    "steps": []
+  },
+  {
+    "row": 1,
+    "case": "easy",
+    "system": "TA1_ToT",
+    "seed": 42,
+    "rag_k": 0,
+    "branches": [
+      {
+        "move": "4 + 7 = 11",
+        "state": [
+          "8",
+          "8",
+          "11"
+        ],
+        "score": 10.0,
+        "evaluation": "PROMISING",
+        "depth": 1
+      },
+      {
+        "move": "4 * 8 = 32",
+        "state": [
+          "7",
+          "8",
+          "32"
+        ],
+        "score": 0.0,
+        "evaluation": "DEAD-END",
+        "depth": 1
+      },
+      {
+        "move": "4 - 8 = -4",
+        "state": [
+          "7",
+          "8",
+          "-4"
+        ],
+        "score": 0.0,
+        "evaluation": "DEAD-END",
+        "depth": 1
+      },
+      {
+        "move": "8 + 8 = 16",
+        "state": [
+          "11",
+          "16"
+        ],
+        "score": 12.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "8 * 8 = 64",
+        "state": [
+          "11",
+          "64"
+        ],
+        "score": 7.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "8 - 8 = 0",
+        "state": [
+          "11",
+          "0"
+        ],
+        "score": 7.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "8 / 8 = 1",
+        "state": [
+          "11",
+          "1"
+        ],
+        "score": 7.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "8 + (4 + 7) = 19",
+        "state": [
+          "8",
+          "19"
+        ],
+        "score": 15.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "8 * (4 + 7) = 88",
+        "state": [
+          "8",
+          "88"
+        ],
+        "score": 4.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "8 - (4 + 7) = -3",
+        "state": [
+          "8",
+          "-3"
+        ],
+        "score": 4.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "(4 + 7) - 8 = 3",
+        "state": [
+          "8",
+          "3"
+        ],
+        "score": 100.0,
+        "evaluation": "PROMISING",
+        "depth": 2
+      },
+      {
+        "move": "8 / (4 + 7) = 8/11",
+        "state": [
+          "8",
+          "8/11"
+        ],
+        "score": 4.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "(4 + 7) / 8 = 11/8",
+        "state": [
+          "8",
+          "11/8"
+        ],
+        "score": 4.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "7 + 8 = 15",
+        "state": [
+          "32",
+          "15"
+        ],
+        "score": 12.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "7 * 8 = 56",
+        "state": [
+          "32",
+          "56"
+        ],
+        "score": 100.0,
+        "evaluation": "PROMISING",
+        "depth": 2
+      },
+      {
+        "move": "7 - 8 = -1",
+        "state": [
+          "32",
+          "-1"
+        ],
+        "score": 12.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "8 - 7 = 1",
+        "state": [
+          "32",
+          "1"
+        ],
+        "score": 12.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "7 / 8 = 7/8",
+        "state": [
+          "32",
+          "7/8"
+        ],
+        "score": 12.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "8 / 7 = 8/7",
+        "state": [
+          "32",
+          "8/7"
+        ],
+        "score": 12.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "7 + (4 * 8) = 39",
+        "state": [
+          "8",
+          "39"
+        ],
+        "score": 5.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "7 * (4 * 8) = 224",
+        "state": [
+          "8",
+          "224"
+        ],
+        "score": 4.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "7 - (4 * 8) = -25",
+        "state": [
+          "8",
+          "-25"
+        ],
+        "score": 4.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "(4 * 8) - 7 = 25",
+        "state": [
+          "8",
+          "25"
+        ],
+        "score": 19.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "7 / (4 * 8) = 7/32",
+        "state": [
+          "8",
+          "7/32"
+        ],
+        "score": 4.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "(4 * 8) / 7 = 32/7",
+        "state": [
+          "8",
+          "32/7"
+        ],
+        "score": 4.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "8 + (4 * 8) = 40",
+        "state": [
+          "7",
+          "40"
+        ],
+        "score": 4.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "8 * (4 * 8) = 256",
+        "state": [
+          "7",
+          "256"
+        ],
+        "score": 3.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "8 - (4 * 8) = -24",
+        "state": [
+          "7",
+          "-24"
+        ],
+        "score": 3.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "(4 * 8) - 8 = 24",
+        "state": [
+          "7",
+          "24"
+        ],
+        "score": 20.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "8 / (4 * 8) = 1/4",
+        "state": [
+          "7",
+          "1/4"
+        ],
+        "score": 3.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "(4 * 8) / 8 = 4",
+        "state": [
+          "7",
+          "4"
+        ],
+        "score": 3.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "8 + ((4 + 7) - 8) = 11",
+        "state": [
+          "11"
+        ],
+        "score": 7.0,
+        "evaluation": "DEAD-END",
+        "depth": 3
+      },
+      {
+        "move": "8 * ((4 + 7) - 8) = 24",
+        "state": [
+          "24"
+        ],
+        "score": 100.0,
+        "evaluation": "PROMISING",
+        "depth": 3
+      }
+    ],
+    "validation": {
+      "puzzle": [
+        4,
+        7,
+        8,
+        8
+      ],
+      "expression": "(8 * ((4 + 7) - 8))",
+      "value": "24",
+      "used_numbers": [
+        8,
+        4,
+        7,
+        8
+      ],
+      "usage_ok": true,
+      "valid": true,
+      "message": "Every card appears once and the exact value is 24.",
+      "steps": [
+        "4 + 7 = 11",
+        "11 - 8 = 3",
+        "8 * 3 = 24"
+      ]
+    },
+    "steps": [
+      "4 + 7 = 11",
+      "(4 + 7) - 8 = 3",
+      "8 * ((4 + 7) - 8) = 24"
+    ]
+  },
+  {
+    "row": 2,
+    "case": "easy",
+    "system": "TA2_Model",
+    "seed": 42,
+    "rag_k": 0,
+    "events": [
+      {
+        "role": "supervisor",
+        "hop": 1,
+        "dispatch": "retrieve"
+      },
+      {
+        "role": "retrieve",
+        "hop": 1,
+        "sources": [],
+        "memory_hits": 0
+      },
+      {
+        "role": "supervisor",
+        "hop": 2,
+        "dispatch": "proposer"
+      },
+      {
+        "role": "proposer",
+        "hop": 2,
+        "candidates": [
+          "(4 * 8) - (7 * 8 / 8)",
+          "(4 * 8) - (7 - 8)",
+          "(4 * 8) - (7 + 8 / 8)"
+        ],
+        "oracle": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 3,
+        "dispatch": "evaluator"
+      },
+      {
+        "role": "evaluator",
+        "hop": 3,
+        "index": 2,
+        "model_index": 2,
+        "score": 100,
+        "assessments": [
+          {
+            "index": 0,
+            "valid": false,
+            "reason": "Number usage mismatch: expected [4, 7, 8, 8], used [4, 8, 7, 8, 8]",
+            "exact_value": "25"
+          },
+          {
+            "index": 1,
+            "valid": false,
+            "reason": "Expression equals 33, not 24",
+            "exact_value": "33"
+          },
+          {
+            "index": 2,
+            "valid": false,
+            "reason": "Number usage mismatch: expected [4, 7, 8, 8], used [4, 8, 7, 8, 8]",
+            "exact_value": "24"
+          }
+        ],
+        "guardrail_override": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 4,
+        "dispatch": "verifier"
+      },
+      {
+        "role": "verifier",
+        "hop": 4,
+        "expression": "(4 * 8) - (7 + 8 / 8)",
+        "valid": false,
+        "message": "Number usage mismatch: expected [4, 7, 8, 8], used [4, 8, 7, 8, 8]",
+        "value": "24",
+        "used_numbers": [
+          4,
+          8,
+          7,
+          8,
+          8
+        ]
+      },
+      {
+        "role": "supervisor",
+        "hop": 5,
+        "dispatch": "proposer"
+      },
+      {
+        "role": "proposer",
+        "hop": 5,
+        "candidates": [
+          "(4 * 8) - (7 + 8 / 8)",
+          "(4 * 8) - (7 - 8 / 8)",
+          "(4 * 8) - (7 - 8)"
+        ],
+        "oracle": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 6,
+        "dispatch": "evaluator"
+      },
+      {
+        "role": "evaluator",
+        "hop": 6,
+        "index": 2,
+        "model_index": 2,
+        "score": 33,
+        "assessments": [
+          {
+            "index": 0,
+            "valid": false,
+            "reason": "Number usage mismatch: expected [4, 7, 8, 8], used [4, 8, 7, 8, 8]",
+            "exact_value": "24"
+          },
+          {
+            "index": 1,
+            "valid": false,
+            "reason": "Number usage mismatch: expected [4, 7, 8, 8], used [4, 8, 7, 8, 8]",
+            "exact_value": "26"
+          },
+          {
+            "index": 2,
+            "valid": false,
+            "reason": "Expression equals 33, not 24",
+            "exact_value": "33"
+          }
+        ],
+        "guardrail_override": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 7,
+        "dispatch": "verifier"
+      },
+      {
+        "role": "verifier",
+        "hop": 7,
+        "expression": "(4 * 8) - (7 - 8)",
+        "valid": false,
+        "message": "Expression equals 33, not 24",
+        "value": "33",
+        "used_numbers": [
+          4,
+          8,
+          7,
+          8
+        ]
+      },
+      {
+        "role": "supervisor",
+        "hop": 8,
+        "dispatch": "proposer"
+      },
+      {
+        "role": "proposer",
+        "hop": 8,
+        "candidates": [
+          "(4 * 8) - (7 - 8 / 8)",
+          "(4 * 8) - (7 - 8 / (8 - 4))"
+        ],
+        "oracle": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 9,
+        "dispatch": "evaluator"
+      },
+      {
+        "role": "evaluator",
+        "hop": 9,
+        "index": 0,
+        "model_index": 0,
+        "score": 25,
+        "assessments": [
+          {
+            "index": 0,
+            "valid": false,
+            "reason": "Number usage mismatch: expected [4, 7, 8, 8], used [4, 8, 7, 8, 8]",
+            "exact_value": "26"
+          },
+          {
+            "index": 1,
+            "valid": false,
+            "reason": "Number usage mismatch: expected [4, 7, 8, 8], used [4, 8, 7, 8, 8, 4]",
+            "exact_value": "27"
+          }
+        ],
+        "guardrail_override": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 10,
+        "dispatch": "verifier"
+      },
+      {
+        "role": "verifier",
+        "hop": 10,
+        "expression": "(4 * 8) - (7 - 8 / 8)",
+        "valid": false,
+        "message": "Number usage mismatch: expected [4, 7, 8, 8], used [4, 8, 7, 8, 8]",
+        "value": "26",
+        "used_numbers": [
+          4,
+          8,
+          7,
+          8,
+          8
+        ]
+      },
+      {
+        "role": "supervisor",
+        "hop": 10,
+        "termination": "insufficient_budget_for_complete_cycle"
+      }
+    ],
+    "evidence": [],
+    "verification": {
+      "expression": "(4 * 8) - (7 - 8 / 8)",
+      "valid": false,
+      "message": "Number usage mismatch: expected [4, 7, 8, 8], used [4, 8, 7, 8, 8]",
+      "value": "26",
+      "used_numbers": [
+        4,
+        8,
+        7,
+        8,
+        8
+      ]
+    },
+    "origin": "model",
+    "independent_audit": {
+      "puzzle": [
+        4,
+        7,
+        8,
+        8
+      ],
+      "expression": "(4 * 8) - (7 - 8 / 8)",
+      "value": "26",
+      "used_numbers": [
+        4,
+        8,
+        7,
+        8,
+        8
+      ],
+      "usage_ok": false,
+      "valid": false,
+      "message": "Card usage mismatch. Expected [4, 7, 8, 8], used [4, 7, 8, 8, 8].",
+      "steps": [
+        "4 * 8 = 32",
+        "8 / 8 = 1",
+        "7 - 1 = 6",
+        "32 - 6 = 26"
+      ]
+    },
+    "errors": []
+  },
+  {
+    "row": 3,
+    "case": "easy",
+    "system": "TA2_Model",
+    "seed": 42,
+    "rag_k": 1,
+    "events": [
+      {
+        "role": "supervisor",
+        "hop": 1,
+        "dispatch": "retrieve"
+      },
+      {
+        "role": "retrieve",
+        "hop": 1,
+        "sources": [
+          "/workspace/work/Game24_Ultimate/ta2/corpus/rules.md"
+        ],
+        "memory_hits": 0
+      },
+      {
+        "role": "supervisor",
+        "hop": 2,
+        "dispatch": "proposer"
+      },
+      {
+        "role": "proposer",
+        "hop": 2,
+        "candidates": [
+          "((8 / (4 - 7 / 8)) * 8)",
+          "((8 - 4 / 7) * 8)",
+          "(8 * (7 - 4 / 8))"
+        ],
+        "oracle": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 3,
+        "dispatch": "evaluator"
+      },
+      {
+        "role": "evaluator",
+        "hop": 3,
+        "index": 0,
+        "model_index": 0,
+        "score": 0,
+        "assessments": [
+          {
+            "index": 0,
+            "valid": false,
+            "reason": "Number usage mismatch: expected [4, 7, 8, 8], used [8, 4, 7, 8, 8]",
+            "exact_value": "512/25"
+          },
+          {
+            "index": 1,
+            "valid": false,
+            "reason": "Expression equals 416/7, not 24",
+            "exact_value": "416/7"
+          },
+          {
+            "index": 2,
+            "valid": false,
+            "reason": "Expression equals 52, not 24",
+            "exact_value": "52"
+          }
+        ],
+        "guardrail_override": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 4,
+        "dispatch": "verifier"
+      },
+      {
+        "role": "verifier",
+        "hop": 4,
+        "expression": "((8 / (4 - 7 / 8)) * 8)",
+        "valid": false,
+        "message": "Number usage mismatch: expected [4, 7, 8, 8], used [8, 4, 7, 8, 8]",
+        "value": "512/25",
+        "used_numbers": [
+          8,
+          4,
+          7,
+          8,
+          8
+        ]
+      },
+      {
+        "role": "supervisor",
+        "hop": 5,
+        "dispatch": "proposer"
+      },
+      {
+        "role": "proposer",
+        "hop": 5,
+        "candidates": [
+          "(8 * (7 - 4 / 8))",
+          "(8 * (7 - 4 / 8)) - 8",
+          "(8 * (7 - 4 / 8)) - 4"
+        ],
+        "oracle": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 6,
+        "dispatch": "evaluator"
+      },
+      {
+        "role": "evaluator",
+        "hop": 6,
+        "index": 0,
+        "model_index": 0,
+        "score": 0,
+        "assessments": [
+          {
+            "index": 0,
+            "valid": false,
+            "reason": "Expression equals 52, not 24",
+            "exact_value": "52"
+          },
+          {
+            "index": 1,
+            "valid": false,
+            "reason": "Number usage mismatch: expected [4, 7, 8, 8], used [8, 7, 4, 8, 8]",
+            "exact_value": "44"
+          },
+          {
+            "index": 2,
+            "valid": false,
+            "reason": "Number usage mismatch: expected [4, 7, 8, 8], used [8, 7, 4, 8, 4]",
+            "exact_value": "48"
+          }
+        ],
+        "guardrail_override": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 7,
+        "dispatch": "verifier"
+      },
+      {
+        "role": "verifier",
+        "hop": 7,
+        "expression": "(8 * (7 - 4 / 8))",
+        "valid": false,
+        "message": "Expression equals 52, not 24",
+        "value": "52",
+        "used_numbers": [
+          8,
+          7,
+          4,
+          8
+        ]
+      },
+      {
+        "role": "supervisor",
+        "hop": 8,
+        "dispatch": "proposer"
+      },
+      {
+        "role": "proposer",
+        "hop": 8,
+        "candidates": [
+          "(8 * (7 - 4 / 8)) - 4",
+          "(8 * (7 - 4 / 8)) - 8",
+          "(8 * (7 - 4 / 8)) - 4 + 8"
+        ],
+        "oracle": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 9,
+        "dispatch": "evaluator"
+      },
+      {
+        "role": "evaluator",
+        "hop": 9,
+        "index": 2,
+        "model_index": 2,
+        "score": 50,
+        "assessments": [
+          {
+            "index": 0,
+            "valid": false,
+            "reason": "Number usage mismatch: expected [4, 7, 8, 8], used [8, 7, 4, 8, 4]",
+            "exact_value": "48"
+          },
+          {
+            "index": 1,
+            "valid": false,
+            "reason": "Number usage mismatch: expected [4, 7, 8, 8], used [8, 7, 4, 8, 8]",
+            "exact_value": "44"
+          },
+          {
+            "index": 2,
+            "valid": false,
+            "reason": "Number usage mismatch: expected [4, 7, 8, 8], used [8, 7, 4, 8, 4, 8]",
+            "exact_value": "56"
+          }
+        ],
+        "guardrail_override": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 10,
+        "dispatch": "verifier"
+      },
+      {
+        "role": "verifier",
+        "hop": 10,
+        "expression": "(8 * (7 - 4 / 8)) - 4 + 8",
+        "valid": false,
+        "message": "Number usage mismatch: expected [4, 7, 8, 8], used [8, 7, 4, 8, 4, 8]",
+        "value": "56",
+        "used_numbers": [
+          8,
+          7,
+          4,
+          8,
+          4,
+          8
+        ]
+      },
+      {
+        "role": "supervisor",
+        "hop": 10,
+        "termination": "insufficient_budget_for_complete_cycle"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "20143d50f32d07ce9f95de0a8aac37edf6fd11503a309dc9df5c9afadfb4c4d1",
+        "text": "# Game of 24 reference rules\n\nA puzzle consists of four integer cards. Use each card exactly once. Repeated\ncard values represent separate cards. Combine them using addition, subtraction,\nmultiplication, division, and parentheses to obtain exactly 24. Concatenation,\nexponentiation, factorials, extra constants, and executable code are prohibited.\n\nFractional and negative intermediate values are permitted. Division by zero is\nnever permitted. Preserve rational values exactly rather than rounding decimals.\nAn intermediate value of 24 is not sufficient if unused cards remain.\n\nUseful strategies include grouping pairs, forming a useful difference, and\nretaining a fractional intermediate when integer-only choices fail. Compare\ncandidate expressions, then submit the best candidate to an independent exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally",
+        "source": "/workspace/work/Game24_Ultimate/ta2/corpus/rules.md",
+        "distance": 0.352708101272583
+      }
+    ],
+    "verification": {
+      "expression": "(8 * (7 - 4 / 8)) - 4 + 8",
+      "valid": false,
+      "message": "Number usage mismatch: expected [4, 7, 8, 8], used [8, 7, 4, 8, 4, 8]",
+      "value": "56",
+      "used_numbers": [
+        8,
+        7,
+        4,
+        8,
+        4,
+        8
+      ]
+    },
+    "origin": "model",
+    "independent_audit": {
+      "puzzle": [
+        4,
+        7,
+        8,
+        8
+      ],
+      "expression": "(8 * (7 - 4 / 8)) - 4 + 8",
+      "value": "56",
+      "used_numbers": [
+        8,
+        7,
+        4,
+        8,
+        4,
+        8
+      ],
+      "usage_ok": false,
+      "valid": false,
+      "message": "Card usage mismatch. Expected [4, 7, 8, 8], used [4, 4, 7, 8, 8, 8].",
+      "steps": [
+        "4 / 8 = 1/2",
+        "7 - 1/2 = 13/2",
+        "8 * 13/2 = 52",
+        "52 - 4 = 48",
+        "48 + 8 = 56"
+      ]
+    },
+    "errors": []
+  },
+  {
+    "row": 4,
+    "case": "easy",
+    "system": "TA2_Model",
+    "seed": 42,
+    "rag_k": 3,
+    "events": [
+      {
+        "role": "supervisor",
+        "hop": 1,
+        "dispatch": "retrieve"
+      },
+      {
+        "role": "retrieve",
+        "hop": 1,
+        "sources": [
+          "/workspace/work/Game24_Ultimate/ta2/corpus/rules.md",
+          "/workspace/work/Game24_Ultimate/ta2/corpus/jury_reference.md",
+          "/workspace/work/Game24_Ultimate/ta2/corpus/jury_reference.md"
+        ],
+        "memory_hits": 0
+      },
+      {
+        "role": "supervisor",
+        "hop": 2,
+        "dispatch": "proposer"
+      },
+      {
+        "role": "proposer",
+        "hop": 2,
+        "candidates": [
+          "((8 / (4 - 7 / 8)) * 8)",
+          "(8 * (8 / (4 - 7)))",
+          "((8 - 7 / 4) * 8)"
+        ],
+        "oracle": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 3,
+        "dispatch": "evaluator"
+      },
+      {
+        "role": "evaluator",
+        "hop": 3,
+        "index": 0,
+        "model_index": 0,
+        "score": 0,
+        "assessments": [
+          {
+            "index": 0,
+            "valid": false,
+            "reason": "Number usage mismatch: expected [4, 7, 8, 8], used [8, 4, 7, 8, 8]",
+            "exact_value": "512/25"
+          },
+          {
+            "index": 1,
+            "valid": false,
+            "reason": "Expression equals -64/3, not 24",
+            "exact_value": "-64/3"
+          },
+          {
+            "index": 2,
+            "valid": false,
+            "reason": "Expression equals 50, not 24",
+            "exact_value": "50"
+          }
+        ],
+        "guardrail_override": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 4,
+        "dispatch": "verifier"
+      },
+      {
+        "role": "verifier",
+        "hop": 4,
+        "expression": "((8 / (4 - 7 / 8)) * 8)",
+        "valid": false,
+        "message": "Number usage mismatch: expected [4, 7, 8, 8], used [8, 4, 7, 8, 8]",
+        "value": "512/25",
+        "used_numbers": [
+          8,
+          4,
+          7,
+          8,
+          8
+        ]
+      },
+      {
+        "role": "supervisor",
+        "hop": 5,
+        "dispatch": "proposer"
+      },
+      {
+        "role": "proposer",
+        "hop": 5,
+        "candidates": [
+          "((8 - 7 / 4) * 8)",
+          "(8 * (8 / (4 - 7)))",
+          "((8 - 7) / 4 * 8)"
+        ],
+        "oracle": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 6,
+        "dispatch": "evaluator"
+      },
+      {
+        "role": "evaluator",
+        "hop": 6,
+        "index": 0,
+        "model_index": 0,
+        "score": 0,
+        "assessments": [
+          {
+            "index": 0,
+            "valid": false,
+            "reason": "Expression equals 50, not 24",
+            "exact_value": "50"
+          },
+          {
+            "index": 1,
+            "valid": false,
+            "reason": "Expression equals -64/3, not 24",
+            "exact_value": "-64/3"
+          },
+          {
+            "index": 2,
+            "valid": false,
+            "reason": "Expression equals 2, not 24",
+            "exact_value": "2"
+          }
+        ],
+        "guardrail_override": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 7,
+        "dispatch": "verifier"
+      },
+      {
+        "role": "verifier",
+        "hop": 7,
+        "expression": "((8 - 7 / 4) * 8)",
+        "valid": false,
+        "message": "Expression equals 50, not 24",
+        "value": "50",
+        "used_numbers": [
+          8,
+          7,
+          4,
+          8
+        ]
+      },
+      {
+        "role": "supervisor",
+        "hop": 8,
+        "dispatch": "proposer"
+      },
+      {
+        "role": "proposer",
+        "hop": 8,
+        "candidates": [
+          "((8 - 7 / 4) * 8)",
+          "(8 * (8 / (7 - 4)))",
+          "((8 - 7) / 4 * 8)"
+        ],
+        "oracle": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 9,
+        "dispatch": "evaluator"
+      },
+      {
+        "role": "evaluator",
+        "hop": 9,
+        "index": 0,
+        "model_index": 0,
+        "score": 0,
+        "assessments": [
+          {
+            "index": 0,
+            "valid": false,
+            "reason": "Expression equals 50, not 24",
+            "exact_value": "50"
+          },
+          {
+            "index": 1,
+            "valid": false,
+            "reason": "Expression equals 64/3, not 24",
+            "exact_value": "64/3"
+          },
+          {
+            "index": 2,
+            "valid": false,
+            "reason": "Expression equals 2, not 24",
+            "exact_value": "2"
+          }
+        ],
+        "guardrail_override": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 10,
+        "dispatch": "verifier"
+      },
+      {
+        "role": "verifier",
+        "hop": 10,
+        "expression": "((8 - 7 / 4) * 8)",
+        "valid": false,
+        "message": "Expression equals 50, not 24",
+        "value": "50",
+        "used_numbers": [
+          8,
+          7,
+          4,
+          8
+        ]
+      },
+      {
+        "role": "supervisor",
+        "hop": 10,
+        "termination": "insufficient_budget_for_complete_cycle"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "20143d50f32d07ce9f95de0a8aac37edf6fd11503a309dc9df5c9afadfb4c4d1",
+        "text": "# Game of 24 reference rules\n\nA puzzle consists of four integer cards. Use each card exactly once. Repeated\ncard values represent separate cards. Combine them using addition, subtraction,\nmultiplication, division, and parentheses to obtain exactly 24. Concatenation,\nexponentiation, factorials, extra constants, and executable code are prohibited.\n\nFractional and negative intermediate values are permitted. Division by zero is\nnever permitted. Preserve rational values exactly rather than rounding decimals.\nAn intermediate value of 24 is not sufficient if unused cards remain.\n\nUseful strategies include grouping pairs, forming a useful difference, and\nretaining a fractional intermediate when integer-only choices fail. Compare\ncandidate expressions, then submit the best candidate to an independent exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally",
+        "source": "/workspace/work/Game24_Ultimate/ta2/corpus/rules.md",
+        "distance": 0.352708101272583
+      },
+      {
+        "id": "e4e28daf4e9a432fd0d0f38aac136155e9fd60d094c760239285b800e77c8a27",
+        "text": "# Game of 24: Agentic Reasoning Reference Notes\nThis is local course reference material, not a benchmark answer key. It contains rules, definitions, and general methods only. It deliberately omits worked answers to the five evaluation cases.\n\n## A. Objective and card identity\nThe input is a multiset of exactly four card values. Every physical card must be used exactly once even when two or more cards have the same face value. The goal is a fully parenthesized arithmetic expression whose value equals exactly twenty-four. A partial expression that reaches twenty-four before consuming the remaining cards is not a solution. Check the complete expression's leaf constants against the original multiset, not merely the numerical final result. A trustworthy verifier reports both the evaluated value and the number-use check separately.\n\n## B. Allowed syntax and arithmetic\nOnly addition, subtraction, multiplication, division, integer card literals and grouping parentheses belong to the basic Game",
+        "source": "/workspace/work/Game24_Ultimate/ta2/corpus/jury_reference.md",
+        "distance": 0.45149409770965576
+      },
+      {
+        "id": "d272c899a1e436c4721393f2721e212ddd6761bc03e785737f807bbb9862c315",
+        "text": " and the number-use check separately.\n\n## B. Allowed syntax and arithmetic\nOnly addition, subtraction, multiplication, division, integer card literals and grouping parentheses belong to the basic Game-of-24 language. Card concatenation, power, roots, factorial, invented constants, variable names, Python calls, attribute access and executable text are outside the allowed language. Division by zero is illegal, including division by a computed intermediate zero. Subtraction may produce a negative intermediate value. A division may produce a rational intermediate value, even when every original card is an integer. All legal operations must obey the card-consumption rule.\n\n## C. Arithmetic as a state transition\nA search state is a finite list of remaining arithmetic terms, each paired with its exact value and the expression from which it was derived. A legal move chooses two different terms and combines them using an allowed operation; then it replaces the chosen pair with one composite ter",
+        "source": "/workspace/work/Game24_Ultimate/ta2/corpus/jury_reference.md",
+        "distance": 0.6262155175209045
+      }
+    ],
+    "verification": {
+      "expression": "((8 - 7 / 4) * 8)",
+      "valid": false,
+      "message": "Expression equals 50, not 24",
+      "value": "50",
+      "used_numbers": [
+        8,
+        7,
+        4,
+        8
+      ]
+    },
+    "origin": "model",
+    "independent_audit": {
+      "puzzle": [
+        4,
+        7,
+        8,
+        8
+      ],
+      "expression": "((8 - 7 / 4) * 8)",
+      "value": "50",
+      "used_numbers": [
+        8,
+        7,
+        4,
+        8
+      ],
+      "usage_ok": true,
+      "valid": false,
+      "message": "Expression evaluates to 50. The target is 24.",
+      "steps": [
+        "7 / 4 = 7/4",
+        "8 - 7/4 = 25/4",
+        "25/4 * 8 = 50"
+      ]
+    },
+    "errors": []
+  },
+  {
+    "row": 5,
+    "case": "fractional",
+    "system": "TA1_Linear",
+    "seed": 42,
+    "rag_k": 0,
+    "branches": [],
+    "validation": {
+      "puzzle": [
+        1,
+        5,
+        5,
+        5
+      ],
+      "expression": null,
+      "value": null,
+      "used_numbers": [],
+      "usage_ok": false,
+      "valid": false,
+      "message": "Supply an expression of 1–256 characters.",
+      "steps": []
+    },
+    "steps": []
+  },
+  {
+    "row": 6,
+    "case": "fractional",
+    "system": "TA1_ToT",
+    "seed": 42,
+    "rag_k": 0,
+    "branches": [
+      {
+        "move": "1 / 5 = 1/5",
+        "state": [
+          "5",
+          "5",
+          "1/5"
+        ],
+        "score": 0.0,
+        "evaluation": "DEAD-END",
+        "depth": 1
+      },
+      {
+        "move": "1 + 5 = 6",
+        "state": [
+          "5",
+          "5",
+          "6"
+        ],
+        "score": 20.0,
+        "evaluation": "PROMISING",
+        "depth": 1
+      },
+      {
+        "move": "1 * 5 = 5",
+        "state": [
+          "5",
+          "5",
+          "5"
+        ],
+        "score": 80.0,
+        "evaluation": "PROMISING",
+        "depth": 1
+      },
+      {
+        "move": "5 + 5 = 10",
+        "state": [
+          "5",
+          "10"
+        ],
+        "score": 6.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "5 * 5 = 25",
+        "state": [
+          "5",
+          "25"
+        ],
+        "score": 19.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "5 - 5 = 0",
+        "state": [
+          "5",
+          "0"
+        ],
+        "score": 1.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "5 / 5 = 1",
+        "state": [
+          "5",
+          "1"
+        ],
+        "score": 1.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "5 + 5 = 10",
+        "state": [
+          "6",
+          "10"
+        ],
+        "score": 6.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "5 * 5 = 25",
+        "state": [
+          "6",
+          "25"
+        ],
+        "score": 19.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "5 - 5 = 0",
+        "state": [
+          "6",
+          "0"
+        ],
+        "score": 2.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "5 / 5 = 1",
+        "state": [
+          "6",
+          "1"
+        ],
+        "score": 2.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "5 + (1 + 5) = 11",
+        "state": [
+          "5",
+          "11"
+        ],
+        "score": 7.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "5 * (1 + 5) = 30",
+        "state": [
+          "5",
+          "30"
+        ],
+        "score": 14.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "5 - (1 + 5) = -1",
+        "state": [
+          "5",
+          "-1"
+        ],
+        "score": 1.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "(1 + 5) - 5 = 1",
+        "state": [
+          "5",
+          "1"
+        ],
+        "score": 1.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "5 / (1 + 5) = 5/6",
+        "state": [
+          "5",
+          "5/6"
+        ],
+        "score": 1.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "(1 + 5) / 5 = 6/5",
+        "state": [
+          "5",
+          "6/5"
+        ],
+        "score": 1.0,
+        "evaluation": "DEAD-END",
+        "depth": 2
+      },
+      {
+        "move": "(1 * 5) + (5 * 5) = 30",
+        "state": [
+          "30"
+        ],
+        "score": 14.0,
+        "evaluation": "DEAD-END",
+        "depth": 3
+      },
+      {
+        "move": "(1 * 5) * (5 * 5) = 125",
+        "state": [
+          "125"
+        ],
+        "score": 0.0,
+        "evaluation": "DEAD-END",
+        "depth": 3
+      },
+      {
+        "move": "(1 * 5) - (5 * 5) = -20",
+        "state": [
+          "-20"
+        ],
+        "score": 0.0,
+        "evaluation": "DEAD-END",
+        "depth": 3
+      },
+      {
+        "move": "(5 * 5) - (1 * 5) = 20",
+        "state": [
+          "20"
+        ],
+        "score": 16.0,
+        "evaluation": "DEAD-END",
+        "depth": 3
+      },
+      {
+        "move": "(1 * 5) / (5 * 5) = 1/5",
+        "state": [
+          "1/5"
+        ],
+        "score": 0.0,
+        "evaluation": "DEAD-END",
+        "depth": 3
+      },
+      {
+        "move": "(5 * 5) / (1 * 5) = 5",
+        "state": [
+          "5"
+        ],
+        "score": 100.0,
+        "evaluation": "PROMISING",
+        "depth": 3
+      },
+      {
+        "move": "(1 + 5) + (5 * 5) = 31",
+        "state": [
+          "31"
+        ],
+        "score": 13.0,
+        "evaluation": "DEAD-END",
+        "depth": 3
+      },
+      {
+        "move": "(1 + 5) * (5 * 5) = 150",
+        "state": [
+          "150"
+        ],
+        "score": 0.0,
+        "evaluation": "DEAD-END",
+        "depth": 3
+      },
+      {
+        "move": "(1 + 5) - (5 * 5) = -19",
+        "state": [
+          "-19"
+        ],
+        "score": 0.0,
+        "evaluation": "DEAD-END",
+        "depth": 3
+      },
+      {
+        "move": "(5 * 5) - (1 + 5) = 19",
+        "state": [
+          "19"
+        ],
+        "score": 15.0,
+        "evaluation": "DEAD-END",
+        "depth": 3
+      },
+      {
+        "move": "(1 + 5) / (5 * 5) = 6/25",
+        "state": [
+          "6/25"
+        ],
+        "score": 0.0,
+        "evaluation": "DEAD-END",
+        "depth": 3
+      },
+      {
+        "move": "(5 * 5) / (1 + 5) = 25/6",
+        "state": [
+          "25/6"
+        ],
+        "score": 99.0,
+        "evaluation": "PROMISING",
+        "depth": 3
+      }
+    ],
+    "validation": {
+      "puzzle": [
+        1,
+        5,
+        5,
+        5
+      ],
+      "expression": null,
+      "value": null,
+      "used_numbers": [],
+      "usage_ok": false,
+      "valid": false,
+      "message": "Supply an expression of 1–256 characters.",
+      "steps": []
+    },
+    "steps": []
+  },
+  {
+    "row": 7,
+    "case": "fractional",
+    "system": "TA2_Model",
+    "seed": 42,
+    "rag_k": 0,
+    "events": [
+      {
+        "role": "supervisor",
+        "hop": 1,
+        "dispatch": "retrieve"
+      },
+      {
+        "role": "retrieve",
+        "hop": 1,
+        "sources": [],
+        "memory_hits": 0
+      },
+      {
+        "role": "supervisor",
+        "hop": 2,
+        "dispatch": "proposer"
+      },
+      {
+        "role": "proposer",
+        "hop": 2,
+        "candidates": [
+          "(5 / (1 - 5 / 5))",
+          "(5 * (5 - 1 / 5))",
+          "(5 * (5 - 1 / 5))"
+        ],
+        "oracle": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 3,
+        "dispatch": "evaluator"
+      },
+      {
+        "role": "evaluator",
+        "hop": 3,
+        "index": 1,
+        "model_index": 1,
+        "score": 100,
+        "assessments": [
+          {
+            "index": 0,
+            "valid": false,
+            "reason": "Division by zero",
+            "exact_value": null
+          },
+          {
+            "index": 1,
+            "valid": true,
+            "reason": "Valid: every input used once and the exact value is 24",
+            "exact_value": "24"
+          }
+        ],
+        "guardrail_override": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 4,
+        "dispatch": "verifier"
+      },
+      {
+        "role": "verifier",
+        "hop": 4,
+        "expression": "(5 * (5 - 1 / 5))",
+        "valid": true,
+        "message": "Valid: every input used once and the exact value is 24",
+        "value": "24",
+        "used_numbers": [
+          5,
+          5,
+          1,
+          5
+        ]
+      }
+    ],
+    "evidence": [],
+    "verification": {
+      "expression": "(5 * (5 - 1 / 5))",
+      "valid": true,
+      "message": "Valid: every input used once and the exact value is 24",
+      "value": "24",
+      "used_numbers": [
+        5,
+        5,
+        1,
+        5
+      ]
+    },
+    "origin": "model",
+    "independent_audit": {
+      "puzzle": [
+        1,
+        5,
+        5,
+        5
+      ],
+      "expression": "(5 * (5 - 1 / 5))",
+      "value": "24",
+      "used_numbers": [
+        5,
+        5,
+        1,
+        5
+      ],
+      "usage_ok": true,
+      "valid": true,
+      "message": "Every card appears once and the exact value is 24.",
+      "steps": [
+        "1 / 5 = 1/5",
+        "5 - 1/5 = 24/5",
+        "5 * 24/5 = 24"
+      ]
+    },
+    "errors": []
+  },
+  {
+    "row": 8,
+    "case": "fractional",
+    "system": "TA2_Model",
+    "seed": 42,
+    "rag_k": 1,
+    "events": [
+      {
+        "role": "supervisor",
+        "hop": 1,
+        "dispatch": "retrieve"
+      },
+      {
+        "role": "retrieve",
+        "hop": 1,
+        "sources": [
+          "/workspace/work/Game24_Ultimate/ta2/corpus/rules.md"
+        ],
+        "memory_hits": 0
+      },
+      {
+        "role": "supervisor",
+        "hop": 2,
+        "dispatch": "proposer"
+      },
+      {
+        "role": "proposer",
+        "hop": 2,
+        "candidates": [
+          "((5/1)*(5-5))",
+          "(5*(5-(5/1)))",
+          "(5*(5-(1/5)))"
+        ],
+        "oracle": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 3,
+        "dispatch": "evaluator"
+      },
+      {
+        "role": "evaluator",
+        "hop": 3,
+        "index": 2,
+        "model_index": 2,
+        "score": 100,
+        "assessments": [
+          {
+            "index": 0,
+            "valid": false,
+            "reason": "Expression equals 0, not 24",
+            "exact_value": "0"
+          },
+          {
+            "index": 1,
+            "valid": false,
+            "reason": "Expression equals 0, not 24",
+            "exact_value": "0"
+          },
+          {
+            "index": 2,
+            "valid": true,
+            "reason": "Valid: every input used once and the exact value is 24",
+            "exact_value": "24"
+          }
+        ],
+        "guardrail_override": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 4,
+        "dispatch": "verifier"
+      },
+      {
+        "role": "verifier",
+        "hop": 4,
+        "expression": "(5*(5-(1/5)))",
+        "valid": true,
+        "message": "Valid: every input used once and the exact value is 24",
+        "value": "24",
+        "used_numbers": [
+          5,
+          5,
+          1,
+          5
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "id": "20143d50f32d07ce9f95de0a8aac37edf6fd11503a309dc9df5c9afadfb4c4d1",
+        "text": "# Game of 24 reference rules\n\nA puzzle consists of four integer cards. Use each card exactly once. Repeated\ncard values represent separate cards. Combine them using addition, subtraction,\nmultiplication, division, and parentheses to obtain exactly 24. Concatenation,\nexponentiation, factorials, extra constants, and executable code are prohibited.\n\nFractional and negative intermediate values are permitted. Division by zero is\nnever permitted. Preserve rational values exactly rather than rounding decimals.\nAn intermediate value of 24 is not sufficient if unused cards remain.\n\nUseful strategies include grouping pairs, forming a useful difference, and\nretaining a fractional intermediate when integer-only choices fail. Compare\ncandidate expressions, then submit the best candidate to an independent exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally",
+        "source": "/workspace/work/Game24_Ultimate/ta2/corpus/rules.md",
+        "distance": 0.3558872938156128
+      }
+    ],
+    "verification": {
+      "expression": "(5*(5-(1/5)))",
+      "valid": true,
+      "message": "Valid: every input used once and the exact value is 24",
+      "value": "24",
+      "used_numbers": [
+        5,
+        5,
+        1,
+        5
+      ]
+    },
+    "origin": "model",
+    "independent_audit": {
+      "puzzle": [
+        1,
+        5,
+        5,
+        5
+      ],
+      "expression": "(5*(5-(1/5)))",
+      "value": "24",
+      "used_numbers": [
+        5,
+        5,
+        1,
+        5
+      ],
+      "usage_ok": true,
+      "valid": true,
+      "message": "Every card appears once and the exact value is 24.",
+      "steps": [
+        "1 / 5 = 1/5",
+        "5 - 1/5 = 24/5",
+        "5 * 24/5 = 24"
+      ]
+    },
+    "errors": []
+  },
+  {
+    "row": 9,
+    "case": "fractional",
+    "system": "TA2_Model",
+    "seed": 42,
+    "rag_k": 3,
+    "events": [
+      {
+        "role": "supervisor",
+        "hop": 1,
+        "dispatch": "retrieve"
+      },
+      {
+        "role": "retrieve",
+        "hop": 1,
+        "sources": [
+          "/workspace/work/Game24_Ultimate/ta2/corpus/rules.md",
+          "/workspace/work/Game24_Ultimate/ta2/corpus/jury_reference.md",
+          "/workspace/work/Game24_Ultimate/ta2/corpus/jury_reference.md"
+        ],
+        "memory_hits": 0
+      },
+      {
+        "role": "supervisor",
+        "hop": 2,
+        "dispatch": "proposer"
+      },
+      {
+        "role": "proposer",
+        "hop": 2,
+        "candidates": [
+          "((5 / 1) * (5 - 5))",
+          "(5 * (5 - 1 / 5))",
+          "(5 * (5 - 1)) / 1"
+        ],
+        "oracle": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 3,
+        "dispatch": "evaluator"
+      },
+      {
+        "role": "evaluator",
+        "hop": 3,
+        "index": 1,
+        "model_index": 1,
+        "score": 100,
+        "assessments": [
+          {
+            "index": 0,
+            "valid": false,
+            "reason": "Expression equals 0, not 24",
+            "exact_value": "0"
+          },
+          {
+            "index": 1,
+            "valid": true,
+            "reason": "Valid: every input used once and the exact value is 24",
+            "exact_value": "24"
+          },
+          {
+            "index": 2,
+            "valid": false,
+            "reason": "Number usage mismatch: expected [1, 5, 5, 5], used [5, 5, 1, 1]",
+            "exact_value": "20"
+          }
+        ],
+        "guardrail_override": false
+      },
+      {
+        "role": "supervisor",
+        "hop": 4,
+        "dispatch": "verifier"
+      },
+      {
+        "role": "verifier",
+        "hop": 4,
+        "expression": "(5 * (5 - 1 / 5))",
+        "valid": true,
+        "message": "Valid: every input used once and the exact value is 24",
+        "value": "24",
+        "used_numbers": [
+          5,
+          5,
+          1,
+          5
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "id": "20143d50f32d07ce9f95de0a8aac37edf6fd11503a309dc9df5c9afadfb4c4d1",
+        "text": "# Game of 24 reference rules\n\nA puzzle consists of four integer cards. Use each card exactly once. Repeated\ncard values represent separate cards. Combine them using addition, subtraction,\nmultiplication, division, and parentheses to obtain exactly 24. Concatenation,\nexponentiation, factorials, extra constants, and executable code are prohibited.\n\nFractional and negative intermediate values are permitted. Division by zero is\nnever permitted. Preserve rational values exactly rather than rounding decimals.\nAn intermediate value of 24 is not sufficient if unused cards remain.\n\nUseful strategies include grouping pairs, forming a useful difference, and\nretaining a fractional intermediate when integer-only choices fail. Compare\ncandidate expressions, then submit the best candidate to an independent exact\nverifier. Evaluator confidence is not mathematical proof. If verification fails,\nuse its concrete feedback to revise the proposal within the supervisor's budget.\n\nThis reference intentionally",
+        "source": "/workspace/work/Game24_Ultimate/ta2/corpus/rules.md",
+        "distance": 0.3558872938156128
+      },
+      {
+        "id": "e4e28daf4e9a432fd0d0f38aac136155e9fd60d094c760239285b800e77c8a27",
+        "text": "# Game of 24: Agentic Reasoning Reference Notes\nThis is local course reference material, not a benchmark answer key. It contains rules, definitions, and general methods only. It deliberately omits worked answers to the five evaluation cases.\n\n## A. Objective and card identity\nThe input is a multiset of exactly four card values. Every physical card must be used exactly once even when two or more cards have the same face value. The goal is a fully parenthesized arithmetic expression whose value equals exactly twenty-four. A partial expression that reaches twenty-four before consuming the remaining cards is not a solution. Check the complete expression's leaf constants against the original multiset, not merely the numerical final result. A trustworthy verifier reports both the evaluated value and the number-use check separately.\n\n## B. Allowed syntax and arithmetic\nOnly addition, subtraction, multiplication, division, integer card literals and grouping parentheses belong to the basic Game",
+        "source": "/workspace/work/Game24_Ultimate/ta2/corpus/jury_reference.md",
+        "distance": 0.46163326501846313
+      },
+      {
+        "id": "d272c899a1e436c4721393f2721e212ddd6761bc03e785737f807bbb9862c315",
+        "text": " and the number-use check separately.\n\n## B. Allowed syntax and arithmetic\nOnly addition, subtraction, multiplication, division, integer card literals and grouping parentheses belong to the basic Game-of-24 language. Card concatenation, power, roots, factorial, invented constants, variable names, Python calls, attribute access and executable text are outside the allowed language. Division by zero is illegal, including division by a computed intermediate zero. Subtraction may produce a negative intermediate value. A division may produce a rational intermediate value, even when every original card is an integer. All legal operations must obey the card-consumption rule.\n\n## C. Arithmetic as a state transition\nA search state is a finite list of remaining arithmetic terms, each paired with its exact value and the expression from which it was derived. A legal move chooses two different terms and combines them using an allowed operation; then it replaces the chosen pair with one composite ter",
+        "source": "/workspace/work/Game24_Ultimate/ta2/corpus/jury_reference.md",
+        "distance": 0.6361784934997559
+      }
+    ],
+    "verification": {
+      "expression": "(5 * (5 - 1 / 5))",
+      "valid": true,
+      "message": "Valid: every input used once and the exact value is 24",
+      "value": "24",
+      "used_numbers": [
+        5,
+        5,
+        1,
+        5
+      ]
+    },
+    "origin": "model",
+    "independent_audit": {
+      "puzzle": [
+        1,
+        5,
+        5,
+        5
+      ],
+      "expression": "(5 * (5 - 1 / 5))",
+      "value": "24",
+      "used_numbers": [
+        5,
+        5,
+        1,
+        5
+      ],
+      "usage_ok": true,
+      "valid": true,
+      "message": "Every card appears once and the exact value is 24.",
+      "steps": [
+        "1 / 5 = 1/5",
+        "5 - 1/5 = 24/5",
+        "5 * 24/5 = 24"
+      ]
+    },
+    "errors": []
+  },
+  {
+    "row": 10,
+    "case": "deceptive",
+    "system": "TA1_Linear",
+    "seed": 42,
+    "rag_k": 0,
+    "branches": [],
+    "validation": {
+      "puzzle": [
+        3,
+        3,
+        8,
+        8
+      ],
+      "expression": "7 * 8",
+      "value": "56",
+      "used_numbers": [
+        7,
+        8
+      ],
+      "usage_ok": false,
+      "valid": false,
+      "message": "Card usage mismatch. Expected [3, 3, 8, 8], used [7, 8].",
+      "steps": [
+        "7 * 8 = 56"
+      ]
+    },
+    "steps": []
+  }
+]

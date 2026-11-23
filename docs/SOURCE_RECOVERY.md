@@ -25,4 +25,4 @@ The second argument must point to the folder containing the original TA1 `app.py
 
 ## Windows-local material
 
-The supplied Windows path was `C:\Users\shind\Desktop\Game24_Windows_For_Codex.zip`. The archive was supplied as a path only. The student then selected the repository as the delivery source. No merge of unseen local edits, native Windows test of this build, or recovery of personal records is claimed. The archived Windows benchmark in Git is historical evidence from the earlier project. Fresh Linux traces use new stores.
+The supplied Windows path was `C:\Users\shind\Desktop\Game24_Windows_For_Codex.zip`. The archive was supplied as a path only. The student then selected the repository as the delivery source. Unseen local edits and personal records remain outside the recovered source. The integrated repository build subsequently passed its launcher and suites on a native Windows CI runner. The archived Windows benchmark in Git is historical evidence from the earlier project. Fresh Linux traces use new stores.

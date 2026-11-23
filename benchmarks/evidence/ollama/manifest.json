@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "completed": false,
+  "mode": "ollama",
+  "seeds": [
+    42
+  ],
+  "rag_ks": [
+    0,
+    1,
+    3
+  ],
+  "policies": [
+    "model"
+  ],
+  "generation_model": "qwen2.5:3b",
+  "embedding_model": "nomic-embed-text",
+  "temperature": 0,
+  "started_utc": "2026-11-23T08:20:00.155986+00:00",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "max_hops": 12,
+  "search_budget": 10000,
+  "versions": {
+    "langgraph": "1.2.24",
+    "chromadb": "1.5.9",
+    "langgraph-checkpoint-sqlite": "3.1.3"
+  },
+  "corpus_sha256": {
+    "jury_reference.md": "1146cfefe40429444af184b98b49246cd9732b5ef586b0eeaebd97f53b65eee6",
+    "rules.md": "000cb941180de489221aa13194b625cf564ec06fa0ef169abeb383649385f642"
+  },
+  "cases": {
+    "easy": [
+      4,
+      7,
+      8,
+      8
+    ],
+    "fractional": [
+      1,
+      5,
+      5,
+      5
+    ],
+    "deceptive": [
+      3,
+      3,
+      8,
+      8
+    ],
+    "control": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "unsolvable": [
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "benchmark_source_sha256": "d40d4e4c01073de4ed0167dd5d4c88a8b2caedda1a0347c17bc0be256baf79a2",
+  "status": "partial_stopped",
+  "rows": 11,
+  "planned_rows": 25,
+  "stopped_utc": "2026-11-23T08:34:07.300784+00:00",
+  "stop_reason": "Stopped for expedited delivery on the shared CPU endpoint. Completed measurements include queue delays. A complete five-puzzle RAG ablation remains outstanding.",
+  "conditions_recorded": [
+    {
+      "case": "easy",
+      "system": "TA1_Linear",
+      "rag_k": "0",
+      "status": "no_valid_answer"
+    },
+    {
+      "case": "easy",
+      "system": "TA1_ToT",
+      "rag_k": "0",
+      "status": "verified"
+    },
+    {
+      "case": "easy",
+      "system": "TA2_Model",
+      "rag_k": "0",
+      "status": "max_hops_exceeded"
+    },
+    {
+      "case": "easy",
+      "system": "TA2_Model",
+      "rag_k": "1",
+      "status": "max_hops_exceeded"
+    },
+    {
+      "case": "easy",
+      "system": "TA2_Model",
+      "rag_k": "3",
+      "status": "max_hops_exceeded"
+    },
+    {
+      "case": "fractional",
+      "system": "TA1_Linear",
+      "rag_k": "0",
+      "status": "no_valid_answer"
+    },
+    {
+      "case": "fractional",
+      "system": "TA1_ToT",
+      "rag_k": "0",
+      "status": "no_valid_answer"
+    },
+    {
+      "case": "fractional",
+      "system": "TA2_Model",
+      "rag_k": "0",
+      "status": "verified"
+    },
+    {
+      "case": "fractional",
+      "system": "TA2_Model",
+      "rag_k": "1",
+      "status": "verified"
+    },
+    {
+      "case": "fractional",
+      "system": "TA2_Model",
+      "rag_k": "3",
+      "status": "verified"
+    },
+    {
+      "case": "deceptive",
+      "system": "TA1_Linear",
+      "rag_k": "0",
+      "status": "no_valid_answer"
+    }
+  ],
+  "failures": 0
+}

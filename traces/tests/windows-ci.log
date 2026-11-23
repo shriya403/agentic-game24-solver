@@ -1,0 +1,6 @@
+windows	Set up job	2026-11-23T08:31:14.6572536Z Image: windows-2025-vs2026
+windows	Start the actual batch launcher and verify Streamlit health	2026-11-23T08:32:38.4263338Z Windows batch launcher served Streamlit health.
+windows	Start the actual batch launcher and verify Streamlit health	2026-11-23T08:32:47.0204271Z Ran 31 tests in 6.634s
+windows	Start the actual batch launcher and verify Streamlit health	2026-11-23T08:32:47.0204754Z OK
+windows	Start the actual batch launcher and verify Streamlit health	2026-11-23T08:33:01.2069866Z Ran 40 tests in 12.268s
+windows	Start the actual batch launcher and verify Streamlit health	2026-11-23T08:33:01.2070348Z OK

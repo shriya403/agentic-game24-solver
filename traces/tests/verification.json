@@ -1,0 +1,76 @@
+{
+  "frozen_ta1": {
+    "test_cases": 8,
+    "passed": 8,
+    "baseline": "02a6e7d69e5d1cdc614ca04e46e686b907617bb7",
+    "blobs_exact": 23
+  },
+  "recovered_ta2": {
+    "test_cases": 40,
+    "passed": 40,
+    "baseline": "b9fbe00f854f73abbc636a4fd18ffb24e7748741"
+  },
+  "linux_release": {
+    "python": "3.12.14",
+    "test_cases": 71,
+    "passed": 71,
+    "subtests_passed": 239,
+    "seconds": 26.51,
+    "failed": 0,
+    "skipped": 0,
+    "source": "jury-junit.xml"
+  },
+  "existing_streamlit_apps": {
+    "ta1/app.py": "rendered_without_exception",
+    "app.py": "rendered_without_exception",
+    "app_ta2.py": "rendered_without_exception",
+    "ta2/prototype/app_ta2.py": "rendered_without_exception"
+  },
+  "jury_browser": {
+    "browsers": [
+      "Chromium"
+    ],
+    "viewports": [
+      [
+        1280,
+        720
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "live_fractional_certificate": "passed",
+    "evidence_download": "passed",
+    "phone_navigation": "passed",
+    "horizontal_overflow": false
+  },
+  "safety": {
+    "expected_demonstrations": 10,
+    "passed": 10,
+    "source": "../safety-report.json"
+  },
+  "live_integration": {
+    "passed": 5,
+    "total": 5,
+    "source": "../live-integration/integration.json"
+  },
+  "native_windows": {
+    "commit": "684b78b73cb543c51b0d88f59ac56eced73ab3e5",
+    "runner": "windows-2025-vs2026",
+    "launcher": "run_final.bat",
+    "health": "ok",
+    "jury_suite_passed": 31,
+    "ta2_suite_passed": 40,
+    "run_url": "https://github.com/shriya403/agentic-game24-solver/actions/runs/45139273783"
+  },
+  "unresolved": [
+    "Private Windows runtime data and off-repository source unavailable.",
+    "Additional fresh 25-trial model ablation is partial."
+  ],
+  "fresh_qwen_ablation": {
+    "recorded": 11,
+    "planned": 25,
+    "complete": false
+  }
+}

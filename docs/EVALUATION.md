@@ -49,3 +49,9 @@ python -m benchmarks.trace --output data/experiments/fractional-trace-01.json
 ```
 
 To recheck every row and print its summary after completion, run `python -m benchmarks.report data/experiments/qwen-01`. It checks the mapping from trace to measurement and recalculates each expression with the independent proof auditor. The reference run's [generated summary](../benchmarks/evidence/reference/summary.md) accompanies its raw observations.
+
+## Expedited local Qwen snapshot
+
+The packaged Linux model run stopped after 11 of 25 planned rows. The outgoing request for the next TA1 ToT trial was interrupted. The recorded rows include all five conditions for easy and fractional and the linear condition for 3 · 3 · 8 · 8. Every saved validity flag agreed with a separate exact recheck. The first easy ToT trial took 223.375 seconds including shared-endpoint queue time. The manifest lists each measured condition and the stopping reason. The fresh five-puzzle retrieval ablation remains incomplete. Use the complete Windows study and the complete local reference run for the main comparison. [Partial run manifest](../benchmarks/evidence/ollama/manifest.json) · [Measured rows](../benchmarks/evidence/ollama/metrics.csv)
+
+During setup a preliminary run reached the Ollama tag endpoint before the inference executable was ready. Its requests returned HTTP 500 during embedding or generation. The 25 attempted rows from that setup diagnostic were excluded from inference results. The server subsequently passed real generation and embedding probes before the 11 retained measurements. [Readiness checks](../traces/live-integration/integration.json)
