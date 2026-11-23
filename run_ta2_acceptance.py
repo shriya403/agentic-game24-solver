@@ -14,6 +14,8 @@ from run_ta2_evaluation import evaluate
 from ta2.rag import ChromaRAG
 from ta2.tools import LocalOllama, ToolFailure
 from ta2.workflow import TA2Workflow
+from ta2.qa import answer_grounded, compare_k
+from ta2.followup import contextual_followup
 
 
 ROOT = Path(__file__).resolve().parent
@@ -35,6 +37,8 @@ def memory_demo(output, offline, base_url, model):
     client = None if offline else LocalOllama(base_url=base_url, model=model)
     with ExitStack() as resources:
         rag = None
+        rag_audit = None
+        corpus_chunks = 0
         if client:
             client.ready()
             vectors = client.embed(["Exact arithmetic with fractional intermediate values"])
@@ -42,7 +46,20 @@ def memory_demo(output, offline, base_url, model):
             if generation.get("ready") is not True:
                 raise ToolFailure("readiness", "Readiness generation schema did not match")
             rag = resources.enter_context(ChromaRAG(data / "chroma", client))
-            rag.ingest([ROOT / "ta2/corpus/rules.md"])
+            corpus_paths = sorted((ROOT / "ta2/corpus").glob("*.md"))
+            corpus_chunks = rag.ingest(corpus_paths)
+            if corpus_chunks < 8:
+                raise RuntimeError("TA2 SOP requires at least 8 retrievable corpus chunks")
+            question = "Why are fractional intermediate values allowed in Game of 24?"
+            rag_audit = {
+                "answerable_k_comparison": compare_k(question, rag, client),
+                "unanswerable": answer_grounded("Who founded Neptune Motors?", rag, client, k=3),
+                "corpus_sources": [str(p) for p in corpus_paths],
+            }
+            if (len(rag_audit["answerable_k_comparison"]["k1"]["sources"]) != 1
+                    or len(rag_audit["answerable_k_comparison"]["k3"]["sources"]) != 3
+                    or rag_audit["unanswerable"]["citations"]):
+                raise RuntimeError("RAG retrieval size or unanswerable-question guardrail failed")
         workflow = TA2Workflow(data, client=client, rag=rag, offline=offline, search_policy="hybrid")
         try:
             first = workflow.run([3,3,8,8], "continuity", namespace="group")
@@ -94,11 +111,22 @@ with ExitStack() as resources:
                 raise RuntimeError("History/Store namespace isolation failed")
         finally:
             workflow.close()
+        followup_question = "What was my previous puzzle expression?"
+        followup_with = contextual_followup(second, followup_question)
+        followup_without = contextual_followup(second, followup_question, without_memory=True)
+        if "Previous expression:" not in followup_with["answer"] or followup_without["memory_used"]:
+            raise RuntimeError("Contextual with-memory/amnesia contrast failed")
         evidence = {"first": first, "resumed_in_new_process": resumed, "second_turn": second,
-                    "isolated": other, "embedding_dimensions": len(vectors[0]) if client else None}
+                    "isolated": other, "embedding_dimensions": len(vectors[0]) if client else None,
+                    "corpus_chunks": corpus_chunks, "rag_audit": rag_audit,
+                    "followup_with_memory": followup_with,
+                    "followup_without_memory": followup_without}
         (output / "memory-and-rag.json").write_text(json.dumps(evidence, indent=2), encoding="utf-8")
-        return {"restart": "passed", "history": "2 turns", "store": "persisted and isolated",
-                "rag": "real nomic embeddings and Chroma retrieval" if client else "unrun (offline)"}
+        return {"restart": "passed", "history": "2 turns",
+                "contextual_followup": "with-memory answer and amnesia refusal",
+                "store": "persisted and isolated", "corpus_chunks": corpus_chunks,
+                "rag": "nomic + LangChain-Chroma k=1/k=3 and unknown-question refusal"
+                       if client else "unrun (offline)"}
 
 
 def run(output, offline=False, runs=1, base_url="http://localhost:11434", model="qwen2.5:3b"):
