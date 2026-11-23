@@ -1,0 +1,7667 @@
+{
+  "schema_version": 1,
+  "run_id": "cb4da74f009c441f8833d8edc0ed9107",
+  "thread_id": "008eba7a40b9423aa96add2ffa861022",
+  "puzzle": [
+    3,
+    3,
+    8,
+    8
+  ],
+  "method": "multi",
+  "mode": "exact",
+  "seed": 42,
+  "rag": false,
+  "k": 0,
+  "max_hops": 12,
+  "status": "verified",
+  "expression": "(8 / (3 - (8 / 3)))",
+  "oracle_assisted": true,
+  "events": [
+    {
+      "role": "supervisor",
+      "hop": 1,
+      "dispatch": "retrieve"
+    },
+    {
+      "role": "retrieve",
+      "hop": 1,
+      "sources": [],
+      "k": 0,
+      "memory_hits": 0,
+      "retrieval": "disabled"
+    },
+    {
+      "role": "supervisor",
+      "hop": 2,
+      "dispatch": "proposer"
+    },
+    {
+      "role": "proposer",
+      "hop": 2,
+      "candidates": [
+        "(8 / (3 - (8 / 3)))"
+      ],
+      "oracle": true,
+      "nodes": 669,
+      "source": "depth-first exact arithmetic",
+      "cached_dead_states": 0,
+      "evidence_used": false
+    },
+    {
+      "role": "supervisor",
+      "hop": 3,
+      "dispatch": "evaluator"
+    },
+    {
+      "role": "evaluator",
+      "hop": 3,
+      "index": 0,
+      "model_index": null,
+      "score": 100,
+      "reason": "Single candidate from complete arithmetic search.",
+      "assessments": [
+        {
+          "index": 0,
+          "valid": true,
+          "reason": "Valid: every input used once and the exact value is 24",
+          "exact_value": "24"
+        }
+      ],
+      "guardrail_override": false,
+      "ranking_source": "deterministic",
+      "assessment_source": "restricted AST guard"
+    },
+    {
+      "role": "supervisor",
+      "hop": 4,
+      "dispatch": "verifier"
+    },
+    {
+      "role": "verifier",
+      "hop": 4,
+      "expression": "(8 / (3 - (8 / 3)))",
+      "valid": true,
+      "message": "Valid: every input used once and the exact value is 24",
+      "value": "24",
+      "used_numbers": [
+        8,
+        3,
+        8,
+        3
+      ]
+    },
+    {
+      "role": "supervisor",
+      "hop": 4,
+      "dispatch": "finish",
+      "status": "verified"
+    },
+    {
+      "role": "proof_auditor",
+      "hop": 4,
+      "valid": true,
+      "reason": "Every card appears once and the exact value is 24."
+    },
+    {
+      "role": "explanation",
+      "hop": 4,
+      "source": "verified AST postorder replay",
+      "steps": [
+        "8 / 3 = 8/3",
+        "3 - 8/3 = 1/3",
+        "8 / (1/3) = 24"
+      ]
+    }
+  ],
+  "evidence": [],
+  "memory": [],
+  "branches": [
+    {
+      "id": "b1",
+      "parent": "root",
+      "move": "3 + 3 = 6",
+      "state": [
+        "8",
+        "8",
+        "6"
+      ],
+      "depth": 1,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b2",
+      "parent": "b1",
+      "move": "8 + 8 = 16",
+      "state": [
+        "6",
+        "16"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b3",
+      "parent": "b2",
+      "move": "(3 + 3) + (8 + 8) = 22",
+      "state": [
+        "22"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b4",
+      "parent": "b2",
+      "move": "(3 + 3) * (8 + 8) = 96",
+      "state": [
+        "96"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b5",
+      "parent": "b2",
+      "move": "(3 + 3) - (8 + 8) = -10",
+      "state": [
+        "-10"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b6",
+      "parent": "b2",
+      "move": "(8 + 8) - (3 + 3) = 10",
+      "state": [
+        "10"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b7",
+      "parent": "b2",
+      "move": "(3 + 3) / (8 + 8) = 3/8",
+      "state": [
+        "3/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b8",
+      "parent": "b2",
+      "move": "(8 + 8) / (3 + 3) = 8/3",
+      "state": [
+        "8/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b9",
+      "parent": "b1",
+      "move": "8 * 8 = 64",
+      "state": [
+        "6",
+        "64"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b10",
+      "parent": "b9",
+      "move": "(3 + 3) + (8 * 8) = 70",
+      "state": [
+        "70"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b11",
+      "parent": "b9",
+      "move": "(3 + 3) * (8 * 8) = 384",
+      "state": [
+        "384"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b12",
+      "parent": "b9",
+      "move": "(3 + 3) - (8 * 8) = -58",
+      "state": [
+        "-58"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b13",
+      "parent": "b9",
+      "move": "(8 * 8) - (3 + 3) = 58",
+      "state": [
+        "58"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b14",
+      "parent": "b9",
+      "move": "(3 + 3) / (8 * 8) = 3/32",
+      "state": [
+        "3/32"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b15",
+      "parent": "b9",
+      "move": "(8 * 8) / (3 + 3) = 32/3",
+      "state": [
+        "32/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b16",
+      "parent": "b1",
+      "move": "8 - 8 = 0",
+      "state": [
+        "6",
+        "0"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b17",
+      "parent": "b16",
+      "move": "(3 + 3) + (8 - 8) = 6",
+      "state": [
+        "6"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b18",
+      "parent": "b16",
+      "move": "(3 + 3) * (8 - 8) = 0",
+      "state": [
+        "0"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b19",
+      "parent": "b16",
+      "move": "(8 - 8) - (3 + 3) = -6",
+      "state": [
+        "-6"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b20",
+      "parent": "b1",
+      "move": "8 / 8 = 1",
+      "state": [
+        "6",
+        "1"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b21",
+      "parent": "b20",
+      "move": "(3 + 3) + (8 / 8) = 7",
+      "state": [
+        "7"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b22",
+      "parent": "b20",
+      "move": "(3 + 3) * (8 / 8) = 6",
+      "state": [
+        "6"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b23",
+      "parent": "b20",
+      "move": "(3 + 3) - (8 / 8) = 5",
+      "state": [
+        "5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b24",
+      "parent": "b20",
+      "move": "(8 / 8) - (3 + 3) = -5",
+      "state": [
+        "-5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b25",
+      "parent": "b20",
+      "move": "(8 / 8) / (3 + 3) = 1/6",
+      "state": [
+        "1/6"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b26",
+      "parent": "b1",
+      "move": "8 + (3 + 3) = 14",
+      "state": [
+        "8",
+        "14"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b27",
+      "parent": "b26",
+      "move": "8 + (8 + (3 + 3)) = 22",
+      "state": [
+        "22"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b28",
+      "parent": "b26",
+      "move": "8 * (8 + (3 + 3)) = 112",
+      "state": [
+        "112"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b29",
+      "parent": "b26",
+      "move": "8 - (8 + (3 + 3)) = -6",
+      "state": [
+        "-6"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b30",
+      "parent": "b26",
+      "move": "(8 + (3 + 3)) - 8 = 6",
+      "state": [
+        "6"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b31",
+      "parent": "b26",
+      "move": "8 / (8 + (3 + 3)) = 4/7",
+      "state": [
+        "4/7"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b32",
+      "parent": "b26",
+      "move": "(8 + (3 + 3)) / 8 = 7/4",
+      "state": [
+        "7/4"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b33",
+      "parent": "b1",
+      "move": "8 * (3 + 3) = 48",
+      "state": [
+        "8",
+        "48"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b34",
+      "parent": "b33",
+      "move": "8 + (8 * (3 + 3)) = 56",
+      "state": [
+        "56"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b35",
+      "parent": "b33",
+      "move": "8 * (8 * (3 + 3)) = 384",
+      "state": [
+        "384"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b36",
+      "parent": "b33",
+      "move": "8 - (8 * (3 + 3)) = -40",
+      "state": [
+        "-40"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b37",
+      "parent": "b33",
+      "move": "(8 * (3 + 3)) - 8 = 40",
+      "state": [
+        "40"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b38",
+      "parent": "b33",
+      "move": "8 / (8 * (3 + 3)) = 1/6",
+      "state": [
+        "1/6"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b39",
+      "parent": "b33",
+      "move": "(8 * (3 + 3)) / 8 = 6",
+      "state": [
+        "6"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b40",
+      "parent": "b1",
+      "move": "8 - (3 + 3) = 2",
+      "state": [
+        "8",
+        "2"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b41",
+      "parent": "b40",
+      "move": "8 + (8 - (3 + 3)) = 10",
+      "state": [
+        "10"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b42",
+      "parent": "b40",
+      "move": "8 * (8 - (3 + 3)) = 16",
+      "state": [
+        "16"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b43",
+      "parent": "b40",
+      "move": "8 - (8 - (3 + 3)) = 6",
+      "state": [
+        "6"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b44",
+      "parent": "b40",
+      "move": "(8 - (3 + 3)) - 8 = -6",
+      "state": [
+        "-6"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b45",
+      "parent": "b40",
+      "move": "8 / (8 - (3 + 3)) = 4",
+      "state": [
+        "4"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b46",
+      "parent": "b40",
+      "move": "(8 - (3 + 3)) / 8 = 1/4",
+      "state": [
+        "1/4"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b47",
+      "parent": "b1",
+      "move": "(3 + 3) - 8 = -2",
+      "state": [
+        "8",
+        "-2"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b48",
+      "parent": "b47",
+      "move": "8 + ((3 + 3) - 8) = 6",
+      "state": [
+        "6"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b49",
+      "parent": "b47",
+      "move": "8 * ((3 + 3) - 8) = -16",
+      "state": [
+        "-16"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b50",
+      "parent": "b47",
+      "move": "8 - ((3 + 3) - 8) = 10",
+      "state": [
+        "10"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b51",
+      "parent": "b47",
+      "move": "((3 + 3) - 8) - 8 = -10",
+      "state": [
+        "-10"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b52",
+      "parent": "b47",
+      "move": "8 / ((3 + 3) - 8) = -4",
+      "state": [
+        "-4"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b53",
+      "parent": "b47",
+      "move": "((3 + 3) - 8) / 8 = -1/4",
+      "state": [
+        "-1/4"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b54",
+      "parent": "b1",
+      "move": "8 / (3 + 3) = 4/3",
+      "state": [
+        "8",
+        "4/3"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b55",
+      "parent": "b54",
+      "move": "8 + (8 / (3 + 3)) = 28/3",
+      "state": [
+        "28/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b56",
+      "parent": "b54",
+      "move": "8 * (8 / (3 + 3)) = 32/3",
+      "state": [
+        "32/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b57",
+      "parent": "b54",
+      "move": "8 - (8 / (3 + 3)) = 20/3",
+      "state": [
+        "20/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b58",
+      "parent": "b54",
+      "move": "(8 / (3 + 3)) - 8 = -20/3",
+      "state": [
+        "-20/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b59",
+      "parent": "b54",
+      "move": "8 / (8 / (3 + 3)) = 6",
+      "state": [
+        "6"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b60",
+      "parent": "b54",
+      "move": "(8 / (3 + 3)) / 8 = 1/6",
+      "state": [
+        "1/6"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b61",
+      "parent": "b1",
+      "move": "(3 + 3) / 8 = 3/4",
+      "state": [
+        "8",
+        "3/4"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b62",
+      "parent": "b61",
+      "move": "8 + ((3 + 3) / 8) = 35/4",
+      "state": [
+        "35/4"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b63",
+      "parent": "b61",
+      "move": "8 * ((3 + 3) / 8) = 6",
+      "state": [
+        "6"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b64",
+      "parent": "b61",
+      "move": "8 - ((3 + 3) / 8) = 29/4",
+      "state": [
+        "29/4"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b65",
+      "parent": "b61",
+      "move": "((3 + 3) / 8) - 8 = -29/4",
+      "state": [
+        "-29/4"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b66",
+      "parent": "b61",
+      "move": "8 / ((3 + 3) / 8) = 32/3",
+      "state": [
+        "32/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b67",
+      "parent": "b61",
+      "move": "((3 + 3) / 8) / 8 = 3/32",
+      "state": [
+        "3/32"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b68",
+      "parent": "root",
+      "move": "3 * 3 = 9",
+      "state": [
+        "8",
+        "8",
+        "9"
+      ],
+      "depth": 1,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b69",
+      "parent": "b68",
+      "move": "8 + 8 = 16",
+      "state": [
+        "9",
+        "16"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b70",
+      "parent": "b69",
+      "move": "(3 * 3) + (8 + 8) = 25",
+      "state": [
+        "25"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b71",
+      "parent": "b69",
+      "move": "(3 * 3) * (8 + 8) = 144",
+      "state": [
+        "144"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b72",
+      "parent": "b69",
+      "move": "(3 * 3) - (8 + 8) = -7",
+      "state": [
+        "-7"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b73",
+      "parent": "b69",
+      "move": "(8 + 8) - (3 * 3) = 7",
+      "state": [
+        "7"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b74",
+      "parent": "b69",
+      "move": "(3 * 3) / (8 + 8) = 9/16",
+      "state": [
+        "9/16"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b75",
+      "parent": "b69",
+      "move": "(8 + 8) / (3 * 3) = 16/9",
+      "state": [
+        "16/9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b76",
+      "parent": "b68",
+      "move": "8 * 8 = 64",
+      "state": [
+        "9",
+        "64"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b77",
+      "parent": "b76",
+      "move": "(3 * 3) + (8 * 8) = 73",
+      "state": [
+        "73"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b78",
+      "parent": "b76",
+      "move": "(3 * 3) * (8 * 8) = 576",
+      "state": [
+        "576"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b79",
+      "parent": "b76",
+      "move": "(3 * 3) - (8 * 8) = -55",
+      "state": [
+        "-55"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b80",
+      "parent": "b76",
+      "move": "(8 * 8) - (3 * 3) = 55",
+      "state": [
+        "55"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b81",
+      "parent": "b76",
+      "move": "(3 * 3) / (8 * 8) = 9/64",
+      "state": [
+        "9/64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b82",
+      "parent": "b76",
+      "move": "(8 * 8) / (3 * 3) = 64/9",
+      "state": [
+        "64/9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b83",
+      "parent": "b68",
+      "move": "8 - 8 = 0",
+      "state": [
+        "9",
+        "0"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b84",
+      "parent": "b83",
+      "move": "(3 * 3) + (8 - 8) = 9",
+      "state": [
+        "9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b85",
+      "parent": "b83",
+      "move": "(3 * 3) * (8 - 8) = 0",
+      "state": [
+        "0"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b86",
+      "parent": "b83",
+      "move": "(8 - 8) - (3 * 3) = -9",
+      "state": [
+        "-9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b87",
+      "parent": "b68",
+      "move": "8 / 8 = 1",
+      "state": [
+        "9",
+        "1"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b88",
+      "parent": "b87",
+      "move": "(3 * 3) + (8 / 8) = 10",
+      "state": [
+        "10"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b89",
+      "parent": "b87",
+      "move": "(3 * 3) * (8 / 8) = 9",
+      "state": [
+        "9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b90",
+      "parent": "b87",
+      "move": "(3 * 3) - (8 / 8) = 8",
+      "state": [
+        "8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b91",
+      "parent": "b87",
+      "move": "(8 / 8) - (3 * 3) = -8",
+      "state": [
+        "-8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b92",
+      "parent": "b87",
+      "move": "(8 / 8) / (3 * 3) = 1/9",
+      "state": [
+        "1/9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b93",
+      "parent": "b68",
+      "move": "8 + (3 * 3) = 17",
+      "state": [
+        "8",
+        "17"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b94",
+      "parent": "b93",
+      "move": "8 + (8 + (3 * 3)) = 25",
+      "state": [
+        "25"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b95",
+      "parent": "b93",
+      "move": "8 * (8 + (3 * 3)) = 136",
+      "state": [
+        "136"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b96",
+      "parent": "b93",
+      "move": "8 - (8 + (3 * 3)) = -9",
+      "state": [
+        "-9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b97",
+      "parent": "b93",
+      "move": "(8 + (3 * 3)) - 8 = 9",
+      "state": [
+        "9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b98",
+      "parent": "b93",
+      "move": "8 / (8 + (3 * 3)) = 8/17",
+      "state": [
+        "8/17"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b99",
+      "parent": "b93",
+      "move": "(8 + (3 * 3)) / 8 = 17/8",
+      "state": [
+        "17/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b100",
+      "parent": "b68",
+      "move": "8 * (3 * 3) = 72",
+      "state": [
+        "8",
+        "72"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b101",
+      "parent": "b100",
+      "move": "8 + (8 * (3 * 3)) = 80",
+      "state": [
+        "80"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b102",
+      "parent": "b100",
+      "move": "8 * (8 * (3 * 3)) = 576",
+      "state": [
+        "576"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b103",
+      "parent": "b100",
+      "move": "8 - (8 * (3 * 3)) = -64",
+      "state": [
+        "-64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b104",
+      "parent": "b100",
+      "move": "(8 * (3 * 3)) - 8 = 64",
+      "state": [
+        "64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b105",
+      "parent": "b100",
+      "move": "8 / (8 * (3 * 3)) = 1/9",
+      "state": [
+        "1/9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b106",
+      "parent": "b100",
+      "move": "(8 * (3 * 3)) / 8 = 9",
+      "state": [
+        "9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b107",
+      "parent": "b68",
+      "move": "8 - (3 * 3) = -1",
+      "state": [
+        "8",
+        "-1"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b108",
+      "parent": "b107",
+      "move": "8 + (8 - (3 * 3)) = 7",
+      "state": [
+        "7"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b109",
+      "parent": "b107",
+      "move": "8 * (8 - (3 * 3)) = -8",
+      "state": [
+        "-8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b110",
+      "parent": "b107",
+      "move": "8 - (8 - (3 * 3)) = 9",
+      "state": [
+        "9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b111",
+      "parent": "b107",
+      "move": "(8 - (3 * 3)) - 8 = -9",
+      "state": [
+        "-9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b112",
+      "parent": "b107",
+      "move": "(8 - (3 * 3)) / 8 = -1/8",
+      "state": [
+        "-1/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b113",
+      "parent": "b68",
+      "move": "(3 * 3) - 8 = 1",
+      "state": [
+        "8",
+        "1"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b114",
+      "parent": "b113",
+      "move": "8 + ((3 * 3) - 8) = 9",
+      "state": [
+        "9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b115",
+      "parent": "b113",
+      "move": "8 * ((3 * 3) - 8) = 8",
+      "state": [
+        "8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b116",
+      "parent": "b113",
+      "move": "8 - ((3 * 3) - 8) = 7",
+      "state": [
+        "7"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b117",
+      "parent": "b113",
+      "move": "((3 * 3) - 8) - 8 = -7",
+      "state": [
+        "-7"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b118",
+      "parent": "b113",
+      "move": "((3 * 3) - 8) / 8 = 1/8",
+      "state": [
+        "1/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b119",
+      "parent": "b68",
+      "move": "8 / (3 * 3) = 8/9",
+      "state": [
+        "8",
+        "8/9"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b120",
+      "parent": "b119",
+      "move": "8 + (8 / (3 * 3)) = 80/9",
+      "state": [
+        "80/9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b121",
+      "parent": "b119",
+      "move": "8 * (8 / (3 * 3)) = 64/9",
+      "state": [
+        "64/9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b122",
+      "parent": "b119",
+      "move": "(8 / (3 * 3)) - 8 = -64/9",
+      "state": [
+        "-64/9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b123",
+      "parent": "b119",
+      "move": "8 / (8 / (3 * 3)) = 9",
+      "state": [
+        "9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b124",
+      "parent": "b119",
+      "move": "(8 / (3 * 3)) / 8 = 1/9",
+      "state": [
+        "1/9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b125",
+      "parent": "b68",
+      "move": "(3 * 3) / 8 = 9/8",
+      "state": [
+        "8",
+        "9/8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b126",
+      "parent": "b125",
+      "move": "8 + ((3 * 3) / 8) = 73/8",
+      "state": [
+        "73/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b127",
+      "parent": "b125",
+      "move": "8 * ((3 * 3) / 8) = 9",
+      "state": [
+        "9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b128",
+      "parent": "b125",
+      "move": "8 - ((3 * 3) / 8) = 55/8",
+      "state": [
+        "55/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b129",
+      "parent": "b125",
+      "move": "((3 * 3) / 8) - 8 = -55/8",
+      "state": [
+        "-55/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b130",
+      "parent": "b125",
+      "move": "8 / ((3 * 3) / 8) = 64/9",
+      "state": [
+        "64/9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b131",
+      "parent": "b125",
+      "move": "((3 * 3) / 8) / 8 = 9/64",
+      "state": [
+        "9/64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b132",
+      "parent": "root",
+      "move": "3 - 3 = 0",
+      "state": [
+        "8",
+        "8",
+        "0"
+      ],
+      "depth": 1,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b133",
+      "parent": "b132",
+      "move": "8 + 8 = 16",
+      "state": [
+        "0",
+        "16"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b134",
+      "parent": "b133",
+      "move": "(3 - 3) + (8 + 8) = 16",
+      "state": [
+        "16"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b135",
+      "parent": "b133",
+      "move": "(3 - 3) * (8 + 8) = 0",
+      "state": [
+        "0"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b136",
+      "parent": "b133",
+      "move": "(3 - 3) - (8 + 8) = -16",
+      "state": [
+        "-16"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b137",
+      "parent": "b132",
+      "move": "8 * 8 = 64",
+      "state": [
+        "0",
+        "64"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b138",
+      "parent": "b137",
+      "move": "(3 - 3) + (8 * 8) = 64",
+      "state": [
+        "64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b139",
+      "parent": "b137",
+      "move": "(3 - 3) * (8 * 8) = 0",
+      "state": [
+        "0"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b140",
+      "parent": "b137",
+      "move": "(3 - 3) - (8 * 8) = -64",
+      "state": [
+        "-64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b141",
+      "parent": "b132",
+      "move": "8 - 8 = 0",
+      "state": [
+        "0",
+        "0"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b142",
+      "parent": "b141",
+      "move": "(3 - 3) + (8 - 8) = 0",
+      "state": [
+        "0"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b143",
+      "parent": "b132",
+      "move": "8 / 8 = 1",
+      "state": [
+        "0",
+        "1"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b144",
+      "parent": "b143",
+      "move": "(3 - 3) + (8 / 8) = 1",
+      "state": [
+        "1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b145",
+      "parent": "b143",
+      "move": "(3 - 3) * (8 / 8) = 0",
+      "state": [
+        "0"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b146",
+      "parent": "b143",
+      "move": "(3 - 3) - (8 / 8) = -1",
+      "state": [
+        "-1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b147",
+      "parent": "b132",
+      "move": "8 + (3 - 3) = 8",
+      "state": [
+        "8",
+        "8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b148",
+      "parent": "b147",
+      "move": "8 + (8 + (3 - 3)) = 16",
+      "state": [
+        "16"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b149",
+      "parent": "b147",
+      "move": "8 * (8 + (3 - 3)) = 64",
+      "state": [
+        "64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b150",
+      "parent": "b147",
+      "move": "8 - (8 + (3 - 3)) = 0",
+      "state": [
+        "0"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b151",
+      "parent": "b147",
+      "move": "8 / (8 + (3 - 3)) = 1",
+      "state": [
+        "1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b152",
+      "parent": "b132",
+      "move": "8 * (3 - 3) = 0",
+      "state": [
+        "8",
+        "0"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b153",
+      "parent": "b152",
+      "move": "8 + (8 * (3 - 3)) = 8",
+      "state": [
+        "8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b154",
+      "parent": "b152",
+      "move": "8 * (8 * (3 - 3)) = 0",
+      "state": [
+        "0"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b155",
+      "parent": "b152",
+      "move": "(8 * (3 - 3)) - 8 = -8",
+      "state": [
+        "-8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b156",
+      "parent": "b132",
+      "move": "(3 - 3) - 8 = -8",
+      "state": [
+        "8",
+        "-8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b157",
+      "parent": "b156",
+      "move": "8 + ((3 - 3) - 8) = 0",
+      "state": [
+        "0"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b158",
+      "parent": "b156",
+      "move": "8 * ((3 - 3) - 8) = -64",
+      "state": [
+        "-64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b159",
+      "parent": "b156",
+      "move": "8 - ((3 - 3) - 8) = 16",
+      "state": [
+        "16"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b160",
+      "parent": "b156",
+      "move": "((3 - 3) - 8) - 8 = -16",
+      "state": [
+        "-16"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b161",
+      "parent": "b156",
+      "move": "8 / ((3 - 3) - 8) = -1",
+      "state": [
+        "-1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b162",
+      "parent": "root",
+      "move": "3 / 3 = 1",
+      "state": [
+        "8",
+        "8",
+        "1"
+      ],
+      "depth": 1,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b163",
+      "parent": "b162",
+      "move": "8 + 8 = 16",
+      "state": [
+        "1",
+        "16"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b164",
+      "parent": "b163",
+      "move": "(3 / 3) + (8 + 8) = 17",
+      "state": [
+        "17"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b165",
+      "parent": "b163",
+      "move": "(3 / 3) * (8 + 8) = 16",
+      "state": [
+        "16"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b166",
+      "parent": "b163",
+      "move": "(3 / 3) - (8 + 8) = -15",
+      "state": [
+        "-15"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b167",
+      "parent": "b163",
+      "move": "(8 + 8) - (3 / 3) = 15",
+      "state": [
+        "15"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b168",
+      "parent": "b163",
+      "move": "(3 / 3) / (8 + 8) = 1/16",
+      "state": [
+        "1/16"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b169",
+      "parent": "b162",
+      "move": "8 * 8 = 64",
+      "state": [
+        "1",
+        "64"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b170",
+      "parent": "b169",
+      "move": "(3 / 3) + (8 * 8) = 65",
+      "state": [
+        "65"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b171",
+      "parent": "b169",
+      "move": "(3 / 3) * (8 * 8) = 64",
+      "state": [
+        "64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b172",
+      "parent": "b169",
+      "move": "(3 / 3) - (8 * 8) = -63",
+      "state": [
+        "-63"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b173",
+      "parent": "b169",
+      "move": "(8 * 8) - (3 / 3) = 63",
+      "state": [
+        "63"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b174",
+      "parent": "b169",
+      "move": "(3 / 3) / (8 * 8) = 1/64",
+      "state": [
+        "1/64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b175",
+      "parent": "b162",
+      "move": "8 - 8 = 0",
+      "state": [
+        "1",
+        "0"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b176",
+      "parent": "b162",
+      "move": "8 / 8 = 1",
+      "state": [
+        "1",
+        "1"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b177",
+      "parent": "b176",
+      "move": "(3 / 3) + (8 / 8) = 2",
+      "state": [
+        "2"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b178",
+      "parent": "b176",
+      "move": "(3 / 3) * (8 / 8) = 1",
+      "state": [
+        "1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b179",
+      "parent": "b176",
+      "move": "(3 / 3) - (8 / 8) = 0",
+      "state": [
+        "0"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b180",
+      "parent": "b162",
+      "move": "8 + (3 / 3) = 9",
+      "state": [
+        "8",
+        "9"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b181",
+      "parent": "b180",
+      "move": "8 + (8 + (3 / 3)) = 17",
+      "state": [
+        "17"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b182",
+      "parent": "b180",
+      "move": "8 * (8 + (3 / 3)) = 72",
+      "state": [
+        "72"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b183",
+      "parent": "b180",
+      "move": "8 - (8 + (3 / 3)) = -1",
+      "state": [
+        "-1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b184",
+      "parent": "b180",
+      "move": "(8 + (3 / 3)) - 8 = 1",
+      "state": [
+        "1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b185",
+      "parent": "b180",
+      "move": "8 / (8 + (3 / 3)) = 8/9",
+      "state": [
+        "8/9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b186",
+      "parent": "b180",
+      "move": "(8 + (3 / 3)) / 8 = 9/8",
+      "state": [
+        "9/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b187",
+      "parent": "b162",
+      "move": "8 * (3 / 3) = 8",
+      "state": [
+        "8",
+        "8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b188",
+      "parent": "b162",
+      "move": "8 - (3 / 3) = 7",
+      "state": [
+        "8",
+        "7"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b189",
+      "parent": "b188",
+      "move": "8 + (8 - (3 / 3)) = 15",
+      "state": [
+        "15"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b190",
+      "parent": "b188",
+      "move": "8 * (8 - (3 / 3)) = 56",
+      "state": [
+        "56"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b191",
+      "parent": "b188",
+      "move": "8 - (8 - (3 / 3)) = 1",
+      "state": [
+        "1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b192",
+      "parent": "b188",
+      "move": "(8 - (3 / 3)) - 8 = -1",
+      "state": [
+        "-1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b193",
+      "parent": "b188",
+      "move": "8 / (8 - (3 / 3)) = 8/7",
+      "state": [
+        "8/7"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b194",
+      "parent": "b188",
+      "move": "(8 - (3 / 3)) / 8 = 7/8",
+      "state": [
+        "7/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b195",
+      "parent": "b162",
+      "move": "(3 / 3) - 8 = -7",
+      "state": [
+        "8",
+        "-7"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b196",
+      "parent": "b195",
+      "move": "8 + ((3 / 3) - 8) = 1",
+      "state": [
+        "1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b197",
+      "parent": "b195",
+      "move": "8 * ((3 / 3) - 8) = -56",
+      "state": [
+        "-56"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b198",
+      "parent": "b195",
+      "move": "8 - ((3 / 3) - 8) = 15",
+      "state": [
+        "15"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b199",
+      "parent": "b195",
+      "move": "((3 / 3) - 8) - 8 = -15",
+      "state": [
+        "-15"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b200",
+      "parent": "b195",
+      "move": "8 / ((3 / 3) - 8) = -8/7",
+      "state": [
+        "-8/7"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b201",
+      "parent": "b195",
+      "move": "((3 / 3) - 8) / 8 = -7/8",
+      "state": [
+        "-7/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b202",
+      "parent": "b162",
+      "move": "(3 / 3) / 8 = 1/8",
+      "state": [
+        "8",
+        "1/8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b203",
+      "parent": "b202",
+      "move": "8 + ((3 / 3) / 8) = 65/8",
+      "state": [
+        "65/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b204",
+      "parent": "b202",
+      "move": "8 * ((3 / 3) / 8) = 1",
+      "state": [
+        "1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b205",
+      "parent": "b202",
+      "move": "8 - ((3 / 3) / 8) = 63/8",
+      "state": [
+        "63/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b206",
+      "parent": "b202",
+      "move": "((3 / 3) / 8) - 8 = -63/8",
+      "state": [
+        "-63/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b207",
+      "parent": "b202",
+      "move": "8 / ((3 / 3) / 8) = 64",
+      "state": [
+        "64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b208",
+      "parent": "b202",
+      "move": "((3 / 3) / 8) / 8 = 1/64",
+      "state": [
+        "1/64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b209",
+      "parent": "root",
+      "move": "3 + 8 = 11",
+      "state": [
+        "3",
+        "8",
+        "11"
+      ],
+      "depth": 1,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b210",
+      "parent": "b209",
+      "move": "3 + 8 = 11",
+      "state": [
+        "11",
+        "11"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b211",
+      "parent": "b210",
+      "move": "(3 + 8) + (3 + 8) = 22",
+      "state": [
+        "22"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b212",
+      "parent": "b210",
+      "move": "(3 + 8) * (3 + 8) = 121",
+      "state": [
+        "121"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b213",
+      "parent": "b210",
+      "move": "(3 + 8) - (3 + 8) = 0",
+      "state": [
+        "0"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b214",
+      "parent": "b210",
+      "move": "(3 + 8) / (3 + 8) = 1",
+      "state": [
+        "1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b215",
+      "parent": "b209",
+      "move": "3 * 8 = 24",
+      "state": [
+        "11",
+        "24"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b216",
+      "parent": "b215",
+      "move": "(3 + 8) + (3 * 8) = 35",
+      "state": [
+        "35"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b217",
+      "parent": "b215",
+      "move": "(3 + 8) * (3 * 8) = 264",
+      "state": [
+        "264"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b218",
+      "parent": "b215",
+      "move": "(3 + 8) - (3 * 8) = -13",
+      "state": [
+        "-13"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b219",
+      "parent": "b215",
+      "move": "(3 * 8) - (3 + 8) = 13",
+      "state": [
+        "13"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b220",
+      "parent": "b215",
+      "move": "(3 + 8) / (3 * 8) = 11/24",
+      "state": [
+        "11/24"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b221",
+      "parent": "b215",
+      "move": "(3 * 8) / (3 + 8) = 24/11",
+      "state": [
+        "24/11"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b222",
+      "parent": "b209",
+      "move": "3 - 8 = -5",
+      "state": [
+        "11",
+        "-5"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b223",
+      "parent": "b222",
+      "move": "(3 + 8) + (3 - 8) = 6",
+      "state": [
+        "6"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b224",
+      "parent": "b222",
+      "move": "(3 + 8) * (3 - 8) = -55",
+      "state": [
+        "-55"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b225",
+      "parent": "b222",
+      "move": "(3 + 8) - (3 - 8) = 16",
+      "state": [
+        "16"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b226",
+      "parent": "b222",
+      "move": "(3 - 8) - (3 + 8) = -16",
+      "state": [
+        "-16"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b227",
+      "parent": "b222",
+      "move": "(3 + 8) / (3 - 8) = -11/5",
+      "state": [
+        "-11/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b228",
+      "parent": "b222",
+      "move": "(3 - 8) / (3 + 8) = -5/11",
+      "state": [
+        "-5/11"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b229",
+      "parent": "b209",
+      "move": "8 - 3 = 5",
+      "state": [
+        "11",
+        "5"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b230",
+      "parent": "b229",
+      "move": "(3 + 8) + (8 - 3) = 16",
+      "state": [
+        "16"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b231",
+      "parent": "b229",
+      "move": "(3 + 8) * (8 - 3) = 55",
+      "state": [
+        "55"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b232",
+      "parent": "b229",
+      "move": "(3 + 8) - (8 - 3) = 6",
+      "state": [
+        "6"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b233",
+      "parent": "b229",
+      "move": "(8 - 3) - (3 + 8) = -6",
+      "state": [
+        "-6"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b234",
+      "parent": "b229",
+      "move": "(3 + 8) / (8 - 3) = 11/5",
+      "state": [
+        "11/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b235",
+      "parent": "b229",
+      "move": "(8 - 3) / (3 + 8) = 5/11",
+      "state": [
+        "5/11"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b236",
+      "parent": "b209",
+      "move": "3 / 8 = 3/8",
+      "state": [
+        "11",
+        "3/8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b237",
+      "parent": "b236",
+      "move": "(3 + 8) + (3 / 8) = 91/8",
+      "state": [
+        "91/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b238",
+      "parent": "b236",
+      "move": "(3 + 8) * (3 / 8) = 33/8",
+      "state": [
+        "33/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b239",
+      "parent": "b236",
+      "move": "(3 + 8) - (3 / 8) = 85/8",
+      "state": [
+        "85/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b240",
+      "parent": "b236",
+      "move": "(3 / 8) - (3 + 8) = -85/8",
+      "state": [
+        "-85/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b241",
+      "parent": "b236",
+      "move": "(3 + 8) / (3 / 8) = 88/3",
+      "state": [
+        "88/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b242",
+      "parent": "b236",
+      "move": "(3 / 8) / (3 + 8) = 3/88",
+      "state": [
+        "3/88"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b243",
+      "parent": "b209",
+      "move": "8 / 3 = 8/3",
+      "state": [
+        "11",
+        "8/3"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b244",
+      "parent": "b243",
+      "move": "(3 + 8) + (8 / 3) = 41/3",
+      "state": [
+        "41/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b245",
+      "parent": "b243",
+      "move": "(3 + 8) * (8 / 3) = 88/3",
+      "state": [
+        "88/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b246",
+      "parent": "b243",
+      "move": "(3 + 8) - (8 / 3) = 25/3",
+      "state": [
+        "25/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b247",
+      "parent": "b243",
+      "move": "(8 / 3) - (3 + 8) = -25/3",
+      "state": [
+        "-25/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b248",
+      "parent": "b243",
+      "move": "(3 + 8) / (8 / 3) = 33/8",
+      "state": [
+        "33/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b249",
+      "parent": "b243",
+      "move": "(8 / 3) / (3 + 8) = 8/33",
+      "state": [
+        "8/33"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b250",
+      "parent": "b209",
+      "move": "3 + (3 + 8) = 14",
+      "state": [
+        "8",
+        "14"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b251",
+      "parent": "b209",
+      "move": "3 * (3 + 8) = 33",
+      "state": [
+        "8",
+        "33"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b252",
+      "parent": "b251",
+      "move": "8 + (3 * (3 + 8)) = 41",
+      "state": [
+        "41"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b253",
+      "parent": "b251",
+      "move": "8 * (3 * (3 + 8)) = 264",
+      "state": [
+        "264"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b254",
+      "parent": "b251",
+      "move": "8 - (3 * (3 + 8)) = -25",
+      "state": [
+        "-25"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b255",
+      "parent": "b251",
+      "move": "(3 * (3 + 8)) - 8 = 25",
+      "state": [
+        "25"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b256",
+      "parent": "b251",
+      "move": "8 / (3 * (3 + 8)) = 8/33",
+      "state": [
+        "8/33"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b257",
+      "parent": "b251",
+      "move": "(3 * (3 + 8)) / 8 = 33/8",
+      "state": [
+        "33/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b258",
+      "parent": "b209",
+      "move": "3 - (3 + 8) = -8",
+      "state": [
+        "8",
+        "-8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b259",
+      "parent": "b209",
+      "move": "(3 + 8) - 3 = 8",
+      "state": [
+        "8",
+        "8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b260",
+      "parent": "b209",
+      "move": "3 / (3 + 8) = 3/11",
+      "state": [
+        "8",
+        "3/11"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b261",
+      "parent": "b260",
+      "move": "8 + (3 / (3 + 8)) = 91/11",
+      "state": [
+        "91/11"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b262",
+      "parent": "b260",
+      "move": "8 * (3 / (3 + 8)) = 24/11",
+      "state": [
+        "24/11"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b263",
+      "parent": "b260",
+      "move": "8 - (3 / (3 + 8)) = 85/11",
+      "state": [
+        "85/11"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b264",
+      "parent": "b260",
+      "move": "(3 / (3 + 8)) - 8 = -85/11",
+      "state": [
+        "-85/11"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b265",
+      "parent": "b260",
+      "move": "8 / (3 / (3 + 8)) = 88/3",
+      "state": [
+        "88/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b266",
+      "parent": "b260",
+      "move": "(3 / (3 + 8)) / 8 = 3/88",
+      "state": [
+        "3/88"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b267",
+      "parent": "b209",
+      "move": "(3 + 8) / 3 = 11/3",
+      "state": [
+        "8",
+        "11/3"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b268",
+      "parent": "b267",
+      "move": "8 + ((3 + 8) / 3) = 35/3",
+      "state": [
+        "35/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b269",
+      "parent": "b267",
+      "move": "8 * ((3 + 8) / 3) = 88/3",
+      "state": [
+        "88/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b270",
+      "parent": "b267",
+      "move": "8 - ((3 + 8) / 3) = 13/3",
+      "state": [
+        "13/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b271",
+      "parent": "b267",
+      "move": "((3 + 8) / 3) - 8 = -13/3",
+      "state": [
+        "-13/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b272",
+      "parent": "b267",
+      "move": "8 / ((3 + 8) / 3) = 24/11",
+      "state": [
+        "24/11"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b273",
+      "parent": "b267",
+      "move": "((3 + 8) / 3) / 8 = 11/24",
+      "state": [
+        "11/24"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b274",
+      "parent": "b209",
+      "move": "8 + (3 + 8) = 19",
+      "state": [
+        "3",
+        "19"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b275",
+      "parent": "b274",
+      "move": "3 + (8 + (3 + 8)) = 22",
+      "state": [
+        "22"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b276",
+      "parent": "b274",
+      "move": "3 * (8 + (3 + 8)) = 57",
+      "state": [
+        "57"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b277",
+      "parent": "b274",
+      "move": "3 - (8 + (3 + 8)) = -16",
+      "state": [
+        "-16"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b278",
+      "parent": "b274",
+      "move": "(8 + (3 + 8)) - 3 = 16",
+      "state": [
+        "16"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b279",
+      "parent": "b274",
+      "move": "3 / (8 + (3 + 8)) = 3/19",
+      "state": [
+        "3/19"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b280",
+      "parent": "b274",
+      "move": "(8 + (3 + 8)) / 3 = 19/3",
+      "state": [
+        "19/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b281",
+      "parent": "b209",
+      "move": "8 * (3 + 8) = 88",
+      "state": [
+        "3",
+        "88"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b282",
+      "parent": "b281",
+      "move": "3 + (8 * (3 + 8)) = 91",
+      "state": [
+        "91"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b283",
+      "parent": "b281",
+      "move": "3 * (8 * (3 + 8)) = 264",
+      "state": [
+        "264"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b284",
+      "parent": "b281",
+      "move": "3 - (8 * (3 + 8)) = -85",
+      "state": [
+        "-85"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b285",
+      "parent": "b281",
+      "move": "(8 * (3 + 8)) - 3 = 85",
+      "state": [
+        "85"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b286",
+      "parent": "b281",
+      "move": "3 / (8 * (3 + 8)) = 3/88",
+      "state": [
+        "3/88"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b287",
+      "parent": "b281",
+      "move": "(8 * (3 + 8)) / 3 = 88/3",
+      "state": [
+        "88/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b288",
+      "parent": "b209",
+      "move": "8 - (3 + 8) = -3",
+      "state": [
+        "3",
+        "-3"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b289",
+      "parent": "b288",
+      "move": "3 + (8 - (3 + 8)) = 0",
+      "state": [
+        "0"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b290",
+      "parent": "b288",
+      "move": "3 * (8 - (3 + 8)) = -9",
+      "state": [
+        "-9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b291",
+      "parent": "b288",
+      "move": "3 - (8 - (3 + 8)) = 6",
+      "state": [
+        "6"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b292",
+      "parent": "b288",
+      "move": "(8 - (3 + 8)) - 3 = -6",
+      "state": [
+        "-6"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b293",
+      "parent": "b288",
+      "move": "3 / (8 - (3 + 8)) = -1",
+      "state": [
+        "-1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b294",
+      "parent": "b209",
+      "move": "(3 + 8) - 8 = 3",
+      "state": [
+        "3",
+        "3"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b295",
+      "parent": "b294",
+      "move": "3 + ((3 + 8) - 8) = 6",
+      "state": [
+        "6"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b296",
+      "parent": "b294",
+      "move": "3 * ((3 + 8) - 8) = 9",
+      "state": [
+        "9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b297",
+      "parent": "b294",
+      "move": "3 - ((3 + 8) - 8) = 0",
+      "state": [
+        "0"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b298",
+      "parent": "b294",
+      "move": "3 / ((3 + 8) - 8) = 1",
+      "state": [
+        "1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b299",
+      "parent": "b209",
+      "move": "8 / (3 + 8) = 8/11",
+      "state": [
+        "3",
+        "8/11"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b300",
+      "parent": "b299",
+      "move": "3 + (8 / (3 + 8)) = 41/11",
+      "state": [
+        "41/11"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b301",
+      "parent": "b299",
+      "move": "3 * (8 / (3 + 8)) = 24/11",
+      "state": [
+        "24/11"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b302",
+      "parent": "b299",
+      "move": "3 - (8 / (3 + 8)) = 25/11",
+      "state": [
+        "25/11"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b303",
+      "parent": "b299",
+      "move": "(8 / (3 + 8)) - 3 = -25/11",
+      "state": [
+        "-25/11"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b304",
+      "parent": "b299",
+      "move": "3 / (8 / (3 + 8)) = 33/8",
+      "state": [
+        "33/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b305",
+      "parent": "b299",
+      "move": "(8 / (3 + 8)) / 3 = 8/33",
+      "state": [
+        "8/33"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b306",
+      "parent": "b209",
+      "move": "(3 + 8) / 8 = 11/8",
+      "state": [
+        "3",
+        "11/8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b307",
+      "parent": "b306",
+      "move": "3 + ((3 + 8) / 8) = 35/8",
+      "state": [
+        "35/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b308",
+      "parent": "b306",
+      "move": "3 * ((3 + 8) / 8) = 33/8",
+      "state": [
+        "33/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b309",
+      "parent": "b306",
+      "move": "3 - ((3 + 8) / 8) = 13/8",
+      "state": [
+        "13/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b310",
+      "parent": "b306",
+      "move": "((3 + 8) / 8) - 3 = -13/8",
+      "state": [
+        "-13/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b311",
+      "parent": "b306",
+      "move": "3 / ((3 + 8) / 8) = 24/11",
+      "state": [
+        "24/11"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b312",
+      "parent": "b306",
+      "move": "((3 + 8) / 8) / 3 = 11/24",
+      "state": [
+        "11/24"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b313",
+      "parent": "root",
+      "move": "3 * 8 = 24",
+      "state": [
+        "3",
+        "8",
+        "24"
+      ],
+      "depth": 1,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b314",
+      "parent": "b313",
+      "move": "3 + 8 = 11",
+      "state": [
+        "24",
+        "11"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b315",
+      "parent": "b313",
+      "move": "3 * 8 = 24",
+      "state": [
+        "24",
+        "24"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b316",
+      "parent": "b315",
+      "move": "(3 * 8) + (3 * 8) = 48",
+      "state": [
+        "48"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b317",
+      "parent": "b315",
+      "move": "(3 * 8) * (3 * 8) = 576",
+      "state": [
+        "576"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b318",
+      "parent": "b315",
+      "move": "(3 * 8) - (3 * 8) = 0",
+      "state": [
+        "0"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b319",
+      "parent": "b315",
+      "move": "(3 * 8) / (3 * 8) = 1",
+      "state": [
+        "1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b320",
+      "parent": "b313",
+      "move": "3 - 8 = -5",
+      "state": [
+        "24",
+        "-5"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b321",
+      "parent": "b320",
+      "move": "(3 * 8) + (3 - 8) = 19",
+      "state": [
+        "19"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b322",
+      "parent": "b320",
+      "move": "(3 * 8) * (3 - 8) = -120",
+      "state": [
+        "-120"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b323",
+      "parent": "b320",
+      "move": "(3 * 8) - (3 - 8) = 29",
+      "state": [
+        "29"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b324",
+      "parent": "b320",
+      "move": "(3 - 8) - (3 * 8) = -29",
+      "state": [
+        "-29"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b325",
+      "parent": "b320",
+      "move": "(3 * 8) / (3 - 8) = -24/5",
+      "state": [
+        "-24/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b326",
+      "parent": "b320",
+      "move": "(3 - 8) / (3 * 8) = -5/24",
+      "state": [
+        "-5/24"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b327",
+      "parent": "b313",
+      "move": "8 - 3 = 5",
+      "state": [
+        "24",
+        "5"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b328",
+      "parent": "b327",
+      "move": "(3 * 8) + (8 - 3) = 29",
+      "state": [
+        "29"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b329",
+      "parent": "b327",
+      "move": "(3 * 8) * (8 - 3) = 120",
+      "state": [
+        "120"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b330",
+      "parent": "b327",
+      "move": "(3 * 8) - (8 - 3) = 19",
+      "state": [
+        "19"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b331",
+      "parent": "b327",
+      "move": "(8 - 3) - (3 * 8) = -19",
+      "state": [
+        "-19"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b332",
+      "parent": "b327",
+      "move": "(3 * 8) / (8 - 3) = 24/5",
+      "state": [
+        "24/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b333",
+      "parent": "b327",
+      "move": "(8 - 3) / (3 * 8) = 5/24",
+      "state": [
+        "5/24"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b334",
+      "parent": "b313",
+      "move": "3 / 8 = 3/8",
+      "state": [
+        "24",
+        "3/8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b335",
+      "parent": "b334",
+      "move": "(3 * 8) + (3 / 8) = 195/8",
+      "state": [
+        "195/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b336",
+      "parent": "b334",
+      "move": "(3 * 8) * (3 / 8) = 9",
+      "state": [
+        "9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b337",
+      "parent": "b334",
+      "move": "(3 * 8) - (3 / 8) = 189/8",
+      "state": [
+        "189/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b338",
+      "parent": "b334",
+      "move": "(3 / 8) - (3 * 8) = -189/8",
+      "state": [
+        "-189/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b339",
+      "parent": "b334",
+      "move": "(3 * 8) / (3 / 8) = 64",
+      "state": [
+        "64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b340",
+      "parent": "b334",
+      "move": "(3 / 8) / (3 * 8) = 1/64",
+      "state": [
+        "1/64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b341",
+      "parent": "b313",
+      "move": "8 / 3 = 8/3",
+      "state": [
+        "24",
+        "8/3"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b342",
+      "parent": "b341",
+      "move": "(3 * 8) + (8 / 3) = 80/3",
+      "state": [
+        "80/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b343",
+      "parent": "b341",
+      "move": "(3 * 8) * (8 / 3) = 64",
+      "state": [
+        "64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b344",
+      "parent": "b341",
+      "move": "(3 * 8) - (8 / 3) = 64/3",
+      "state": [
+        "64/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b345",
+      "parent": "b341",
+      "move": "(8 / 3) - (3 * 8) = -64/3",
+      "state": [
+        "-64/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b346",
+      "parent": "b341",
+      "move": "(3 * 8) / (8 / 3) = 9",
+      "state": [
+        "9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b347",
+      "parent": "b341",
+      "move": "(8 / 3) / (3 * 8) = 1/9",
+      "state": [
+        "1/9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b348",
+      "parent": "b313",
+      "move": "3 + (3 * 8) = 27",
+      "state": [
+        "8",
+        "27"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b349",
+      "parent": "b348",
+      "move": "8 + (3 + (3 * 8)) = 35",
+      "state": [
+        "35"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b350",
+      "parent": "b348",
+      "move": "8 * (3 + (3 * 8)) = 216",
+      "state": [
+        "216"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b351",
+      "parent": "b348",
+      "move": "8 - (3 + (3 * 8)) = -19",
+      "state": [
+        "-19"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b352",
+      "parent": "b348",
+      "move": "(3 + (3 * 8)) - 8 = 19",
+      "state": [
+        "19"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b353",
+      "parent": "b348",
+      "move": "8 / (3 + (3 * 8)) = 8/27",
+      "state": [
+        "8/27"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b354",
+      "parent": "b348",
+      "move": "(3 + (3 * 8)) / 8 = 27/8",
+      "state": [
+        "27/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b355",
+      "parent": "b313",
+      "move": "3 * (3 * 8) = 72",
+      "state": [
+        "8",
+        "72"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b356",
+      "parent": "b313",
+      "move": "3 - (3 * 8) = -21",
+      "state": [
+        "8",
+        "-21"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b357",
+      "parent": "b356",
+      "move": "8 + (3 - (3 * 8)) = -13",
+      "state": [
+        "-13"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b358",
+      "parent": "b356",
+      "move": "8 * (3 - (3 * 8)) = -168",
+      "state": [
+        "-168"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b359",
+      "parent": "b356",
+      "move": "8 - (3 - (3 * 8)) = 29",
+      "state": [
+        "29"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b360",
+      "parent": "b356",
+      "move": "(3 - (3 * 8)) - 8 = -29",
+      "state": [
+        "-29"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b361",
+      "parent": "b356",
+      "move": "8 / (3 - (3 * 8)) = -8/21",
+      "state": [
+        "-8/21"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b362",
+      "parent": "b356",
+      "move": "(3 - (3 * 8)) / 8 = -21/8",
+      "state": [
+        "-21/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b363",
+      "parent": "b313",
+      "move": "(3 * 8) - 3 = 21",
+      "state": [
+        "8",
+        "21"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b364",
+      "parent": "b363",
+      "move": "8 + ((3 * 8) - 3) = 29",
+      "state": [
+        "29"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b365",
+      "parent": "b363",
+      "move": "8 * ((3 * 8) - 3) = 168",
+      "state": [
+        "168"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b366",
+      "parent": "b363",
+      "move": "8 - ((3 * 8) - 3) = -13",
+      "state": [
+        "-13"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b367",
+      "parent": "b363",
+      "move": "((3 * 8) - 3) - 8 = 13",
+      "state": [
+        "13"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b368",
+      "parent": "b363",
+      "move": "8 / ((3 * 8) - 3) = 8/21",
+      "state": [
+        "8/21"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b369",
+      "parent": "b363",
+      "move": "((3 * 8) - 3) / 8 = 21/8",
+      "state": [
+        "21/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b370",
+      "parent": "b313",
+      "move": "3 / (3 * 8) = 1/8",
+      "state": [
+        "8",
+        "1/8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b371",
+      "parent": "b313",
+      "move": "(3 * 8) / 3 = 8",
+      "state": [
+        "8",
+        "8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b372",
+      "parent": "b313",
+      "move": "8 + (3 * 8) = 32",
+      "state": [
+        "3",
+        "32"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b373",
+      "parent": "b372",
+      "move": "3 + (8 + (3 * 8)) = 35",
+      "state": [
+        "35"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b374",
+      "parent": "b372",
+      "move": "3 * (8 + (3 * 8)) = 96",
+      "state": [
+        "96"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b375",
+      "parent": "b372",
+      "move": "3 - (8 + (3 * 8)) = -29",
+      "state": [
+        "-29"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b376",
+      "parent": "b372",
+      "move": "(8 + (3 * 8)) - 3 = 29",
+      "state": [
+        "29"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b377",
+      "parent": "b372",
+      "move": "3 / (8 + (3 * 8)) = 3/32",
+      "state": [
+        "3/32"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b378",
+      "parent": "b372",
+      "move": "(8 + (3 * 8)) / 3 = 32/3",
+      "state": [
+        "32/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b379",
+      "parent": "b313",
+      "move": "8 * (3 * 8) = 192",
+      "state": [
+        "3",
+        "192"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b380",
+      "parent": "b379",
+      "move": "3 + (8 * (3 * 8)) = 195",
+      "state": [
+        "195"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b381",
+      "parent": "b379",
+      "move": "3 * (8 * (3 * 8)) = 576",
+      "state": [
+        "576"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b382",
+      "parent": "b379",
+      "move": "3 - (8 * (3 * 8)) = -189",
+      "state": [
+        "-189"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b383",
+      "parent": "b379",
+      "move": "(8 * (3 * 8)) - 3 = 189",
+      "state": [
+        "189"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b384",
+      "parent": "b379",
+      "move": "3 / (8 * (3 * 8)) = 1/64",
+      "state": [
+        "1/64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b385",
+      "parent": "b379",
+      "move": "(8 * (3 * 8)) / 3 = 64",
+      "state": [
+        "64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b386",
+      "parent": "b313",
+      "move": "8 - (3 * 8) = -16",
+      "state": [
+        "3",
+        "-16"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b387",
+      "parent": "b386",
+      "move": "3 + (8 - (3 * 8)) = -13",
+      "state": [
+        "-13"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b388",
+      "parent": "b386",
+      "move": "3 * (8 - (3 * 8)) = -48",
+      "state": [
+        "-48"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b389",
+      "parent": "b386",
+      "move": "3 - (8 - (3 * 8)) = 19",
+      "state": [
+        "19"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b390",
+      "parent": "b386",
+      "move": "(8 - (3 * 8)) - 3 = -19",
+      "state": [
+        "-19"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b391",
+      "parent": "b386",
+      "move": "3 / (8 - (3 * 8)) = -3/16",
+      "state": [
+        "-3/16"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b392",
+      "parent": "b386",
+      "move": "(8 - (3 * 8)) / 3 = -16/3",
+      "state": [
+        "-16/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b393",
+      "parent": "b313",
+      "move": "(3 * 8) - 8 = 16",
+      "state": [
+        "3",
+        "16"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b394",
+      "parent": "b393",
+      "move": "3 + ((3 * 8) - 8) = 19",
+      "state": [
+        "19"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b395",
+      "parent": "b393",
+      "move": "3 * ((3 * 8) - 8) = 48",
+      "state": [
+        "48"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b396",
+      "parent": "b393",
+      "move": "3 - ((3 * 8) - 8) = -13",
+      "state": [
+        "-13"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b397",
+      "parent": "b393",
+      "move": "((3 * 8) - 8) - 3 = 13",
+      "state": [
+        "13"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b398",
+      "parent": "b393",
+      "move": "3 / ((3 * 8) - 8) = 3/16",
+      "state": [
+        "3/16"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b399",
+      "parent": "b393",
+      "move": "((3 * 8) - 8) / 3 = 16/3",
+      "state": [
+        "16/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b400",
+      "parent": "b313",
+      "move": "8 / (3 * 8) = 1/3",
+      "state": [
+        "3",
+        "1/3"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b401",
+      "parent": "b400",
+      "move": "3 + (8 / (3 * 8)) = 10/3",
+      "state": [
+        "10/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b402",
+      "parent": "b400",
+      "move": "3 * (8 / (3 * 8)) = 1",
+      "state": [
+        "1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b403",
+      "parent": "b400",
+      "move": "3 - (8 / (3 * 8)) = 8/3",
+      "state": [
+        "8/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b404",
+      "parent": "b400",
+      "move": "(8 / (3 * 8)) - 3 = -8/3",
+      "state": [
+        "-8/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b405",
+      "parent": "b400",
+      "move": "3 / (8 / (3 * 8)) = 9",
+      "state": [
+        "9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b406",
+      "parent": "b400",
+      "move": "(8 / (3 * 8)) / 3 = 1/9",
+      "state": [
+        "1/9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b407",
+      "parent": "b313",
+      "move": "(3 * 8) / 8 = 3",
+      "state": [
+        "3",
+        "3"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b408",
+      "parent": "root",
+      "move": "3 - 8 = -5",
+      "state": [
+        "3",
+        "8",
+        "-5"
+      ],
+      "depth": 1,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b409",
+      "parent": "b408",
+      "move": "3 + 8 = 11",
+      "state": [
+        "-5",
+        "11"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b410",
+      "parent": "b408",
+      "move": "3 * 8 = 24",
+      "state": [
+        "-5",
+        "24"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b411",
+      "parent": "b408",
+      "move": "3 - 8 = -5",
+      "state": [
+        "-5",
+        "-5"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b412",
+      "parent": "b411",
+      "move": "(3 - 8) + (3 - 8) = -10",
+      "state": [
+        "-10"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b413",
+      "parent": "b411",
+      "move": "(3 - 8) * (3 - 8) = 25",
+      "state": [
+        "25"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b414",
+      "parent": "b411",
+      "move": "(3 - 8) - (3 - 8) = 0",
+      "state": [
+        "0"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b415",
+      "parent": "b411",
+      "move": "(3 - 8) / (3 - 8) = 1",
+      "state": [
+        "1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b416",
+      "parent": "b408",
+      "move": "8 - 3 = 5",
+      "state": [
+        "-5",
+        "5"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b417",
+      "parent": "b416",
+      "move": "(3 - 8) + (8 - 3) = 0",
+      "state": [
+        "0"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b418",
+      "parent": "b416",
+      "move": "(3 - 8) * (8 - 3) = -25",
+      "state": [
+        "-25"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b419",
+      "parent": "b416",
+      "move": "(3 - 8) - (8 - 3) = -10",
+      "state": [
+        "-10"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b420",
+      "parent": "b416",
+      "move": "(8 - 3) - (3 - 8) = 10",
+      "state": [
+        "10"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b421",
+      "parent": "b416",
+      "move": "(3 - 8) / (8 - 3) = -1",
+      "state": [
+        "-1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b422",
+      "parent": "b408",
+      "move": "3 / 8 = 3/8",
+      "state": [
+        "-5",
+        "3/8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b423",
+      "parent": "b422",
+      "move": "(3 - 8) + (3 / 8) = -37/8",
+      "state": [
+        "-37/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b424",
+      "parent": "b422",
+      "move": "(3 - 8) * (3 / 8) = -15/8",
+      "state": [
+        "-15/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b425",
+      "parent": "b422",
+      "move": "(3 - 8) - (3 / 8) = -43/8",
+      "state": [
+        "-43/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b426",
+      "parent": "b422",
+      "move": "(3 / 8) - (3 - 8) = 43/8",
+      "state": [
+        "43/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b427",
+      "parent": "b422",
+      "move": "(3 - 8) / (3 / 8) = -40/3",
+      "state": [
+        "-40/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b428",
+      "parent": "b422",
+      "move": "(3 / 8) / (3 - 8) = -3/40",
+      "state": [
+        "-3/40"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b429",
+      "parent": "b408",
+      "move": "8 / 3 = 8/3",
+      "state": [
+        "-5",
+        "8/3"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b430",
+      "parent": "b429",
+      "move": "(3 - 8) + (8 / 3) = -7/3",
+      "state": [
+        "-7/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b431",
+      "parent": "b429",
+      "move": "(3 - 8) * (8 / 3) = -40/3",
+      "state": [
+        "-40/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b432",
+      "parent": "b429",
+      "move": "(3 - 8) - (8 / 3) = -23/3",
+      "state": [
+        "-23/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b433",
+      "parent": "b429",
+      "move": "(8 / 3) - (3 - 8) = 23/3",
+      "state": [
+        "23/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b434",
+      "parent": "b429",
+      "move": "(3 - 8) / (8 / 3) = -15/8",
+      "state": [
+        "-15/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b435",
+      "parent": "b429",
+      "move": "(8 / 3) / (3 - 8) = -8/15",
+      "state": [
+        "-8/15"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b436",
+      "parent": "b408",
+      "move": "3 + (3 - 8) = -2",
+      "state": [
+        "8",
+        "-2"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b437",
+      "parent": "b408",
+      "move": "3 * (3 - 8) = -15",
+      "state": [
+        "8",
+        "-15"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b438",
+      "parent": "b437",
+      "move": "8 + (3 * (3 - 8)) = -7",
+      "state": [
+        "-7"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b439",
+      "parent": "b437",
+      "move": "8 * (3 * (3 - 8)) = -120",
+      "state": [
+        "-120"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b440",
+      "parent": "b437",
+      "move": "8 - (3 * (3 - 8)) = 23",
+      "state": [
+        "23"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b441",
+      "parent": "b437",
+      "move": "(3 * (3 - 8)) - 8 = -23",
+      "state": [
+        "-23"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b442",
+      "parent": "b437",
+      "move": "8 / (3 * (3 - 8)) = -8/15",
+      "state": [
+        "-8/15"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b443",
+      "parent": "b437",
+      "move": "(3 * (3 - 8)) / 8 = -15/8",
+      "state": [
+        "-15/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b444",
+      "parent": "b408",
+      "move": "3 - (3 - 8) = 8",
+      "state": [
+        "8",
+        "8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b445",
+      "parent": "b408",
+      "move": "(3 - 8) - 3 = -8",
+      "state": [
+        "8",
+        "-8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b446",
+      "parent": "b408",
+      "move": "3 / (3 - 8) = -3/5",
+      "state": [
+        "8",
+        "-3/5"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b447",
+      "parent": "b446",
+      "move": "8 + (3 / (3 - 8)) = 37/5",
+      "state": [
+        "37/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b448",
+      "parent": "b446",
+      "move": "8 * (3 / (3 - 8)) = -24/5",
+      "state": [
+        "-24/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b449",
+      "parent": "b446",
+      "move": "8 - (3 / (3 - 8)) = 43/5",
+      "state": [
+        "43/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b450",
+      "parent": "b446",
+      "move": "(3 / (3 - 8)) - 8 = -43/5",
+      "state": [
+        "-43/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b451",
+      "parent": "b446",
+      "move": "8 / (3 / (3 - 8)) = -40/3",
+      "state": [
+        "-40/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b452",
+      "parent": "b446",
+      "move": "(3 / (3 - 8)) / 8 = -3/40",
+      "state": [
+        "-3/40"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b453",
+      "parent": "b408",
+      "move": "(3 - 8) / 3 = -5/3",
+      "state": [
+        "8",
+        "-5/3"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b454",
+      "parent": "b453",
+      "move": "8 + ((3 - 8) / 3) = 19/3",
+      "state": [
+        "19/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b455",
+      "parent": "b453",
+      "move": "8 * ((3 - 8) / 3) = -40/3",
+      "state": [
+        "-40/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b456",
+      "parent": "b453",
+      "move": "8 - ((3 - 8) / 3) = 29/3",
+      "state": [
+        "29/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b457",
+      "parent": "b453",
+      "move": "((3 - 8) / 3) - 8 = -29/3",
+      "state": [
+        "-29/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b458",
+      "parent": "b453",
+      "move": "8 / ((3 - 8) / 3) = -24/5",
+      "state": [
+        "-24/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b459",
+      "parent": "b453",
+      "move": "((3 - 8) / 3) / 8 = -5/24",
+      "state": [
+        "-5/24"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b460",
+      "parent": "b408",
+      "move": "8 + (3 - 8) = 3",
+      "state": [
+        "3",
+        "3"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b461",
+      "parent": "b408",
+      "move": "8 * (3 - 8) = -40",
+      "state": [
+        "3",
+        "-40"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b462",
+      "parent": "b461",
+      "move": "3 + (8 * (3 - 8)) = -37",
+      "state": [
+        "-37"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b463",
+      "parent": "b461",
+      "move": "3 * (8 * (3 - 8)) = -120",
+      "state": [
+        "-120"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b464",
+      "parent": "b461",
+      "move": "3 - (8 * (3 - 8)) = 43",
+      "state": [
+        "43"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b465",
+      "parent": "b461",
+      "move": "(8 * (3 - 8)) - 3 = -43",
+      "state": [
+        "-43"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b466",
+      "parent": "b461",
+      "move": "3 / (8 * (3 - 8)) = -3/40",
+      "state": [
+        "-3/40"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b467",
+      "parent": "b461",
+      "move": "(8 * (3 - 8)) / 3 = -40/3",
+      "state": [
+        "-40/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b468",
+      "parent": "b408",
+      "move": "8 - (3 - 8) = 13",
+      "state": [
+        "3",
+        "13"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b469",
+      "parent": "b468",
+      "move": "3 + (8 - (3 - 8)) = 16",
+      "state": [
+        "16"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b470",
+      "parent": "b468",
+      "move": "3 * (8 - (3 - 8)) = 39",
+      "state": [
+        "39"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b471",
+      "parent": "b468",
+      "move": "3 - (8 - (3 - 8)) = -10",
+      "state": [
+        "-10"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b472",
+      "parent": "b468",
+      "move": "(8 - (3 - 8)) - 3 = 10",
+      "state": [
+        "10"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b473",
+      "parent": "b468",
+      "move": "3 / (8 - (3 - 8)) = 3/13",
+      "state": [
+        "3/13"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b474",
+      "parent": "b468",
+      "move": "(8 - (3 - 8)) / 3 = 13/3",
+      "state": [
+        "13/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b475",
+      "parent": "b408",
+      "move": "(3 - 8) - 8 = -13",
+      "state": [
+        "3",
+        "-13"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b476",
+      "parent": "b475",
+      "move": "3 + ((3 - 8) - 8) = -10",
+      "state": [
+        "-10"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b477",
+      "parent": "b475",
+      "move": "3 * ((3 - 8) - 8) = -39",
+      "state": [
+        "-39"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b478",
+      "parent": "b475",
+      "move": "3 - ((3 - 8) - 8) = 16",
+      "state": [
+        "16"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b479",
+      "parent": "b475",
+      "move": "((3 - 8) - 8) - 3 = -16",
+      "state": [
+        "-16"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b480",
+      "parent": "b475",
+      "move": "3 / ((3 - 8) - 8) = -3/13",
+      "state": [
+        "-3/13"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b481",
+      "parent": "b475",
+      "move": "((3 - 8) - 8) / 3 = -13/3",
+      "state": [
+        "-13/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b482",
+      "parent": "b408",
+      "move": "8 / (3 - 8) = -8/5",
+      "state": [
+        "3",
+        "-8/5"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b483",
+      "parent": "b482",
+      "move": "3 + (8 / (3 - 8)) = 7/5",
+      "state": [
+        "7/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b484",
+      "parent": "b482",
+      "move": "3 * (8 / (3 - 8)) = -24/5",
+      "state": [
+        "-24/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b485",
+      "parent": "b482",
+      "move": "3 - (8 / (3 - 8)) = 23/5",
+      "state": [
+        "23/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b486",
+      "parent": "b482",
+      "move": "(8 / (3 - 8)) - 3 = -23/5",
+      "state": [
+        "-23/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b487",
+      "parent": "b482",
+      "move": "3 / (8 / (3 - 8)) = -15/8",
+      "state": [
+        "-15/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b488",
+      "parent": "b482",
+      "move": "(8 / (3 - 8)) / 3 = -8/15",
+      "state": [
+        "-8/15"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b489",
+      "parent": "b408",
+      "move": "(3 - 8) / 8 = -5/8",
+      "state": [
+        "3",
+        "-5/8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b490",
+      "parent": "b489",
+      "move": "3 + ((3 - 8) / 8) = 19/8",
+      "state": [
+        "19/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b491",
+      "parent": "b489",
+      "move": "3 * ((3 - 8) / 8) = -15/8",
+      "state": [
+        "-15/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b492",
+      "parent": "b489",
+      "move": "3 - ((3 - 8) / 8) = 29/8",
+      "state": [
+        "29/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b493",
+      "parent": "b489",
+      "move": "((3 - 8) / 8) - 3 = -29/8",
+      "state": [
+        "-29/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b494",
+      "parent": "b489",
+      "move": "3 / ((3 - 8) / 8) = -24/5",
+      "state": [
+        "-24/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b495",
+      "parent": "b489",
+      "move": "((3 - 8) / 8) / 3 = -5/24",
+      "state": [
+        "-5/24"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b496",
+      "parent": "root",
+      "move": "8 - 3 = 5",
+      "state": [
+        "3",
+        "8",
+        "5"
+      ],
+      "depth": 1,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b497",
+      "parent": "b496",
+      "move": "3 + 8 = 11",
+      "state": [
+        "5",
+        "11"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b498",
+      "parent": "b496",
+      "move": "3 * 8 = 24",
+      "state": [
+        "5",
+        "24"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b499",
+      "parent": "b496",
+      "move": "3 - 8 = -5",
+      "state": [
+        "5",
+        "-5"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b500",
+      "parent": "b496",
+      "move": "8 - 3 = 5",
+      "state": [
+        "5",
+        "5"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b501",
+      "parent": "b500",
+      "move": "(8 - 3) + (8 - 3) = 10",
+      "state": [
+        "10"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b502",
+      "parent": "b500",
+      "move": "(8 - 3) * (8 - 3) = 25",
+      "state": [
+        "25"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b503",
+      "parent": "b500",
+      "move": "(8 - 3) - (8 - 3) = 0",
+      "state": [
+        "0"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b504",
+      "parent": "b500",
+      "move": "(8 - 3) / (8 - 3) = 1",
+      "state": [
+        "1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b505",
+      "parent": "b496",
+      "move": "3 / 8 = 3/8",
+      "state": [
+        "5",
+        "3/8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b506",
+      "parent": "b505",
+      "move": "(8 - 3) + (3 / 8) = 43/8",
+      "state": [
+        "43/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b507",
+      "parent": "b505",
+      "move": "(8 - 3) * (3 / 8) = 15/8",
+      "state": [
+        "15/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b508",
+      "parent": "b505",
+      "move": "(8 - 3) - (3 / 8) = 37/8",
+      "state": [
+        "37/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b509",
+      "parent": "b505",
+      "move": "(3 / 8) - (8 - 3) = -37/8",
+      "state": [
+        "-37/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b510",
+      "parent": "b505",
+      "move": "(8 - 3) / (3 / 8) = 40/3",
+      "state": [
+        "40/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b511",
+      "parent": "b505",
+      "move": "(3 / 8) / (8 - 3) = 3/40",
+      "state": [
+        "3/40"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b512",
+      "parent": "b496",
+      "move": "8 / 3 = 8/3",
+      "state": [
+        "5",
+        "8/3"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b513",
+      "parent": "b512",
+      "move": "(8 - 3) + (8 / 3) = 23/3",
+      "state": [
+        "23/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b514",
+      "parent": "b512",
+      "move": "(8 - 3) * (8 / 3) = 40/3",
+      "state": [
+        "40/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b515",
+      "parent": "b512",
+      "move": "(8 - 3) - (8 / 3) = 7/3",
+      "state": [
+        "7/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b516",
+      "parent": "b512",
+      "move": "(8 / 3) - (8 - 3) = -7/3",
+      "state": [
+        "-7/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b517",
+      "parent": "b512",
+      "move": "(8 - 3) / (8 / 3) = 15/8",
+      "state": [
+        "15/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b518",
+      "parent": "b512",
+      "move": "(8 / 3) / (8 - 3) = 8/15",
+      "state": [
+        "8/15"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b519",
+      "parent": "b496",
+      "move": "3 + (8 - 3) = 8",
+      "state": [
+        "8",
+        "8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b520",
+      "parent": "b496",
+      "move": "3 * (8 - 3) = 15",
+      "state": [
+        "8",
+        "15"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b521",
+      "parent": "b520",
+      "move": "8 + (3 * (8 - 3)) = 23",
+      "state": [
+        "23"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b522",
+      "parent": "b520",
+      "move": "8 * (3 * (8 - 3)) = 120",
+      "state": [
+        "120"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b523",
+      "parent": "b520",
+      "move": "8 - (3 * (8 - 3)) = -7",
+      "state": [
+        "-7"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b524",
+      "parent": "b520",
+      "move": "(3 * (8 - 3)) - 8 = 7",
+      "state": [
+        "7"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b525",
+      "parent": "b520",
+      "move": "8 / (3 * (8 - 3)) = 8/15",
+      "state": [
+        "8/15"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b526",
+      "parent": "b520",
+      "move": "(3 * (8 - 3)) / 8 = 15/8",
+      "state": [
+        "15/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b527",
+      "parent": "b496",
+      "move": "3 - (8 - 3) = -2",
+      "state": [
+        "8",
+        "-2"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b528",
+      "parent": "b496",
+      "move": "(8 - 3) - 3 = 2",
+      "state": [
+        "8",
+        "2"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b529",
+      "parent": "b496",
+      "move": "3 / (8 - 3) = 3/5",
+      "state": [
+        "8",
+        "3/5"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b530",
+      "parent": "b529",
+      "move": "8 + (3 / (8 - 3)) = 43/5",
+      "state": [
+        "43/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b531",
+      "parent": "b529",
+      "move": "8 * (3 / (8 - 3)) = 24/5",
+      "state": [
+        "24/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b532",
+      "parent": "b529",
+      "move": "8 - (3 / (8 - 3)) = 37/5",
+      "state": [
+        "37/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b533",
+      "parent": "b529",
+      "move": "(3 / (8 - 3)) - 8 = -37/5",
+      "state": [
+        "-37/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b534",
+      "parent": "b529",
+      "move": "8 / (3 / (8 - 3)) = 40/3",
+      "state": [
+        "40/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b535",
+      "parent": "b529",
+      "move": "(3 / (8 - 3)) / 8 = 3/40",
+      "state": [
+        "3/40"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b536",
+      "parent": "b496",
+      "move": "(8 - 3) / 3 = 5/3",
+      "state": [
+        "8",
+        "5/3"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b537",
+      "parent": "b536",
+      "move": "8 + ((8 - 3) / 3) = 29/3",
+      "state": [
+        "29/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b538",
+      "parent": "b536",
+      "move": "8 * ((8 - 3) / 3) = 40/3",
+      "state": [
+        "40/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b539",
+      "parent": "b536",
+      "move": "8 - ((8 - 3) / 3) = 19/3",
+      "state": [
+        "19/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b540",
+      "parent": "b536",
+      "move": "((8 - 3) / 3) - 8 = -19/3",
+      "state": [
+        "-19/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b541",
+      "parent": "b536",
+      "move": "8 / ((8 - 3) / 3) = 24/5",
+      "state": [
+        "24/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b542",
+      "parent": "b536",
+      "move": "((8 - 3) / 3) / 8 = 5/24",
+      "state": [
+        "5/24"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b543",
+      "parent": "b496",
+      "move": "8 + (8 - 3) = 13",
+      "state": [
+        "3",
+        "13"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b544",
+      "parent": "b496",
+      "move": "8 * (8 - 3) = 40",
+      "state": [
+        "3",
+        "40"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b545",
+      "parent": "b544",
+      "move": "3 + (8 * (8 - 3)) = 43",
+      "state": [
+        "43"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b546",
+      "parent": "b544",
+      "move": "3 * (8 * (8 - 3)) = 120",
+      "state": [
+        "120"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b547",
+      "parent": "b544",
+      "move": "3 - (8 * (8 - 3)) = -37",
+      "state": [
+        "-37"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b548",
+      "parent": "b544",
+      "move": "(8 * (8 - 3)) - 3 = 37",
+      "state": [
+        "37"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b549",
+      "parent": "b544",
+      "move": "3 / (8 * (8 - 3)) = 3/40",
+      "state": [
+        "3/40"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b550",
+      "parent": "b544",
+      "move": "(8 * (8 - 3)) / 3 = 40/3",
+      "state": [
+        "40/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b551",
+      "parent": "b496",
+      "move": "8 - (8 - 3) = 3",
+      "state": [
+        "3",
+        "3"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b552",
+      "parent": "b496",
+      "move": "(8 - 3) - 8 = -3",
+      "state": [
+        "3",
+        "-3"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b553",
+      "parent": "b496",
+      "move": "8 / (8 - 3) = 8/5",
+      "state": [
+        "3",
+        "8/5"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b554",
+      "parent": "b553",
+      "move": "3 + (8 / (8 - 3)) = 23/5",
+      "state": [
+        "23/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b555",
+      "parent": "b553",
+      "move": "3 * (8 / (8 - 3)) = 24/5",
+      "state": [
+        "24/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b556",
+      "parent": "b553",
+      "move": "3 - (8 / (8 - 3)) = 7/5",
+      "state": [
+        "7/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b557",
+      "parent": "b553",
+      "move": "(8 / (8 - 3)) - 3 = -7/5",
+      "state": [
+        "-7/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b558",
+      "parent": "b553",
+      "move": "3 / (8 / (8 - 3)) = 15/8",
+      "state": [
+        "15/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b559",
+      "parent": "b553",
+      "move": "(8 / (8 - 3)) / 3 = 8/15",
+      "state": [
+        "8/15"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b560",
+      "parent": "b496",
+      "move": "(8 - 3) / 8 = 5/8",
+      "state": [
+        "3",
+        "5/8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b561",
+      "parent": "b560",
+      "move": "3 + ((8 - 3) / 8) = 29/8",
+      "state": [
+        "29/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b562",
+      "parent": "b560",
+      "move": "3 * ((8 - 3) / 8) = 15/8",
+      "state": [
+        "15/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b563",
+      "parent": "b560",
+      "move": "3 - ((8 - 3) / 8) = 19/8",
+      "state": [
+        "19/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b564",
+      "parent": "b560",
+      "move": "((8 - 3) / 8) - 3 = -19/8",
+      "state": [
+        "-19/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b565",
+      "parent": "b560",
+      "move": "3 / ((8 - 3) / 8) = 24/5",
+      "state": [
+        "24/5"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b566",
+      "parent": "b560",
+      "move": "((8 - 3) / 8) / 3 = 5/24",
+      "state": [
+        "5/24"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b567",
+      "parent": "root",
+      "move": "3 / 8 = 3/8",
+      "state": [
+        "3",
+        "8",
+        "3/8"
+      ],
+      "depth": 1,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b568",
+      "parent": "b567",
+      "move": "3 + 8 = 11",
+      "state": [
+        "3/8",
+        "11"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b569",
+      "parent": "b567",
+      "move": "3 * 8 = 24",
+      "state": [
+        "3/8",
+        "24"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b570",
+      "parent": "b567",
+      "move": "3 - 8 = -5",
+      "state": [
+        "3/8",
+        "-5"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b571",
+      "parent": "b567",
+      "move": "8 - 3 = 5",
+      "state": [
+        "3/8",
+        "5"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b572",
+      "parent": "b567",
+      "move": "3 / 8 = 3/8",
+      "state": [
+        "3/8",
+        "3/8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b573",
+      "parent": "b572",
+      "move": "(3 / 8) + (3 / 8) = 3/4",
+      "state": [
+        "3/4"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b574",
+      "parent": "b572",
+      "move": "(3 / 8) * (3 / 8) = 9/64",
+      "state": [
+        "9/64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b575",
+      "parent": "b572",
+      "move": "(3 / 8) - (3 / 8) = 0",
+      "state": [
+        "0"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b576",
+      "parent": "b572",
+      "move": "(3 / 8) / (3 / 8) = 1",
+      "state": [
+        "1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b577",
+      "parent": "b567",
+      "move": "8 / 3 = 8/3",
+      "state": [
+        "3/8",
+        "8/3"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b578",
+      "parent": "b577",
+      "move": "(3 / 8) + (8 / 3) = 73/24",
+      "state": [
+        "73/24"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b579",
+      "parent": "b577",
+      "move": "(3 / 8) * (8 / 3) = 1",
+      "state": [
+        "1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b580",
+      "parent": "b577",
+      "move": "(3 / 8) - (8 / 3) = -55/24",
+      "state": [
+        "-55/24"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b581",
+      "parent": "b577",
+      "move": "(8 / 3) - (3 / 8) = 55/24",
+      "state": [
+        "55/24"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b582",
+      "parent": "b577",
+      "move": "(3 / 8) / (8 / 3) = 9/64",
+      "state": [
+        "9/64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b583",
+      "parent": "b577",
+      "move": "(8 / 3) / (3 / 8) = 64/9",
+      "state": [
+        "64/9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b584",
+      "parent": "b567",
+      "move": "3 + (3 / 8) = 27/8",
+      "state": [
+        "8",
+        "27/8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b585",
+      "parent": "b584",
+      "move": "8 + (3 + (3 / 8)) = 91/8",
+      "state": [
+        "91/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b586",
+      "parent": "b584",
+      "move": "8 * (3 + (3 / 8)) = 27",
+      "state": [
+        "27"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b587",
+      "parent": "b584",
+      "move": "8 - (3 + (3 / 8)) = 37/8",
+      "state": [
+        "37/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b588",
+      "parent": "b584",
+      "move": "(3 + (3 / 8)) - 8 = -37/8",
+      "state": [
+        "-37/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b589",
+      "parent": "b584",
+      "move": "8 / (3 + (3 / 8)) = 64/27",
+      "state": [
+        "64/27"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b590",
+      "parent": "b584",
+      "move": "(3 + (3 / 8)) / 8 = 27/64",
+      "state": [
+        "27/64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b591",
+      "parent": "b567",
+      "move": "3 * (3 / 8) = 9/8",
+      "state": [
+        "8",
+        "9/8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b592",
+      "parent": "b567",
+      "move": "3 - (3 / 8) = 21/8",
+      "state": [
+        "8",
+        "21/8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b593",
+      "parent": "b592",
+      "move": "8 + (3 - (3 / 8)) = 85/8",
+      "state": [
+        "85/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b594",
+      "parent": "b592",
+      "move": "8 * (3 - (3 / 8)) = 21",
+      "state": [
+        "21"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b595",
+      "parent": "b592",
+      "move": "8 - (3 - (3 / 8)) = 43/8",
+      "state": [
+        "43/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b596",
+      "parent": "b592",
+      "move": "(3 - (3 / 8)) - 8 = -43/8",
+      "state": [
+        "-43/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b597",
+      "parent": "b592",
+      "move": "8 / (3 - (3 / 8)) = 64/21",
+      "state": [
+        "64/21"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b598",
+      "parent": "b592",
+      "move": "(3 - (3 / 8)) / 8 = 21/64",
+      "state": [
+        "21/64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b599",
+      "parent": "b567",
+      "move": "(3 / 8) - 3 = -21/8",
+      "state": [
+        "8",
+        "-21/8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b600",
+      "parent": "b599",
+      "move": "8 + ((3 / 8) - 3) = 43/8",
+      "state": [
+        "43/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b601",
+      "parent": "b599",
+      "move": "8 * ((3 / 8) - 3) = -21",
+      "state": [
+        "-21"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b602",
+      "parent": "b599",
+      "move": "8 - ((3 / 8) - 3) = 85/8",
+      "state": [
+        "85/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b603",
+      "parent": "b599",
+      "move": "((3 / 8) - 3) - 8 = -85/8",
+      "state": [
+        "-85/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b604",
+      "parent": "b599",
+      "move": "8 / ((3 / 8) - 3) = -64/21",
+      "state": [
+        "-64/21"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b605",
+      "parent": "b599",
+      "move": "((3 / 8) - 3) / 8 = -21/64",
+      "state": [
+        "-21/64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b606",
+      "parent": "b567",
+      "move": "3 / (3 / 8) = 8",
+      "state": [
+        "8",
+        "8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b607",
+      "parent": "b567",
+      "move": "(3 / 8) / 3 = 1/8",
+      "state": [
+        "8",
+        "1/8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b608",
+      "parent": "b567",
+      "move": "8 + (3 / 8) = 67/8",
+      "state": [
+        "3",
+        "67/8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b609",
+      "parent": "b608",
+      "move": "3 + (8 + (3 / 8)) = 91/8",
+      "state": [
+        "91/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b610",
+      "parent": "b608",
+      "move": "3 * (8 + (3 / 8)) = 201/8",
+      "state": [
+        "201/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b611",
+      "parent": "b608",
+      "move": "3 - (8 + (3 / 8)) = -43/8",
+      "state": [
+        "-43/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b612",
+      "parent": "b608",
+      "move": "(8 + (3 / 8)) - 3 = 43/8",
+      "state": [
+        "43/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b613",
+      "parent": "b608",
+      "move": "3 / (8 + (3 / 8)) = 24/67",
+      "state": [
+        "24/67"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b614",
+      "parent": "b608",
+      "move": "(8 + (3 / 8)) / 3 = 67/24",
+      "state": [
+        "67/24"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b615",
+      "parent": "b567",
+      "move": "8 * (3 / 8) = 3",
+      "state": [
+        "3",
+        "3"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b616",
+      "parent": "b567",
+      "move": "8 - (3 / 8) = 61/8",
+      "state": [
+        "3",
+        "61/8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b617",
+      "parent": "b616",
+      "move": "3 + (8 - (3 / 8)) = 85/8",
+      "state": [
+        "85/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b618",
+      "parent": "b616",
+      "move": "3 * (8 - (3 / 8)) = 183/8",
+      "state": [
+        "183/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b619",
+      "parent": "b616",
+      "move": "3 - (8 - (3 / 8)) = -37/8",
+      "state": [
+        "-37/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b620",
+      "parent": "b616",
+      "move": "(8 - (3 / 8)) - 3 = 37/8",
+      "state": [
+        "37/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b621",
+      "parent": "b616",
+      "move": "3 / (8 - (3 / 8)) = 24/61",
+      "state": [
+        "24/61"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b622",
+      "parent": "b616",
+      "move": "(8 - (3 / 8)) / 3 = 61/24",
+      "state": [
+        "61/24"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b623",
+      "parent": "b567",
+      "move": "(3 / 8) - 8 = -61/8",
+      "state": [
+        "3",
+        "-61/8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b624",
+      "parent": "b623",
+      "move": "3 + ((3 / 8) - 8) = -37/8",
+      "state": [
+        "-37/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b625",
+      "parent": "b623",
+      "move": "3 * ((3 / 8) - 8) = -183/8",
+      "state": [
+        "-183/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b626",
+      "parent": "b623",
+      "move": "3 - ((3 / 8) - 8) = 85/8",
+      "state": [
+        "85/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b627",
+      "parent": "b623",
+      "move": "((3 / 8) - 8) - 3 = -85/8",
+      "state": [
+        "-85/8"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b628",
+      "parent": "b623",
+      "move": "3 / ((3 / 8) - 8) = -24/61",
+      "state": [
+        "-24/61"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b629",
+      "parent": "b623",
+      "move": "((3 / 8) - 8) / 3 = -61/24",
+      "state": [
+        "-61/24"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b630",
+      "parent": "b567",
+      "move": "8 / (3 / 8) = 64/3",
+      "state": [
+        "3",
+        "64/3"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b631",
+      "parent": "b630",
+      "move": "3 + (8 / (3 / 8)) = 73/3",
+      "state": [
+        "73/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b632",
+      "parent": "b630",
+      "move": "3 * (8 / (3 / 8)) = 64",
+      "state": [
+        "64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b633",
+      "parent": "b630",
+      "move": "3 - (8 / (3 / 8)) = -55/3",
+      "state": [
+        "-55/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b634",
+      "parent": "b630",
+      "move": "(8 / (3 / 8)) - 3 = 55/3",
+      "state": [
+        "55/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b635",
+      "parent": "b630",
+      "move": "3 / (8 / (3 / 8)) = 9/64",
+      "state": [
+        "9/64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b636",
+      "parent": "b630",
+      "move": "(8 / (3 / 8)) / 3 = 64/9",
+      "state": [
+        "64/9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b637",
+      "parent": "b567",
+      "move": "(3 / 8) / 8 = 3/64",
+      "state": [
+        "3",
+        "3/64"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b638",
+      "parent": "b637",
+      "move": "3 + ((3 / 8) / 8) = 195/64",
+      "state": [
+        "195/64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b639",
+      "parent": "b637",
+      "move": "3 * ((3 / 8) / 8) = 9/64",
+      "state": [
+        "9/64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b640",
+      "parent": "b637",
+      "move": "3 - ((3 / 8) / 8) = 189/64",
+      "state": [
+        "189/64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b641",
+      "parent": "b637",
+      "move": "((3 / 8) / 8) - 3 = -189/64",
+      "state": [
+        "-189/64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b642",
+      "parent": "b637",
+      "move": "3 / ((3 / 8) / 8) = 64",
+      "state": [
+        "64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b643",
+      "parent": "b637",
+      "move": "((3 / 8) / 8) / 3 = 1/64",
+      "state": [
+        "1/64"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b644",
+      "parent": "root",
+      "move": "8 / 3 = 8/3",
+      "state": [
+        "3",
+        "8",
+        "8/3"
+      ],
+      "depth": 1,
+      "decision": "selected",
+      "reason": "Leads to a terminal exact value of 24."
+    },
+    {
+      "id": "b645",
+      "parent": "b644",
+      "move": "3 + 8 = 11",
+      "state": [
+        "8/3",
+        "11"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b646",
+      "parent": "b644",
+      "move": "3 * 8 = 24",
+      "state": [
+        "8/3",
+        "24"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b647",
+      "parent": "b644",
+      "move": "3 - 8 = -5",
+      "state": [
+        "8/3",
+        "-5"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b648",
+      "parent": "b644",
+      "move": "8 - 3 = 5",
+      "state": [
+        "8/3",
+        "5"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b649",
+      "parent": "b644",
+      "move": "3 / 8 = 3/8",
+      "state": [
+        "8/3",
+        "3/8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b650",
+      "parent": "b644",
+      "move": "8 / 3 = 8/3",
+      "state": [
+        "8/3",
+        "8/3"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b651",
+      "parent": "b650",
+      "move": "(8 / 3) + (8 / 3) = 16/3",
+      "state": [
+        "16/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b652",
+      "parent": "b650",
+      "move": "(8 / 3) * (8 / 3) = 64/9",
+      "state": [
+        "64/9"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b653",
+      "parent": "b650",
+      "move": "(8 / 3) - (8 / 3) = 0",
+      "state": [
+        "0"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b654",
+      "parent": "b650",
+      "move": "(8 / 3) / (8 / 3) = 1",
+      "state": [
+        "1"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b655",
+      "parent": "b644",
+      "move": "3 + (8 / 3) = 17/3",
+      "state": [
+        "8",
+        "17/3"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "All legal continuations exhausted."
+    },
+    {
+      "id": "b656",
+      "parent": "b655",
+      "move": "8 + (3 + (8 / 3)) = 41/3",
+      "state": [
+        "41/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b657",
+      "parent": "b655",
+      "move": "8 * (3 + (8 / 3)) = 136/3",
+      "state": [
+        "136/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b658",
+      "parent": "b655",
+      "move": "8 - (3 + (8 / 3)) = 7/3",
+      "state": [
+        "7/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b659",
+      "parent": "b655",
+      "move": "(3 + (8 / 3)) - 8 = -7/3",
+      "state": [
+        "-7/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b660",
+      "parent": "b655",
+      "move": "8 / (3 + (8 / 3)) = 24/17",
+      "state": [
+        "24/17"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b661",
+      "parent": "b655",
+      "move": "(3 + (8 / 3)) / 8 = 17/24",
+      "state": [
+        "17/24"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "Terminal value differs from 24."
+    },
+    {
+      "id": "b662",
+      "parent": "b644",
+      "move": "3 * (8 / 3) = 8",
+      "state": [
+        "8",
+        "8"
+      ],
+      "depth": 2,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b663",
+      "parent": "b644",
+      "move": "3 - (8 / 3) = 1/3",
+      "state": [
+        "8",
+        "1/3"
+      ],
+      "depth": 2,
+      "decision": "selected",
+      "reason": "Leads to a terminal exact value of 24."
+    },
+    {
+      "id": "b664",
+      "parent": "b663",
+      "move": "8 + (3 - (8 / 3)) = 25/3",
+      "state": [
+        "25/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b665",
+      "parent": "b663",
+      "move": "8 * (3 - (8 / 3)) = 8/3",
+      "state": [
+        "8/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b666",
+      "parent": "b663",
+      "move": "8 - (3 - (8 / 3)) = 23/3",
+      "state": [
+        "23/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b667",
+      "parent": "b663",
+      "move": "(3 - (8 / 3)) - 8 = -23/3",
+      "state": [
+        "-23/3"
+      ],
+      "depth": 3,
+      "decision": "pruned",
+      "reason": "An equivalent multiset already exhausted its legal continuations."
+    },
+    {
+      "id": "b668",
+      "parent": "b663",
+      "move": "8 / (3 - (8 / 3)) = 24",
+      "state": [
+        "24"
+      ],
+      "depth": 3,
+      "decision": "selected",
+      "reason": "Leads to a terminal exact value of 24."
+    }
+  ],
+  "errors": [],
+  "metrics": {
+    "steps": 1,
+    "nodes_explored": 669,
+    "branches_pruned": 665,
+    "hops": 4,
+    "prompt_tokens": null,
+    "output_tokens": null,
+    "model_calls": 0,
+    "tool_calls": 0,
+    "http_attempts": 0,
+    "embedding_calls": 0,
+    "latency_s": 6.883275681999976
+  },
+  "certificate": {
+    "puzzle": [
+      3,
+      3,
+      8,
+      8
+    ],
+    "expression": "(8 / (3 - (8 / 3)))",
+    "value": "24",
+    "used_numbers": [
+      8,
+      3,
+      8,
+      3
+    ],
+    "usage_ok": true,
+    "valid": true,
+    "message": "Every card appears once and the exact value is 24.",
+    "steps": [
+      "8 / 3 = 8/3",
+      "3 - 8/3 = 1/3",
+      "8 / (1/3) = 24"
+    ]
+  },
+  "explanation": [
+    "8 / 3 = 8/3",
+    "3 - 8/3 = 1/3",
+    "8 / (1/3) = 24"
+  ]
+}

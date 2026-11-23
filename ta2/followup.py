@@ -16,13 +16,13 @@ def contextual_followup(state, question, without_memory=False):
         return {"answer": UNKNOWN, "memory_used": False, "previous_turns": 0}
     last = history[-1]
     words = set(re.findall(r"[a-z]+", question.lower()))
-    if words & {"puzzle", "cards", "numbers", "inputs"}:
-        answer = "Previous puzzle cards: " + ", ".join(map(str, last["puzzle"]))
-    elif words & {"expression", "formula", "answer", "solution"}:
+    if words & {"expression", "formula", "answer", "solution"}:
         expression = last.get("expression")
         answer = ("Previous expression: " + expression) if expression else UNKNOWN
     elif words & {"result", "status", "verified", "successful"}:
         answer = "Previous run status: " + last.get("status", "unknown")
+    elif words & {"puzzle", "cards", "numbers", "inputs"}:
+        answer = "Previous puzzle cards: " + ", ".join(map(str, last["puzzle"]))
     else:
         answer = "I don't know: this follow-up is outside the saved puzzle facts."
     return {"answer": answer, "memory_used": answer != UNKNOWN and not answer.startswith("I don't know"),

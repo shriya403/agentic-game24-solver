@@ -68,6 +68,11 @@ class JuryReadinessTests(unittest.TestCase):
         no = contextual_followup(state, question, without_memory=True)
         self.assertTrue(yes["memory_used"])
         self.assertIn("8/(3-8/3)", yes["answer"])
+        for question, expected in [("What was my previous puzzle expression?", "Previous expression:"),
+                                   ("What was the previous puzzle status?", "Previous run status:"),
+                                   ("What were the puzzle cards?", "Previous puzzle cards:")]:
+            with self.subTest(question=question):
+                self.assertTrue(contextual_followup(state, question)["answer"].startswith(expected))
         self.assertFalse(no["memory_used"])
         self.assertEqual(no["answer"], UNKNOWN)
 
