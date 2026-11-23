@@ -22,7 +22,14 @@ def main():
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("check", help="Check local model tags and actual embeddings/generation")
     ingest = sub.add_parser("ingest")
-    ingest.add_argument("paths", nargs="+", type=Path)
+    ingest.add_argument("paths", nargs="*", type=Path,
+                        help="Markdown documents or directories; default: all ta2/corpus/*.md")
+    audit = sub.add_parser("rag-audit", help="Compare grounded answers at k=1 and k=3")
+    audit.add_argument("question")
+    followup = sub.add_parser("followup", help="Answer a contextual question from saved thread history")
+    followup.add_argument("--thread", required=True)
+    followup.add_argument("--question", required=True)
+    followup.add_argument("--without-memory", action="store_true")
     solve = sub.add_parser("solve")
     solve.add_argument("cards", nargs=4, type=int)
     solve.add_argument("--thread", required=True)
@@ -40,8 +47,8 @@ def main():
     client = None if args.offline else LocalOllama(args.base_url, args.model, args.embedding_model)
     try:
         with ExitStack() as resources:
-            if args.command in ("check", "ingest") and args.offline:
-                parser.error("check and ingest require Ollama; offline mode supplies no embeddings")
+            if args.command in ("check", "ingest", "rag-audit") and args.offline:
+                parser.error("check, ingest and rag-audit require Ollama; offline mode supplies no embeddings")
             if args.command == "check":
                 client.ready()
                 vectors = client.embed(["Use every Game of 24 card exactly once."])
@@ -52,11 +59,23 @@ def main():
                 return
             data = Path(args.data_dir)
             data.mkdir(parents=True, exist_ok=True)
-            if client and args.command != "history":
+            if client and args.command not in ("history", "followup"):
                 client.ready()
-            rag = resources.enter_context(ChromaRAG(data / "chroma", client)) if client and args.command != "history" else None
+            rag = (resources.enter_context(ChromaRAG(data / "chroma", client))
+                   if client and args.command not in ("history", "followup") else None)
             if args.command == "ingest":
-                print(json.dumps({"chunks_upserted": rag.ingest(args.paths)}))
+                requested = args.paths or [Path("ta2/corpus")]
+                paths = [file for item in requested
+                         for file in (sorted(item.glob("*.md")) if item.is_dir() else [item])]
+                if not paths:
+                    raise ToolFailure("ingest", "No Markdown documents found")
+                print(json.dumps({"chunks_upserted": rag.ingest(paths),
+                                  "sources": [str(p) for p in paths],
+                                  "collection_chunks": rag.collection.count()}))
+                return
+            if args.command == "rag-audit":
+                from .qa import compare_k
+                print(json.dumps(compare_k(args.question, rag, client), indent=2))
                 return
             workflow = TA2Workflow(data, client=client, rag=rag, offline=args.offline,
                                    max_hops=getattr(args, "max_hops", 12),
@@ -65,6 +84,12 @@ def main():
             try:
                 if args.command == "history":
                     print(json.dumps(workflow.snapshot(args.thread).values, indent=2))
+                    return
+                if args.command == "followup":
+                    from .followup import contextual_followup
+                    result = contextual_followup(workflow.snapshot(args.thread).values,
+                                                 args.question, args.without_memory)
+                    print(json.dumps(result, indent=2))
                     return
                 state = (workflow.resume(args.thread) if args.command == "resume" else
                          workflow.run(args.cards, args.thread, args.seed, args.namespace))
