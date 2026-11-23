@@ -1,0 +1,53 @@
+name: Windows jury launcher
+on:
+  push:
+    branches: [enhancement/game24-ultimate]
+    paths:
+      - '.github/workflows/windows-jury.yml'
+      - 'requirements*.txt'
+      - 'scripts/launch.py'
+      - 'run_final.bat'
+      - 'final_jury/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Start the actual batch launcher and verify Streamlit health
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $env:PYTHONUTF8 = "1"
+          $env:PIP_DISABLE_PIP_VERSION_CHECK = "1"
+          $out = Join-Path $env:RUNNER_TEMP 'game24-output.txt'
+          $err = Join-Path $env:RUNNER_TEMP 'game24-errors.txt'
+          $launcher = Start-Process cmd.exe -ArgumentList '/d','/c','run_final.bat --server.headless=true --server.address=127.0.0.1 --server.port=8561' -PassThru -RedirectStandardOutput $out -RedirectStandardError $err
+          $deadline = (Get-Date).AddMinutes(10)
+          try {
+            do {
+              if ($launcher.HasExited) { throw "Launcher exited with $($launcher.ExitCode)" }
+              try { $health = (Invoke-WebRequest 'http://127.0.0.1:8561/_stcore/health' -TimeoutSec 2).Content } catch { $health = '' }
+              if ($health -eq 'ok') { break }
+              Start-Sleep -Seconds 2
+            } while ((Get-Date) -lt $deadline)
+            if ($health -ne 'ok') { throw 'Streamlit readiness timeout' }
+            Write-Host 'Windows batch launcher served Streamlit health.'
+            & .venv\Scripts\python.exe -m unittest discover -s tests -v
+            if ($LASTEXITCODE -ne 0) { throw 'Jury suite failed' }
+            & .venv\Scripts\python.exe -m unittest discover -s tests_ta2 -v
+            if ($LASTEXITCODE -ne 0) { throw 'TA2 suite failed' }
+          } finally {
+            Get-Content $out -Tail 25
+            Get-Content $err -Tail 25
+            if (!$launcher.HasExited) { taskkill /pid $launcher.Id /t /f | Out-Null }
+          }
