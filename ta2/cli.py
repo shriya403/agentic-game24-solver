@@ -55,11 +55,14 @@ def main():
                 puzzle = [2, 2, 6, 6]
                 approved = verify("2*6+2*6", puzzle)
                 rejected = verify("2+2+6+6", puzzle)
+                injected = verify("__import__('os').system('echo unsafe')", puzzle)
                 print(json.dumps({"input": puzzle,
                                   "approved": {"expression": "2*6+2*6", "valid": approved.valid,
                                                "feedback": approved.message},
                                   "rejected": {"expression": "2+2+6+6", "valid": rejected.valid,
-                                               "feedback": rejected.message}}, indent=2))
+                                               "feedback": rejected.message},
+                                  "injection_rejected": {"valid": injected.valid,
+                                                         "feedback": injected.message}}, indent=2))
                 return
             if args.command == "check":
                 client.ready()
