@@ -66,3 +66,68 @@ if result:
     if result["errors"]:
         st.error("A tool failed; inspect details below.")
         st.json(result["errors"])
+
+
+st.divider()
+st.subheader("Faculty TA2 evidence demonstrations")
+with st.expander("U3 — Grounded RAG: k=1 vs k=3 and unsupported questions"):
+    from ta2.qa import compare_k
+    rag_question = st.text_input(
+        "Ask the reference corpus",
+        "Why are fractional intermediate values allowed in Game of 24?",
+        key="jury_rag_question",
+    )
+    if st.button("Compare retrieval k=1 and k=3", key="jury_rag_button"):
+        try:
+            qa_client = LocalOllama()
+            qa_client.ready()
+            with ChromaRAG(Path(data_dir) / "chroma", qa_client) as qa_rag:
+                st.session_state["jury_rag_result"] = compare_k(rag_question, qa_rag, qa_client)
+        except (ToolFailure, ValueError, OSError) as exc:
+            st.error(f"RAG audit could not finish: {exc}")
+    if "jury_rag_result" in st.session_state:
+        report = st.session_state["jury_rag_result"]
+        for key in ("k1", "k3"):
+            row = report[key]
+            st.write(f"{key}: {row['answer']}")
+            st.caption(f"Grounded: {row['grounded']} · Citation IDs: {row['citations']}")
+            st.json(row["sources"])
+    st.caption("Try 'Who founded Neptune Motors?' to demonstrate the 'I don't know' refusal.")
+
+with st.expander("U3 — Checkpointed follow-up versus memory disabled"):
+    from ta2.followup import contextual_followup
+    memory_question = st.text_input(
+        "Follow-up dependent on the selected saved thread",
+        "What was my previous expression?",
+        key="jury_memory_question",
+    )
+    if st.button("Compare with / without memory", key="jury_memory_button"):
+        memory_workflow = None
+        try:
+            # Snapshot reads do not require an LLM. Use the same persisted thread ID.
+            memory_workflow = TA2Workflow(data_dir, offline=True)
+            saved_state = memory_workflow.snapshot(thread).values
+            st.session_state["jury_memory_result"] = {
+                "thread": thread,
+                "with_memory": contextual_followup(saved_state, memory_question),
+                "without_memory": contextual_followup(saved_state, memory_question, True),
+            }
+        except (ValueError, OSError, sqlite3.Error) as exc:
+            st.error(f"Memory comparison could not finish: {exc}")
+        finally:
+            if memory_workflow:
+                memory_workflow.close()
+    if "jury_memory_result" in st.session_state:
+        st.json(st.session_state["jury_memory_result"])
+
+with st.expander("U4 — Mathematical guardrail: approved and rejected paths"):
+    from ta2.tools import verify
+    demonstration_cards = [2, 2, 6, 6]
+    safe = verify("2*6+2*6", demonstration_cards)
+    unsafe = verify("2+2+6+6", demonstration_cards)
+    st.json({
+        "cards": demonstration_cards,
+        "approved": {"expression": "2*6+2*6", "verified": safe.valid, "feedback": safe.message},
+        "rejected": {"expression": "2+2+6+6", "verified": unsafe.valid, "feedback": unsafe.message},
+    })
+    st.caption("Verifier approval is mathematical, not an unverified evaluator confidence score.")
